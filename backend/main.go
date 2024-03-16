@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 
+	"pc3r/projet/global"
 	http2 "pc3r/projet/http"
 	socket "pc3r/projet/socket"
 
@@ -19,6 +20,7 @@ const serverPort = 5000
 var mux = http.NewServeMux()
 
 func main() {
+	global.Init()
 
 	router := socket.UseSocketRouter()
 	mux.Handle("/ws", router)
