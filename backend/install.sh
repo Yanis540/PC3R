@@ -11,4 +11,5 @@ psql -U postgres
 CREATE DATABASE pc3r;
 #\c pc3r
 
-go run github.com/steebchen/prisma-client-go db push
+#   initial push go run github.com/steebchen/prisma-client-go db push
+#   migrate : go run github.com/steebchen/prisma-client-go migrate dev --name add_comment_model
