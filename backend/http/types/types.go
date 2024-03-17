@@ -32,3 +32,5 @@ type MessageResponse struct {
 type AuthTokens struct {
 	Access string `json:"access"`
 }
+
+type CtxAuthKey struct{} // or exported to use outside the package

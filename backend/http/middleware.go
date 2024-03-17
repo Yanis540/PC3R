@@ -62,7 +62,7 @@ func AuthMiddleware(next http.Handler) http.Handler {
 			return
 		}
 		ctx_req := req.Context()
-		ctx_req = context.WithValue(ctx_req, "user", user)
+		ctx_req = context.WithValue(ctx_req, types.CtxAuthKey{}, user)
 		req = req.WithContext(ctx_req)
 
 		next.ServeHTTP(res, req)
