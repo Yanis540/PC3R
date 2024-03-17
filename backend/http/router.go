@@ -7,7 +7,7 @@ import (
 
 func UseHttpRouter(mux *http.ServeMux) {
 	mux.Handle("/", JsonContentMiddleware(AllowedMethodsMiddleware(http.HandlerFunc(handlers.BasicRoute), []string{"GET"})))
-	mux.Handle("/user", JsonContentMiddleware(AllowedMethodsMiddleware(http.HandlerFunc(handlers.UserRoute), []string{"GET", "POST", "PUT", "DELETE"})))
+	mux.Handle("/user", JsonContentMiddleware(AllowedMethodsMiddleware(http.HandlerFunc(handlers.UserRoute), []string{"GET", "PUT", "DELETE"})))
 	mux.Handle("/user/sign-in", JsonContentMiddleware(AllowedMethodsMiddleware(http.HandlerFunc(handlers.UserSignIn), []string{"POST"})))
 	mux.Handle("/user/sign-up", JsonContentMiddleware(AllowedMethodsMiddleware(http.HandlerFunc(handlers.UserSignUp), []string{"POST"})))
 }

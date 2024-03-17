@@ -9,7 +9,7 @@ import (
 	types "pc3r/projet/http/types"
 )
 
-func userGet(res http.ResponseWriter, req *http.Request) {
+func getUser(res http.ResponseWriter, req *http.Request) {
 	// var body ReqBody
 	// err := json.NewDecoder(req.Body).Decode(&body)
 	// if err != nil {
@@ -33,48 +33,113 @@ func userGet(res http.ResponseWriter, req *http.Request) {
 	// res_body := ResBody{Success: true, Name: user.Name}
 	// json.NewEncoder(res).Encode(res_body)
 }
-func userPost(res http.ResponseWriter, req *http.Request) {
+
+type UpdateUserBody struct {
+	Id              string `json:"id"`
+	Name            string `json:"name"`
+	Password        string `json:"password"`
+	ConfirmPassword string `json:"confirmPassword"`
+}
+type ResponseUpdateBody struct {
+	Message string        `json:"message"`
+	User    types.UserRes `json:"user"`
+}
+
+func updateUser(res http.ResponseWriter, req *http.Request) {
+	var body UpdateUserBody
+	err := json.NewDecoder(req.Body).Decode(&body)
+	if (err != nil) || body.Id == "" || (body.Name == "" && body.Password == "") {
+		res.WriteHeader(http.StatusAccepted)
+		message := "Nothing to Update"
+		json.NewEncoder(res).Encode(struct {
+			Message string `json:"message"`
+		}{Message: message})
+		return
+	}
+	prisma, ctx := global.GetPrisma()
+	user, err := prisma.User.FindFirst(
+		db.User.ID.Equals(body.Id),
+	).With(
+		db.User.Chats.Fetch(), // Récupérer les chats associés à l'utilisateur
+	).Exec(ctx)
+
+	if err != nil {
+		res.WriteHeader(http.StatusNotFound)
+		message := "User Not Found"
+		json.NewEncoder(res).Encode(types.HTTPError{Message: message})
+		return
+	}
+	updated_name := user.Name
+	if body.Name != "" {
+		updated_name = body.Name
+	}
+	updated_password, _ := user.Password()
+	if body.Password != "" {
+		if body.Password != body.ConfirmPassword {
+			res.WriteHeader(http.StatusForbidden)
+			message := "Password mismatch"
+			json.NewEncoder(res).Encode(types.HTTPError{Message: message})
+			return
+		}
+		updated_password = body.Password
+	}
+
+	updated_user, err := prisma.User.FindUnique(
+		db.User.ID.Equals(body.Id),
+	).With(
+		db.User.Chats.Fetch(), // Récupérer les chats associés à l'utilisateur
+	).Update(
+		db.User.Name.Set(updated_name),
+		db.User.Password.Set(updated_password),
+	).Exec(ctx)
+	if err != nil {
+		res.WriteHeader(http.StatusInternalServerError)
+		message := "Internal Server Error"
+		json.NewEncoder(res).Encode(types.HTTPError{Message: message})
+		return
+	}
+	userStruct := types.UserRes{
+		UserModel: updated_user,
+		Chats:     updated_user.Chats(),
+	}
+	response := ResponseUpdateBody{
+		Message: "User updated",
+		User:    userStruct, // Assigner la structure User à response.User
+	}
+	res.WriteHeader(http.StatusCreated)
+	json.NewEncoder(res).Encode(response)
 
 }
-func userPut(res http.ResponseWriter, req *http.Request) {
-
-}
-func userDelete(res http.ResponseWriter, req *http.Request) {
+func deleteUser(res http.ResponseWriter, req *http.Request) {
 
 }
 
 func UserRoute(res http.ResponseWriter, req *http.Request) {
 
 	if req.Method == "GET" {
-		userGet(res, req)
-		return
-	}
-	if req.Method == "POST" {
-		userPost(res, req)
+		getUser(res, req)
 		return
 	}
 	if req.Method == "PUT" {
-		userPut(res, req)
+		updateUser(res, req)
 		return
 	}
-	userDelete(res, req)
+	deleteUser(res, req)
+}
+
+type SignInBody struct {
+	Email    string `json:"email"`
+	Password string `json:"password"`
+}
+type ResponseSignInBody struct {
+	Success bool          `json:"success"`
+	Message string        `json:"message"`
+	User    types.UserRes `json:"user"`
 }
 
 func UserSignIn(res http.ResponseWriter, req *http.Request) {
-	type SignUpBody struct {
-		Email    string `json:"email"`
-		Password string `json:"password"`
-	}
-	type UserRes struct {
-		*db.UserModel
-		Chats []db.ChatModel `json:"chats"`
-	}
-	type responseBody struct {
-		Success bool    `json:"success"`
-		Message string  `json:"message"`
-		User    UserRes `json:"user"`
-	}
-	var body SignUpBody
+
+	var body SignInBody
 
 	err := json.NewDecoder(req.Body).Decode(&body)
 	if (err != nil) || (body.Email == "" || body.Password == "") {
@@ -103,12 +168,12 @@ func UserSignIn(res http.ResponseWriter, req *http.Request) {
 		json.NewEncoder(res).Encode(types.HTTPError{Message: message})
 		return
 	}
-	userStruct := UserRes{
+	userStruct := types.UserRes{
 		UserModel: user,
 		Chats:     user.Chats(),
 	}
 	// Construire la réponse JSON
-	response := responseBody{
+	response := ResponseSignInBody{
 		Success: true,
 		Message: "Utilisateur et chats récupérés avec succès",
 		User:    userStruct, // Assigner la structure User à response.User
@@ -118,19 +183,19 @@ func UserSignIn(res http.ResponseWriter, req *http.Request) {
 
 }
 
+type SignUpBody struct {
+	Email    string `json:"email"`
+	Password string `json:"password"`
+	Name     string `json:"name"`
+}
+type ResponseSignUpBody struct {
+	Success bool   `json:"success"`
+	Id      string `json:"id"`
+	Message string `json:"message"`
+}
+
 func UserSignUp(res http.ResponseWriter, req *http.Request) {
 
-	// prisma, ctx := global.GetPrisma()
-	type SignUpBody struct {
-		Email    string `json:"email"`
-		Password string `json:"password"`
-		Name     string `json:"name"`
-	}
-	type responseBody struct {
-		Success bool   `json:"success"`
-		Id      string `json:"id"`
-		Message string `json:"message"`
-	}
 	var body SignUpBody
 
 	err := json.NewDecoder(req.Body).Decode(&body)
@@ -168,7 +233,8 @@ func UserSignUp(res http.ResponseWriter, req *http.Request) {
 		json.NewEncoder(res).Encode(types.HTTPError{Message: message})
 		return
 	}
+
 	res.WriteHeader(http.StatusCreated)
-	json.NewEncoder(res).Encode(responseBody{Message: "User Created", Success: true, Id: new_user.ID})
+	json.NewEncoder(res).Encode(ResponseSignUpBody{Message: "User Created", Success: true, Id: new_user.ID})
 
 }
