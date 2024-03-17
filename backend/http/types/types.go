@@ -1,5 +1,5 @@
 package http
 
 type HTTPError struct {
-	Message string
+	Message string `json:"message"`
 }
