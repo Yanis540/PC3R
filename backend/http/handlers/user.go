@@ -7,6 +7,7 @@ import (
 	"pc3r/projet/db"
 	"pc3r/projet/global"
 	types "pc3r/projet/http/types"
+	"pc3r/projet/token"
 )
 
 type GetUserBody struct {
@@ -147,9 +148,8 @@ type SignInBody struct {
 	Password string `json:"password"`
 }
 type ResponseSignInBody struct {
-	Success bool          `json:"success"`
-	Message string        `json:"message"`
-	User    types.UserRes `json:"user"`
+	User   types.UserRes    `json:"user"`
+	Tokens types.AuthTokens `json:"tokens"`
 }
 
 func UserSignIn(res http.ResponseWriter, req *http.Request) {
@@ -187,11 +187,14 @@ func UserSignIn(res http.ResponseWriter, req *http.Request) {
 		UserModel: user,
 		Chats:     user.Chats(),
 	}
+	accesToken, _, _ := token.CreateToken(user.ID)
+	tokens := types.AuthTokens{
+		Access: accesToken,
+	}
 	// Construire la réponse JSON
 	response := ResponseSignInBody{
-		Success: true,
-		Message: "Utilisateur et chats récupérés avec succès",
-		User:    userStruct, // Assigner la structure User à response.User
+		User:   userStruct, // Assigner la structure User à response.User
+		Tokens: tokens,
 	}
 	res.WriteHeader(http.StatusCreated)
 	json.NewEncoder(res).Encode(response)
