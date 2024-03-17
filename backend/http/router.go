@@ -5,5 +5,6 @@ import (
 )
 
 func UseHttpRouter(mux *http.ServeMux) {
-	mux.Handle("/", JsonContentMiddleware(http.HandlerFunc(BasicRoute)))
+	mux.Handle("/", JsonContentMiddleware(AllowedMethodsMiddleware(http.HandlerFunc(BasicRoute), []string{"GET"})))
+	// mux.Handle("/user/")
 }

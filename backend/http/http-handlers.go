@@ -28,10 +28,14 @@ func BasicRoute(res http.ResponseWriter, req *http.Request) {
 	// jsonBody := []byte(`{"client_message": "hello, server!"}`)
 	// bodyReader := bytes.NewReader(jsonBody)
 	client, ctx := global.GetPrisma()
-	user, _ := client.User.FindFirst(
+	user, err := client.User.FindFirst(
 		db.User.Name.Equals("Yanis"),
 	).Exec(ctx)
-
+	if err != nil {
+		res.WriteHeader(http.StatusNotFound)
+		json.NewEncoder(res).Encode(HTTPError{Message: "NOT_FOUND"})
+		return
+	}
 	res.WriteHeader(http.StatusCreated)
 	res_body := ResBody{Success: true, Name: user.Name}
 	json.NewEncoder(res).Encode(res_body)

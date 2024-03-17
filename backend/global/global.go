@@ -15,5 +15,8 @@ func Init() {
 }
 
 func GetPrisma() (*db.PrismaClient, context.Context) {
+	if prisma == nil {
+		Init()
+	}
 	return prisma, ctx
 }
