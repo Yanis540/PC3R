@@ -23,7 +23,7 @@ func getUser(res http.ResponseWriter, req *http.Request) {
 	if (err != nil) || body.Id == "" {
 		res.WriteHeader(http.StatusUnauthorized)
 		message := "Id not passed"
-		json.NewEncoder(res).Encode(types.MessageResponse{Message: message})
+		json.NewEncoder(res).Encode(types.MakeError(message, types.INPUT_ERROR))
 		return
 	}
 	prisma, ctx := global.GetPrisma()
@@ -36,7 +36,7 @@ func getUser(res http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		res.WriteHeader(http.StatusNotFound)
 		message := "User Not Found"
-		json.NewEncoder(res).Encode(types.HTTPError{Message: message})
+		json.NewEncoder(res).Encode(types.MakeError(message, types.NOT_FOUND))
 		return
 	}
 	userStruct := types.UserRes{
@@ -82,7 +82,7 @@ func updateUser(res http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		res.WriteHeader(http.StatusNotFound)
 		message := "User Not Found"
-		json.NewEncoder(res).Encode(types.HTTPError{Message: message})
+		json.NewEncoder(res).Encode(types.MakeError(message, types.NOT_FOUND))
 		return
 	}
 	updated_name := user.Name
@@ -94,7 +94,7 @@ func updateUser(res http.ResponseWriter, req *http.Request) {
 		if body.Password != body.ConfirmPassword {
 			res.WriteHeader(http.StatusForbidden)
 			message := "Password mismatch"
-			json.NewEncoder(res).Encode(types.HTTPError{Message: message})
+			json.NewEncoder(res).Encode(types.MakeError(message, types.INPUT_ERROR))
 			return
 		}
 		updated_password = body.Password
@@ -111,7 +111,7 @@ func updateUser(res http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		res.WriteHeader(http.StatusInternalServerError)
 		message := "Internal Server Error"
-		json.NewEncoder(res).Encode(types.HTTPError{Message: message})
+		json.NewEncoder(res).Encode(types.MakeError(message, types.INTERNAL_SERVER_ERROR))
 		return
 	}
 	userStruct := types.UserRes{
@@ -160,7 +160,7 @@ func UserSignIn(res http.ResponseWriter, req *http.Request) {
 	if (err != nil) || (body.Email == "" || body.Password == "") {
 		res.WriteHeader(http.StatusBadRequest)
 		message := "Invalid  email / passowrd "
-		json.NewEncoder(res).Encode(types.HTTPError{Message: message})
+		json.NewEncoder(res).Encode(types.MakeError(message, types.INPUT_ERROR))
 		return
 	}
 	prisma, ctx := global.GetPrisma()
@@ -173,14 +173,14 @@ func UserSignIn(res http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		res.WriteHeader(http.StatusUnauthorized)
 		message := "Invalid email"
-		json.NewEncoder(res).Encode(types.HTTPError{Message: message})
+		json.NewEncoder(res).Encode(types.MakeError(message, types.INPUT_ERROR))
 		return
 	}
 	user_password, _ := user.Password()
 	if user_password != body.Password {
 		res.WriteHeader(http.StatusUnauthorized)
 		message := "Invalid password"
-		json.NewEncoder(res).Encode(types.HTTPError{Message: message})
+		json.NewEncoder(res).Encode(types.MakeError(message, types.INPUT_ERROR))
 		return
 	}
 	userStruct := types.UserRes{
@@ -222,8 +222,8 @@ func UserSignUp(res http.ResponseWriter, req *http.Request) {
 		fmt.Printf(body.Password)
 		fmt.Printf(body.Name)
 		res.WriteHeader(http.StatusBadRequest)
-		message := "Bad_Request : Expected : email, name,passowrd "
-		json.NewEncoder(res).Encode(types.HTTPError{Message: message})
+		message := "Email or Name or passowrd are missing "
+		json.NewEncoder(res).Encode(types.MakeError(message, types.INPUT_ERROR))
 		return
 	}
 	prisma, ctx := global.GetPrisma()
@@ -235,7 +235,7 @@ func UserSignUp(res http.ResponseWriter, req *http.Request) {
 	if err == nil {
 		res.WriteHeader(http.StatusUnauthorized)
 		message := "Account already created"
-		json.NewEncoder(res).Encode(types.HTTPError{Message: message})
+		json.NewEncoder(res).Encode(types.MakeError(message, types.UNAUTHORIZED))
 		return
 	}
 
@@ -248,7 +248,7 @@ func UserSignUp(res http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		res.WriteHeader(http.StatusInternalServerError)
 		message := "Internal server error"
-		json.NewEncoder(res).Encode(types.HTTPError{Message: message})
+		json.NewEncoder(res).Encode(types.MakeError(message, types.INTERNAL_SERVER_ERROR))
 		return
 	}
 

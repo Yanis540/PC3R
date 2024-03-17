@@ -19,7 +19,7 @@ func GetChat(res http.ResponseWriter, req *http.Request) {
 	if id == "" {
 		res.WriteHeader(http.StatusUnauthorized)
 		message := "Unauthorized"
-		json.NewEncoder(res).Encode(types.MessageResponse{Message: message})
+		json.NewEncoder(res).Encode(types.MakeError(message, types.UNAUTHORIZED))
 		return
 	}
 
@@ -39,7 +39,7 @@ func GetChat(res http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		res.WriteHeader(http.StatusNotFound)
 		message := "Not Found"
-		json.NewEncoder(res).Encode(types.MessageResponse{Message: message})
+		json.NewEncoder(res).Encode(types.MakeError(message, types.NOT_FOUND))
 		return
 	}
 	users := extractUsersInformations(chat.Users())
@@ -79,14 +79,14 @@ func CreateChat(res http.ResponseWriter, req *http.Request) {
 	if (err != nil) || body.Chat.Name == "" || body.Trip.To == "" || body.Trip.From == "" {
 		res.WriteHeader(http.StatusUnauthorized)
 		message := "Missing propreties"
-		json.NewEncoder(res).Encode(types.MessageResponse{Message: message})
+		json.NewEncoder(res).Encode(types.MakeError(message, types.INPUT_ERROR))
 		return
 	}
 	chat, err := CreateChatFn(body)
 	if err != nil {
 		res.WriteHeader(http.StatusBadRequest)
 		message := "Could not create chat "
-		json.NewEncoder(res).Encode(types.MessageResponse{Message: message})
+		json.NewEncoder(res).Encode(types.MakeError(message, types.BAD_REQUEST))
 		return
 	}
 	users := extractUsersInformations(chat.Users())
@@ -167,7 +167,7 @@ func AddUserToChat(res http.ResponseWriter, req *http.Request) {
 	if id == "" {
 		res.WriteHeader(http.StatusUnauthorized)
 		message := "Unauthorized"
-		json.NewEncoder(res).Encode(types.MessageResponse{Message: message})
+		json.NewEncoder(res).Encode(types.MakeError(message, types.UNAUTHORIZED))
 		return
 	}
 
@@ -180,7 +180,7 @@ func AddUserToChat(res http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		res.WriteHeader(http.StatusNotFound)
 		message := "Chat Not found"
-		json.NewEncoder(res).Encode(types.MessageResponse{Message: message})
+		json.NewEncoder(res).Encode(types.MakeError(message, types.NOT_FOUND))
 		return
 	}
 	user, _ := req.Context().Value(types.CtxAuthKey{}).(*db.UserModel)
@@ -199,7 +199,7 @@ func AddUserToChat(res http.ResponseWriter, req *http.Request) {
 		fmt.Println(err)
 		res.WriteHeader(http.StatusNotFound)
 		message := "Chat Not found"
-		json.NewEncoder(res).Encode(types.MessageResponse{Message: message})
+		json.NewEncoder(res).Encode(types.MakeError(message, types.NOT_FOUND))
 		return
 	}
 
@@ -220,4 +220,47 @@ func AddUserToChat(res http.ResponseWriter, req *http.Request) {
 	// ! SEND SOCKET TO OTHERS
 	res.WriteHeader(http.StatusCreated)
 	json.NewEncoder(res).Encode(response)
+}
+
+func RemoveUserFromChat(res http.ResponseWriter, req *http.Request) {
+	id := req.URL.Query().Get("id")
+	if id == "" {
+		res.WriteHeader(http.StatusUnauthorized)
+		message := "Unauthorized"
+		json.NewEncoder(res).Encode(types.MakeError(message, types.NOT_FOUND))
+		return
+	}
+
+	prisma, ctx := global.GetPrisma()
+	user, _ := req.Context().Value(types.CtxAuthKey{}).(*db.UserModel)
+
+	_, err := prisma.Chat.FindFirst(
+		db.Chat.ID.Equals(id),
+		db.Chat.Users.Some(
+			db.User.ID.Equals(user.ID),
+		),
+	).Exec(ctx)
+
+	if err != nil {
+		res.WriteHeader(http.StatusNotFound)
+		message := "Chat Not found"
+		json.NewEncoder(res).Encode(types.MakeError(message, types.NOT_FOUND))
+		return
+	}
+	_, err = prisma.Chat.FindUnique(
+		db.Chat.ID.Equals(id),
+	).With(
+		db.Chat.Messages.Fetch(),
+		db.Chat.Trip.Fetch(),
+		db.Chat.Users.Fetch(),
+	).Update(
+		db.Chat.Users.Unlink(
+			db.User.ID.Equals(user.ID),
+		),
+	).Exec(ctx)
+
+	//! SEND SOCKET TO OTHER USERS
+	res.WriteHeader(http.StatusAccepted)
+	message := "Left Channel"
+	json.NewEncoder(res).Encode(types.MessageResponse{Message: message})
 }

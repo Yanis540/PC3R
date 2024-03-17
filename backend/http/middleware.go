@@ -26,7 +26,7 @@ func AllowedMethodsMiddleware(next http.Handler, allowed_methods []string) http.
 		if !slices.Contains(allowed_methods, req.Method) {
 			res.WriteHeader(http.StatusBadRequest)
 			message := fmt.Sprintf("BAD_REQUEST : %s ( %s ) endpoint doesn't exists", req.Method, req.URL)
-			json.NewEncoder(res).Encode(types.HTTPError{Message: message})
+			json.NewEncoder(res).Encode(types.MakeError(message, types.BAD_REQUEST))
 			return
 		}
 		next.ServeHTTP(res, req)
@@ -39,7 +39,7 @@ func AuthMiddleware(next http.Handler) http.Handler {
 		if tokenString == "" {
 			res.WriteHeader(http.StatusUnauthorized)
 			message := "Unauthorized"
-			json.NewEncoder(res).Encode(types.HTTPError{Message: message})
+			json.NewEncoder(res).Encode(types.MakeError(message, types.UNAUTHORIZED))
 			return
 		}
 		tokenString = tokenString[len("Bearer "):]
@@ -47,7 +47,7 @@ func AuthMiddleware(next http.Handler) http.Handler {
 		if !valid {
 			res.WriteHeader(http.StatusUnauthorized)
 			message := "Unauthorized"
-			json.NewEncoder(res).Encode(types.HTTPError{Message: message})
+			json.NewEncoder(res).Encode(types.MakeError(message, types.UNAUTHORIZED))
 			return
 		}
 		id := claims["id"].(string)
@@ -58,7 +58,7 @@ func AuthMiddleware(next http.Handler) http.Handler {
 		if err != nil {
 			res.WriteHeader(http.StatusNotFound)
 			message := "User Not Found"
-			json.NewEncoder(res).Encode(types.HTTPError{Message: message})
+			json.NewEncoder(res).Encode(types.MakeError(message, types.NOT_FOUND))
 			return
 		}
 		ctx_req := req.Context()

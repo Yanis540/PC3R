@@ -34,7 +34,7 @@ func BasicRoute(res http.ResponseWriter, req *http.Request) {
 	).Exec(ctx)
 	if err != nil {
 		res.WriteHeader(http.StatusNotFound)
-		json.NewEncoder(res).Encode(types.HTTPError{Message: "NOT_FOUND"})
+		json.NewEncoder(res).Encode(types.MakeError("Not Found", types.UNAUTHORIZED))
 		return
 	}
 	res.WriteHeader(http.StatusCreated)
