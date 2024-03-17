@@ -10,9 +10,20 @@ type UserRes struct {
 	Chats []db.ChatModel `json:"chats"`
 }
 
+type MessageRes struct {
+	*db.MessageModel
+	User db.UserModel `json:"chats"`
+}
+type UserChatModel struct {
+	Name  string `json:"name"`
+	Email string `json:"email"`
+	Id    string `json:"id"`
+}
 type ChatRes struct {
 	*db.ChatModel
-	Users []db.UserModel `json:"users"`
+	Trip     *db.TripModel     `json:"trip"`
+	Users    []UserChatModel   `json:"users"`
+	Messages []db.MessageModel `json:"messages"`
 }
 type MessageResponse struct {
 	Message string `json:"message"`

@@ -17,22 +17,25 @@ model User {
     updatedAt DateTime  @updatedAt
     Message   Message[]
     chats     Chat[]
-    chatId    String?
 }
 
 model Trip {
-    id      String @default(cuid())
-    chat_id String @unique
-    chat    Chat   @relation(fields: [chat_id], references: [id], onDelete: Cascade)
+    id                     String   @default(cuid())
+    from                   String
+    to                     String
+    departure_time         DateTime
+    estimated_arrival_time DateTime
+    chat_id                String   @unique
+    chat                   Chat     @relation(fields: [chat_id], references: [id], onDelete: Cascade)
 }
 
 model Chat {
-    id      String    @id @default(cuid())
-    date    DateTime  @default(now())
-    name    String
-    trip    Trip?
-    users   User[]
-    Message Message[]
+    id       String    @id @default(cuid())
+    date     DateTime  @default(now())
+    name     String
+    trip     Trip?
+    users    User[]
+    Messages Message[]
 }
 
 model Message {
