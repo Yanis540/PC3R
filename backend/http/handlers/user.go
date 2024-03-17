@@ -9,29 +9,46 @@ import (
 	types "pc3r/projet/http/types"
 )
 
-func getUser(res http.ResponseWriter, req *http.Request) {
-	// var body ReqBody
-	// err := json.NewDecoder(req.Body).Decode(&body)
-	// if err != nil {
-	// 	http.Error(res, err.Error(), http.StatusBadRequest)
-	// 	return
-	// }
-	// fmt.Printf("%s  \n", body.Message)
+type GetUserBody struct {
+	Id string `json:"id"`
+}
+type ResponseGetBody struct {
+	User types.UserRes `json:"user"`
+}
 
-	// // jsonBody := []byte(`{"client_message": "hello, server!"}`)
-	// // bodyReader := bytes.NewReader(jsonBody)
-	// client, ctx := global.GetPrisma()
-	// user, err := client.User.FindFirst(
-	// 	db.User.Name.Equals("Yanis"),
-	// ).Exec(ctx)
-	// if err != nil {
-	// 	res.WriteHeader(http.StatusNotFound)
-	// 	json.NewEncoder(res).Encode(types.HTTPError{Message: "NOT_FOUND"})
-	// 	return
-	// }
-	// res.WriteHeader(http.StatusCreated)
-	// res_body := ResBody{Success: true, Name: user.Name}
-	// json.NewEncoder(res).Encode(res_body)
+func getUser(res http.ResponseWriter, req *http.Request) {
+	var body GetUserBody
+	err := json.NewDecoder(req.Body).Decode(&body)
+	if (err != nil) || body.Id == "" {
+		res.WriteHeader(http.StatusUnauthorized)
+		message := "Id not passed"
+		json.NewEncoder(res).Encode(types.MessageResponse{Message: message})
+		return
+	}
+	prisma, ctx := global.GetPrisma()
+	user, err := prisma.User.FindFirst(
+		db.User.ID.Equals(body.Id),
+	).With(
+		db.User.Chats.Fetch(), // Récupérer les chats associés à l'utilisateur
+	).Exec(ctx)
+
+	if err != nil {
+		res.WriteHeader(http.StatusNotFound)
+		message := "User Not Found"
+		json.NewEncoder(res).Encode(types.HTTPError{Message: message})
+		return
+	}
+	userStruct := types.UserRes{
+		UserModel: user,
+		Chats:     user.Chats(),
+	}
+	response := ResponseGetBody{
+		User: userStruct, // Assigner la structure User à response.User
+	}
+
+	res.WriteHeader(http.StatusCreated)
+	json.NewEncoder(res).Encode(response)
+
 }
 
 type UpdateUserBody struct {
@@ -51,9 +68,7 @@ func updateUser(res http.ResponseWriter, req *http.Request) {
 	if (err != nil) || body.Id == "" || (body.Name == "" && body.Password == "") {
 		res.WriteHeader(http.StatusAccepted)
 		message := "Nothing to Update"
-		json.NewEncoder(res).Encode(struct {
-			Message string `json:"message"`
-		}{Message: message})
+		json.NewEncoder(res).Encode(types.MessageResponse{Message: message})
 		return
 	}
 	prisma, ctx := global.GetPrisma()

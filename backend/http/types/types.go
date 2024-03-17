@@ -9,3 +9,6 @@ type UserRes struct {
 	*db.UserModel
 	Chats []db.ChatModel `json:"chats"`
 }
+type MessageResponse struct {
+	Message string `json:"message"`
+}
