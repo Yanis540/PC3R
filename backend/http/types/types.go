@@ -50,6 +50,11 @@ type ChatRes struct {
 	Users    []UserChatModel   `json:"users"`
 	Messages []db.MessageModel `json:"messages"`
 }
+type TripRes struct {
+	db.TripModel
+	Chat *db.ChatModel `json:"chat"`
+}
+
 type MessageResponse struct {
 	Message string `json:"message"`
 }
