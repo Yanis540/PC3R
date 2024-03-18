@@ -16,12 +16,14 @@ type Event string
 // Router is a message routing object mapping events to function handlers.
 type Router struct {
 	rules map[Event]Handler // rules maps events to functions.
+	hubs  map[string]*Hub   // map of hubs
 }
 
 // NewRouter returns an initialized Router.
 func NewRouter() *Router {
 	return &Router{
 		rules: make(map[Event]Handler),
+		hubs:  make(map[string]*Hub),
 	}
 }
 
@@ -43,7 +45,7 @@ func (rt *Router) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	client := NewClient(socket, rt.FindHandler)
+	client := NewClient(rt, socket, rt.FindHandler)
 
 	// running method for reading from sockets, in main routine
 	client.Read()
@@ -62,13 +64,18 @@ func (rt *Router) Handle(event Event, handler Handler) {
 
 }
 
+// AddHub adds a hub to the router's list of hubs.
+func (rt *Router) AddHub(id string) {
+	hub := NewHub()
+	rt.hubs[id] = hub
+	go hub.run()
+}
+
 func UseSocketRouter() *Router {
 	// create router instance
 	router := NewRouter()
-
 	// handle events with messages named `helloFromClient` with handler
 	// helloFromClient (from above).
-
 	router.Handle("helloFromClient", helloFromClient)
 	return router
 }

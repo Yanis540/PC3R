@@ -8,8 +8,8 @@ import (
 
 // Message is a object used to pass data on sockets.
 type Message struct {
-	Name string      `json:"name"`
-	Data interface{} `json:"data"`
+	Event string      `json:"event"`
+	Data  interface{} `json:"data"`
 }
 
 // FindHandler is a type that defines handler finding functions.
@@ -17,22 +17,25 @@ type FindHandler func(Event) (Handler, bool)
 
 // Client is a type that reads and writes on sockets.
 type Client struct {
-	send        Message
+	send        chan Message
 	socket      *websocket.Conn
+	rt          *Router
 	findHandler FindHandler
 }
 
 // NewClient accepts a socket and returns an initialized Client.
-func NewClient(socket *websocket.Conn, findHandler FindHandler) *Client {
+func NewClient(rt *Router, socket *websocket.Conn, findHandler FindHandler) *Client {
 	return &Client{
+		send:        make(chan Message),
 		socket:      socket,
 		findHandler: findHandler,
+		rt:          rt,
 	}
 }
 
 // Write receives messages from the channel and writes to the socket.
 func (c *Client) Write() {
-	msg := c.send
+	msg := (<-c.send)
 	err := c.socket.WriteJSON(msg)
 	if err != nil {
 		log.Printf("socket write error: %v\n", err)
@@ -49,7 +52,7 @@ func (c *Client) Read() {
 			break
 		}
 		// assign message to a function handler
-		if handler, found := c.findHandler(Event(msg.Name)); found {
+		if handler, found := c.findHandler(Event(msg.Event)); found {
 			handler(c, msg.Data)
 		}
 	}

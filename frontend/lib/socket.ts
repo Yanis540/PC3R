@@ -47,8 +47,8 @@ export default class Socket {
     }
 
     // emit sends a message on a websocket.
-    emit(name:string | symbol, data:string | ArrayBufferLike | Blob | ArrayBufferView|Object) {
-        const message = JSON.stringify({Name:name, Data:data});
+    emit(event:string | symbol, data:string | ArrayBufferLike | Blob | ArrayBufferView|Object) {
+        const message = JSON.stringify({Event:event, Data:data});
         this.ws.send(message);
     }
 
@@ -56,7 +56,7 @@ export default class Socket {
     message(e: MessageEvent<any>) {
         try {
             const message = JSON.parse(e.data);
-            this.ee.emit(message.name, message.data);
+            this.ee.emit(message.event, message.data);
         }
         catch(err) {
             this.ee.emit('error', err);
