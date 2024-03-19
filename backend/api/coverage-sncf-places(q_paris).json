@@ -1,0 +1,455 @@
+{
+    "feed_publishers": [
+        {
+            "id": "sncf",
+            "name": "SNCF PIV Production",
+            "url": "",
+            "license": "Private (unspecified)"
+        },
+        {
+            "id": "SNCF:sncf-piv",
+            "name": "SNCF PIV Production",
+            "url": "",
+            "license": "Private (unspecified)"
+        }
+    ],
+    "disruptions": [],
+    "places": [
+        {
+            "id": "admin:fr:75056",
+            "name": "Paris (75000-75116)",
+            "quality": 80,
+            "administrative_region": {
+                "id": "admin:fr:75056",
+                "name": "Paris",
+                "level": 8,
+                "zip_code": "75000;75116",
+                "label": "Paris (75000-75116)",
+                "insee": "75056",
+                "coord": {
+                    "lon": "2.3483915",
+                    "lat": "48.8534951"
+                }
+            },
+            "embedded_type": "administrative_region"
+        },
+        {
+            "id": "admin:fr:95176",
+            "name": "Cormeilles-en-Parisis (95240)",
+            "quality": 80,
+            "administrative_region": {
+                "id": "admin:fr:95176",
+                "name": "Cormeilles-en-Parisis",
+                "level": 8,
+                "zip_code": "95240",
+                "label": "Cormeilles-en-Parisis (95240)",
+                "insee": "95176",
+                "coord": {
+                    "lon": "2.1998877",
+                    "lat": "48.9759637"
+                }
+            },
+            "embedded_type": "administrative_region"
+        },
+        {
+            "id": "stop_area:SNCF:87271007",
+            "name": "Paris Nord (Paris)",
+            "quality": 90,
+            "stop_area": {
+                "id": "stop_area:SNCF:87271007",
+                "name": "Paris Nord",
+                "codes": [
+                    {
+                        "type": "secondary_id",
+                        "value": "SNCF:87271023"
+                    },
+                    {
+                        "type": "secondary_id",
+                        "value": "SNCF:87271031"
+                    },
+                    {
+                        "type": "source",
+                        "value": "87271007"
+                    },
+                    {
+                        "type": "source",
+                        "value": "87271023"
+                    },
+                    {
+                        "type": "source",
+                        "value": "87271031"
+                    },
+                    {
+                        "type": "uic",
+                        "value": "87271007"
+                    },
+                    {
+                        "type": "uic",
+                        "value": "87271023"
+                    },
+                    {
+                        "type": "uic",
+                        "value": "87271031"
+                    }
+                ],
+                "timezone": "Europe/Paris",
+                "label": "Paris Nord (Paris)",
+                "coord": {
+                    "lon": "2.354851",
+                    "lat": "48.880136"
+                },
+                "links": [],
+                "administrative_regions": [
+                    {
+                        "id": "admin:fr:75056",
+                        "name": "Paris",
+                        "level": 8,
+                        "zip_code": "75000;75116",
+                        "label": "Paris (75000-75116)",
+                        "insee": "75056",
+                        "coord": {
+                            "lon": "2.3483915",
+                            "lat": "48.8534951"
+                        }
+                    }
+                ]
+            },
+            "embedded_type": "stop_area"
+        },
+        {
+            "id": "stop_area:SNCF:87686006",
+            "name": "Paris - Gare de Lyon - Hall 1 & 2 (Paris)",
+            "quality": 40,
+            "stop_area": {
+                "id": "stop_area:SNCF:87686006",
+                "name": "Paris - Gare de Lyon - Hall 1 & 2",
+                "codes": [
+                    {
+                        "type": "secondary_id",
+                        "value": "SNCF:87686030"
+                    },
+                    {
+                        "type": "secondary_id",
+                        "value": "SNCF:87758581"
+                    },
+                    {
+                        "type": "source",
+                        "value": "87686006"
+                    },
+                    {
+                        "type": "source",
+                        "value": "87686030"
+                    },
+                    {
+                        "type": "source",
+                        "value": "87758581"
+                    },
+                    {
+                        "type": "uic",
+                        "value": "87686006"
+                    },
+                    {
+                        "type": "uic",
+                        "value": "87686030"
+                    },
+                    {
+                        "type": "uic",
+                        "value": "87758581"
+                    }
+                ],
+                "timezone": "Europe/Paris",
+                "label": "Paris - Gare de Lyon - Hall 1 & 2 (Paris)",
+                "coord": {
+                    "lon": "2.373481",
+                    "lat": "48.844945"
+                },
+                "links": [],
+                "administrative_regions": [
+                    {
+                        "id": "admin:fr:75056",
+                        "name": "Paris",
+                        "level": 8,
+                        "zip_code": "75000;75116",
+                        "label": "Paris (75000-75116)",
+                        "insee": "75056",
+                        "coord": {
+                            "lon": "2.3483915",
+                            "lat": "48.8534951"
+                        }
+                    }
+                ]
+            },
+            "embedded_type": "stop_area"
+        },
+        {
+            "id": "stop_area:SNCF:87113001",
+            "name": "Paris Est (Paris)",
+            "quality": 90,
+            "stop_area": {
+                "id": "stop_area:SNCF:87113001",
+                "name": "Paris Est",
+                "codes": [
+                    {
+                        "type": "source",
+                        "value": "87113001"
+                    },
+                    {
+                        "type": "uic",
+                        "value": "87113001"
+                    }
+                ],
+                "timezone": "Europe/Paris",
+                "label": "Paris Est (Paris)",
+                "coord": {
+                    "lon": "2.358424",
+                    "lat": "48.876742"
+                },
+                "links": [],
+                "administrative_regions": [
+                    {
+                        "id": "admin:fr:75056",
+                        "name": "Paris",
+                        "level": 8,
+                        "zip_code": "75000;75116",
+                        "label": "Paris (75000-75116)",
+                        "insee": "75056",
+                        "coord": {
+                            "lon": "2.3483915",
+                            "lat": "48.8534951"
+                        }
+                    }
+                ]
+            },
+            "embedded_type": "stop_area"
+        },
+        {
+            "id": "stop_area:SNCF:87391003",
+            "name": "Paris - Montparnasse - Hall 1 & 2 (Paris)",
+            "quality": 60,
+            "stop_area": {
+                "id": "stop_area:SNCF:87391003",
+                "name": "Paris - Montparnasse - Hall 1 & 2",
+                "codes": [
+                    {
+                        "type": "source",
+                        "value": "87391003"
+                    },
+                    {
+                        "type": "uic",
+                        "value": "87391003"
+                    }
+                ],
+                "timezone": "Europe/Paris",
+                "label": "Paris - Montparnasse - Hall 1 & 2 (Paris)",
+                "coord": {
+                    "lon": "2.320514",
+                    "lat": "48.841172"
+                },
+                "links": [],
+                "administrative_regions": [
+                    {
+                        "id": "admin:fr:75056",
+                        "name": "Paris",
+                        "level": 8,
+                        "zip_code": "75000;75116",
+                        "label": "Paris (75000-75116)",
+                        "insee": "75056",
+                        "coord": {
+                            "lon": "2.3483915",
+                            "lat": "48.8534951"
+                        }
+                    }
+                ]
+            },
+            "embedded_type": "stop_area"
+        },
+        {
+            "id": "stop_area:SNCF:87547000",
+            "name": "Paris Austerlitz (Paris)",
+            "quality": 90,
+            "stop_area": {
+                "id": "stop_area:SNCF:87547000",
+                "name": "Paris Austerlitz",
+                "codes": [
+                    {
+                        "type": "source",
+                        "value": "87547000"
+                    },
+                    {
+                        "type": "uic",
+                        "value": "87547000"
+                    }
+                ],
+                "timezone": "Europe/Paris",
+                "label": "Paris Austerlitz (Paris)",
+                "coord": {
+                    "lon": "2.364891",
+                    "lat": "48.842285"
+                },
+                "links": [],
+                "administrative_regions": [
+                    {
+                        "id": "admin:fr:75056",
+                        "name": "Paris",
+                        "level": 8,
+                        "zip_code": "75000;75116",
+                        "label": "Paris (75000-75116)",
+                        "insee": "75056",
+                        "coord": {
+                            "lon": "2.3483915",
+                            "lat": "48.8534951"
+                        }
+                    }
+                ]
+            },
+            "embedded_type": "stop_area"
+        },
+        {
+            "id": "stop_area:SNCF:87384008",
+            "name": "Paris Saint-Lazare (Paris)",
+            "quality": 70,
+            "stop_area": {
+                "id": "stop_area:SNCF:87384008",
+                "name": "Paris Saint-Lazare",
+                "codes": [
+                    {
+                        "type": "secondary_id",
+                        "value": "SNCF:87281899"
+                    },
+                    {
+                        "type": "source",
+                        "value": "87281899"
+                    },
+                    {
+                        "type": "source",
+                        "value": "87384008"
+                    },
+                    {
+                        "type": "uic",
+                        "value": "87281899"
+                    },
+                    {
+                        "type": "uic",
+                        "value": "87384008"
+                    }
+                ],
+                "timezone": "Europe/Paris",
+                "label": "Paris Saint-Lazare (Paris)",
+                "coord": {
+                    "lon": "2.325331",
+                    "lat": "48.876242"
+                },
+                "links": [],
+                "administrative_regions": [
+                    {
+                        "id": "admin:fr:75056",
+                        "name": "Paris",
+                        "level": 8,
+                        "zip_code": "75000;75116",
+                        "label": "Paris (75000-75116)",
+                        "insee": "75056",
+                        "coord": {
+                            "lon": "2.3483915",
+                            "lat": "48.8534951"
+                        }
+                    }
+                ]
+            },
+            "embedded_type": "stop_area"
+        },
+        {
+            "id": "stop_area:SNCF:87547026",
+            "name": "Paris Austerlitz RER C (Paris)",
+            "quality": 70,
+            "stop_area": {
+                "id": "stop_area:SNCF:87547026",
+                "name": "Paris Austerlitz RER C",
+                "codes": [
+                    {
+                        "type": "source",
+                        "value": "87547026"
+                    },
+                    {
+                        "type": "uic",
+                        "value": "87547026"
+                    }
+                ],
+                "timezone": "Europe/Paris",
+                "label": "Paris Austerlitz RER C (Paris)",
+                "coord": {
+                    "lon": "2.364891",
+                    "lat": "48.842285"
+                },
+                "links": [],
+                "administrative_regions": [
+                    {
+                        "id": "admin:fr:75056",
+                        "name": "Paris",
+                        "level": 8,
+                        "zip_code": "75000;75116",
+                        "label": "Paris (75000-75116)",
+                        "insee": "75056",
+                        "coord": {
+                            "lon": "2.3483915",
+                            "lat": "48.8534951"
+                        }
+                    }
+                ]
+            },
+            "embedded_type": "stop_area"
+        },
+        {
+            "id": "stop_area:SNCF:87686667",
+            "name": "Paris-Bercy Bourgogne - Pays d'Auvergne (Paris)",
+            "quality": 60,
+            "stop_area": {
+                "id": "stop_area:SNCF:87686667",
+                "name": "Paris-Bercy Bourgogne - Pays d'Auvergne",
+                "codes": [
+                    {
+                        "type": "source",
+                        "value": "87686667"
+                    },
+                    {
+                        "type": "uic",
+                        "value": "87686667"
+                    }
+                ],
+                "timezone": "Europe/Paris",
+                "label": "Paris-Bercy Bourgogne - Pays d'Auvergne (Paris)",
+                "coord": {
+                    "lon": "2.382791",
+                    "lat": "48.839215"
+                },
+                "links": [],
+                "administrative_regions": [
+                    {
+                        "id": "admin:fr:75056",
+                        "name": "Paris",
+                        "level": 8,
+                        "zip_code": "75000;75116",
+                        "label": "Paris (75000-75116)",
+                        "insee": "75056",
+                        "coord": {
+                            "lon": "2.3483915",
+                            "lat": "48.8534951"
+                        }
+                    }
+                ]
+            },
+            "embedded_type": "stop_area"
+        }
+    ],
+    "context": {
+        "current_datetime": "20240319T003836",
+        "timezone": "Europe/Paris"
+    },
+    "links": [
+        {
+            "href": "https://api.sncf.com/v1/coverage/sncf/stop_areas/{stop_area.id}",
+            "templated": true,
+            "rel": "stop_areas",
+            "type": "stop_area"
+        }
+    ]
+}

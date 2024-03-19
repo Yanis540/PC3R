@@ -1,0 +1,2041 @@
+{
+    "feed_publishers": [
+        {
+            "id": "sncf",
+            "name": "SNCF PIV Production",
+            "url": "",
+            "license": "Private (unspecified)"
+        },
+        {
+            "id": "SNCF:sncf-piv",
+            "name": "SNCF PIV Production",
+            "url": "",
+            "license": "Private (unspecified)"
+        }
+    ],
+    "links": [
+        {
+            "href": "https://api.sncf.com/v1/coverage/sncf/journeys?from=admin%3Afr%3A75056&to=admin%3Afr%3A69123&datetime=20240317T070349&datetime_represents=departure",
+            "templated": false,
+            "rel": "next",
+            "type": "next"
+        },
+        {
+            "href": "https://api.sncf.com/v1/coverage/sncf/journeys?from=admin%3Afr%3A75056&to=admin%3Afr%3A69123&datetime=20240317T092959&datetime_represents=arrival",
+            "templated": false,
+            "rel": "prev",
+            "type": "prev"
+        },
+        {
+            "href": "https://api.sncf.com/v1/coverage/sncf/journeys?from=admin%3Afr%3A75056&to=admin%3Afr%3A69123&datetime=20240317T000000&datetime_represents=departure",
+            "templated": false,
+            "rel": "first",
+            "type": "first"
+        },
+        {
+            "href": "https://api.sncf.com/v1/coverage/sncf/journeys?from=admin%3Afr%3A75056&to=admin%3Afr%3A69123&datetime=20240317T235959&datetime_represents=arrival",
+            "templated": false,
+            "rel": "last",
+            "type": "last"
+        },
+        {
+            "href": "https://api.sncf.com/v1/coverage/sncf/networks/{network.id}",
+            "templated": true,
+            "rel": "networks",
+            "type": "network"
+        },
+        {
+            "href": "https://api.sncf.com/v1/coverage/sncf/commercial_modes/{commercial_mode.id}",
+            "templated": true,
+            "rel": "commercial_modes",
+            "type": "commercial_mode"
+        },
+        {
+            "href": "https://api.sncf.com/v1/coverage/sncf/physical_modes/{physical_mode.id}",
+            "templated": true,
+            "rel": "physical_modes",
+            "type": "physical_mode"
+        },
+        {
+            "href": "https://api.sncf.com/v1/coverage/sncf/vehicle_journeys/{vehicle_journey.id}",
+            "templated": true,
+            "rel": "vehicle_journeys",
+            "type": "vehicle_journey"
+        },
+        {
+            "href": "https://api.sncf.com/v1/coverage/sncf/stop_points/{stop_point.id}",
+            "templated": true,
+            "rel": "stop_points",
+            "type": "stop_point"
+        },
+        {
+            "href": "https://api.sncf.com/v1/coverage/sncf/disruptions/{disruption.id}",
+            "templated": true,
+            "rel": "disruptions",
+            "type": "disruption"
+        },
+        {
+            "href": "https://api.sncf.com/v1/coverage/sncf/disruptions/{disruptions.id}",
+            "templated": true,
+            "rel": "disruptions",
+            "type": "disruptions"
+        },
+        {
+            "href": "https://api.sncf.com/v1/coverage/sncf/stop_areas/{stop_area.id}",
+            "templated": true,
+            "rel": "stop_areas",
+            "type": "stop_area"
+        },
+        {
+            "href": "https://api.sncf.com/v1/coverage/sncf/routes/{route.id}",
+            "templated": true,
+            "rel": "routes",
+            "type": "route"
+        },
+        {
+            "href": "https://api.sncf.com/v1/coverage/sncf/lines/{line.id}",
+            "templated": true,
+            "rel": "lines",
+            "type": "line"
+        },
+        {
+            "href": "https://api.sncf.com/v1/coverage/sncf/trips/{trip.id}",
+            "templated": true,
+            "rel": "trips",
+            "type": "trip"
+        }
+    ],
+    "journeys": [
+        {
+            "duration": 8772,
+            "nb_transfers": 1,
+            "departure_date_time": "20240317T070348",
+            "arrival_date_time": "20240317T093000",
+            "requested_date_time": "20240316T210444",
+            "type": "best",
+            "status": "",
+            "tags": [
+                "walking",
+                "reliable",
+                "ecologic"
+            ],
+            "co2_emission": {
+                "value": 995.15924,
+                "unit": "gEC"
+            },
+            "air_pollutants": {
+                "unit": "g",
+                "values": {
+                    "nox": 0.0,
+                    "pm": 0.0
+                }
+            },
+            "durations": {
+                "total": 8772,
+                "walking": 157,
+                "bike": 0,
+                "car": 0,
+                "ridesharing": 0,
+                "taxi": 0
+            },
+            "distances": {
+                "walking": 0,
+                "bike": 0,
+                "car": 0,
+                "ridesharing": 0,
+                "taxi": 0
+            },
+            "fare": {
+                "found": false,
+                "total": {
+                    "value": "0.0"
+                },
+                "links": []
+            },
+            "calendars": [
+                {
+                    "week_pattern": {
+                        "monday": false,
+                        "tuesday": false,
+                        "wednesday": false,
+                        "thursday": false,
+                        "friday": false,
+                        "saturday": false,
+                        "sunday": true
+                    },
+                    "active_periods": [
+                        {
+                            "begin": "20240317",
+                            "end": "20240318"
+                        }
+                    ]
+                }
+            ],
+            "sections": [
+                {
+                    "id": "bsgCSZT2eZpSPqyFNEjiv8_0",
+                    "duration": 0,
+                    "co2_emission": {
+                        "value": 0.0,
+                        "unit": "gEC"
+                    },
+                    "departure_date_time": "20240317T070348",
+                    "arrival_date_time": "20240317T070348",
+                    "to": {
+                        "id": "stop_point:SNCF:87758649:RapidTransit",
+                        "name": "Cité Universitaire (Paris)",
+                        "quality": 0,
+                        "stop_point": {
+                            "id": "stop_point:SNCF:87758649:RapidTransit",
+                            "name": "Cité Universitaire",
+                            "label": "Cité Universitaire (Paris)",
+                            "coord": {
+                                "lon": "2.339002",
+                                "lat": "48.82058"
+                            },
+                            "links": [],
+                            "administrative_regions": [
+                                {
+                                    "id": "admin:fr:75056",
+                                    "name": "Paris",
+                                    "level": 8,
+                                    "zip_code": "75000;75116",
+                                    "label": "Paris (75000-75116)",
+                                    "insee": "75056",
+                                    "coord": {
+                                        "lon": "2.3483915",
+                                        "lat": "48.8534951"
+                                    }
+                                }
+                            ],
+                            "stop_area": {
+                                "id": "stop_area:SNCF:87758649",
+                                "name": "Cité Universitaire",
+                                "codes": [
+                                    {
+                                        "type": "source",
+                                        "value": "87758649"
+                                    },
+                                    {
+                                        "type": "uic",
+                                        "value": "87758649"
+                                    }
+                                ],
+                                "timezone": "Europe/Paris",
+                                "label": "Cité Universitaire (Paris)",
+                                "coord": {
+                                    "lon": "2.339002",
+                                    "lat": "48.82058"
+                                },
+                                "links": []
+                            },
+                            "equipments": []
+                        },
+                        "embedded_type": "stop_point"
+                    },
+                    "from": {
+                        "id": "admin:fr:75056",
+                        "name": "Paris (75000-75116)",
+                        "quality": 0,
+                        "administrative_region": {
+                            "id": "admin:fr:75056",
+                            "name": "Paris",
+                            "level": 8,
+                            "zip_code": "75000;75116",
+                            "label": "Paris (75000-75116)",
+                            "insee": "75056",
+                            "coord": {
+                                "lon": "2.3483915",
+                                "lat": "48.8534951"
+                            }
+                        },
+                        "embedded_type": "administrative_region"
+                    },
+                    "geojson": {
+                        "type": "LineString",
+                        "coordinates": [
+                            [
+                                2.3483915,
+                                48.8534951
+                            ],
+                            [
+                                2.339002,
+                                48.82058
+                            ]
+                        ],
+                        "properties": [
+                            {
+                                "length": 3724
+                            }
+                        ]
+                    },
+                    "mode": "walking",
+                    "type": "crow_fly",
+                    "links": []
+                },
+                {
+                    "id": "section_0_0",
+                    "duration": 834,
+                    "co2_emission": {
+                        "value": 89.6532,
+                        "unit": "gEC"
+                    },
+                    "departure_date_time": "20240317T070348",
+                    "arrival_date_time": "20240317T071742",
+                    "base_departure_date_time": "20240317T070348",
+                    "base_arrival_date_time": "20240317T071742",
+                    "data_freshness": "base_schedule",
+                    "to": {
+                        "id": "stop_point:SNCF:87758797:RapidTransit",
+                        "name": "Massy - Palaiseau (Massy)",
+                        "quality": 0,
+                        "stop_point": {
+                            "id": "stop_point:SNCF:87758797:RapidTransit",
+                            "name": "Massy - Palaiseau",
+                            "label": "Massy - Palaiseau (Massy)",
+                            "coord": {
+                                "lon": "2.259839",
+                                "lat": "48.725152"
+                            },
+                            "links": [],
+                            "administrative_regions": [
+                                {
+                                    "id": "admin:fr:91377",
+                                    "name": "Massy",
+                                    "level": 8,
+                                    "zip_code": "91300",
+                                    "label": "Massy (91300)",
+                                    "insee": "91377",
+                                    "coord": {
+                                        "lon": "2.2766735",
+                                        "lat": "48.730158"
+                                    }
+                                }
+                            ],
+                            "stop_area": {
+                                "id": "stop_area:SNCF:87393579",
+                                "name": "Massy-Palaiseau",
+                                "codes": [
+                                    {
+                                        "type": "secondary_id",
+                                        "value": "SNCF:87758797"
+                                    },
+                                    {
+                                        "type": "source",
+                                        "value": "87393579"
+                                    },
+                                    {
+                                        "type": "source",
+                                        "value": "87758797"
+                                    },
+                                    {
+                                        "type": "uic",
+                                        "value": "87393579"
+                                    },
+                                    {
+                                        "type": "uic",
+                                        "value": "87758797"
+                                    }
+                                ],
+                                "timezone": "Europe/Paris",
+                                "label": "Massy-Palaiseau (Massy)",
+                                "coord": {
+                                    "lon": "2.257528",
+                                    "lat": "48.726421"
+                                },
+                                "links": []
+                            },
+                            "equipments": []
+                        },
+                        "embedded_type": "stop_point"
+                    },
+                    "from": {
+                        "id": "stop_point:SNCF:87758649:RapidTransit",
+                        "name": "Cité Universitaire (Paris)",
+                        "quality": 0,
+                        "stop_point": {
+                            "id": "stop_point:SNCF:87758649:RapidTransit",
+                            "name": "Cité Universitaire",
+                            "label": "Cité Universitaire (Paris)",
+                            "coord": {
+                                "lon": "2.339002",
+                                "lat": "48.82058"
+                            },
+                            "links": [],
+                            "administrative_regions": [
+                                {
+                                    "id": "admin:fr:75056",
+                                    "name": "Paris",
+                                    "level": 8,
+                                    "zip_code": "75000;75116",
+                                    "label": "Paris (75000-75116)",
+                                    "insee": "75056",
+                                    "coord": {
+                                        "lon": "2.3483915",
+                                        "lat": "48.8534951"
+                                    }
+                                }
+                            ],
+                            "stop_area": {
+                                "id": "stop_area:SNCF:87758649",
+                                "name": "Cité Universitaire",
+                                "codes": [
+                                    {
+                                        "type": "source",
+                                        "value": "87758649"
+                                    },
+                                    {
+                                        "type": "uic",
+                                        "value": "87758649"
+                                    }
+                                ],
+                                "timezone": "Europe/Paris",
+                                "label": "Cité Universitaire (Paris)",
+                                "coord": {
+                                    "lon": "2.339002",
+                                    "lat": "48.82058"
+                                },
+                                "links": []
+                            },
+                            "equipments": []
+                        },
+                        "embedded_type": "stop_point"
+                    },
+                    "additional_informations": [
+                        "regular"
+                    ],
+                    "geojson": {
+                        "type": "LineString",
+                        "coordinates": [
+                            [
+                                2.339002,
+                                48.82058
+                            ],
+                            [
+                                2.312462,
+                                48.780279
+                            ],
+                            [
+                                2.304618,
+                                48.762482
+                            ],
+                            [
+                                2.300973,
+                                48.754675
+                            ],
+                            [
+                                2.259839,
+                                48.725152
+                            ]
+                        ],
+                        "properties": [
+                            {
+                                "length": 12315
+                            }
+                        ]
+                    },
+                    "type": "public_transport",
+                    "display_informations": {
+                        "commercial_mode": "RER",
+                        "network": "RER",
+                        "direction": "Saint-Rémy-lès-Chevreuse (Saint-Rémy-lès-Chevreuse)",
+                        "label": "B",
+                        "color": "427DBD",
+                        "code": "B",
+                        "name": "B",
+                        "links": [
+                            {
+                                "templated": false,
+                                "rel": "terminus",
+                                "internal": true,
+                                "type": "stop_area",
+                                "id": "stop_area:SNCF:87001479"
+                            }
+                        ],
+                        "text_color": "FFFFFF",
+                        "description": "",
+                        "physical_mode": "RER / Transilien",
+                        "equipments": [],
+                        "headsign": "PIRE",
+                        "trip_short_name": "PIRE36"
+                    },
+                    "links": [
+                        {
+                            "type": "vehicle_journey",
+                            "id": "vehicle_journey:SNCF:2024-03-17:PIRE36:1187:RapidTransit"
+                        },
+                        {
+                            "type": "line",
+                            "id": "line:SNCF:B"
+                        },
+                        {
+                            "type": "route",
+                            "id": "route:SNCF:B"
+                        },
+                        {
+                            "type": "commercial_mode",
+                            "id": "commercial_mode:TNRER"
+                        },
+                        {
+                            "type": "physical_mode",
+                            "id": "physical_mode:RapidTransit"
+                        },
+                        {
+                            "type": "network",
+                            "id": "network:SNCF:TNRER"
+                        }
+                    ],
+                    "stop_date_times": [
+                        {
+                            "departure_date_time": "20240317T070348",
+                            "base_departure_date_time": "20240317T070348",
+                            "arrival_date_time": "20240317T070318",
+                            "base_arrival_date_time": "20240317T070318",
+                            "stop_point": {
+                                "id": "stop_point:SNCF:87758649:RapidTransit",
+                                "name": "Cité Universitaire",
+                                "label": "Cité Universitaire (Paris)",
+                                "coord": {
+                                    "lon": "2.339002",
+                                    "lat": "48.82058"
+                                },
+                                "links": [],
+                                "equipments": []
+                            },
+                            "additional_informations": [],
+                            "links": []
+                        },
+                        {
+                            "departure_date_time": "20240317T070902",
+                            "base_departure_date_time": "20240317T070902",
+                            "arrival_date_time": "20240317T070832",
+                            "base_arrival_date_time": "20240317T070832",
+                            "stop_point": {
+                                "id": "stop_point:SNCF:87758698:RapidTransit",
+                                "name": "Bourg-la-Reine",
+                                "label": "Bourg-la-Reine (Bourg-la-Reine)",
+                                "coord": {
+                                    "lon": "2.312462",
+                                    "lat": "48.780279"
+                                },
+                                "links": [],
+                                "equipments": []
+                            },
+                            "additional_informations": [],
+                            "links": []
+                        },
+                        {
+                            "departure_date_time": "20240317T071132",
+                            "base_departure_date_time": "20240317T071132",
+                            "arrival_date_time": "20240317T071112",
+                            "base_arrival_date_time": "20240317T071112",
+                            "stop_point": {
+                                "id": "stop_point:SNCF:87758748:RapidTransit",
+                                "name": "La Croix de Berny",
+                                "label": "La Croix de Berny (Antony)",
+                                "coord": {
+                                    "lon": "2.304618",
+                                    "lat": "48.762482"
+                                },
+                                "links": [],
+                                "equipments": []
+                            },
+                            "additional_informations": [],
+                            "links": []
+                        },
+                        {
+                            "departure_date_time": "20240317T071327",
+                            "base_departure_date_time": "20240317T071327",
+                            "arrival_date_time": "20240317T071242",
+                            "base_arrival_date_time": "20240317T071242",
+                            "stop_point": {
+                                "id": "stop_point:SNCF:87758755:RapidTransit",
+                                "name": "Antony",
+                                "label": "Antony (Antony)",
+                                "coord": {
+                                    "lon": "2.300973",
+                                    "lat": "48.754675"
+                                },
+                                "links": [],
+                                "equipments": []
+                            },
+                            "additional_informations": [],
+                            "links": []
+                        },
+                        {
+                            "departure_date_time": "20240317T071842",
+                            "base_departure_date_time": "20240317T071842",
+                            "arrival_date_time": "20240317T071742",
+                            "base_arrival_date_time": "20240317T071742",
+                            "stop_point": {
+                                "id": "stop_point:SNCF:87758797:RapidTransit",
+                                "name": "Massy - Palaiseau",
+                                "label": "Massy - Palaiseau (Massy)",
+                                "coord": {
+                                    "lon": "2.259839",
+                                    "lat": "48.725152"
+                                },
+                                "links": [],
+                                "equipments": []
+                            },
+                            "additional_informations": [],
+                            "links": []
+                        }
+                    ]
+                },
+                {
+                    "id": "section_1_0",
+                    "duration": 157,
+                    "co2_emission": {
+                        "value": 0.0,
+                        "unit": "gEC"
+                    },
+                    "transfer_type": "walking",
+                    "departure_date_time": "20240317T071742",
+                    "arrival_date_time": "20240317T072019",
+                    "to": {
+                        "id": "stop_point:SNCF:87393702:LongDistanceTrain",
+                        "name": "Massy TGV (Massy)",
+                        "quality": 0,
+                        "stop_point": {
+                            "id": "stop_point:SNCF:87393702:LongDistanceTrain",
+                            "name": "Massy TGV",
+                            "label": "Massy TGV (Massy)",
+                            "coord": {
+                                "lon": "2.261254",
+                                "lat": "48.725758"
+                            },
+                            "links": [],
+                            "administrative_regions": [
+                                {
+                                    "id": "admin:fr:91377",
+                                    "name": "Massy",
+                                    "level": 8,
+                                    "zip_code": "91300",
+                                    "label": "Massy (91300)",
+                                    "insee": "91377",
+                                    "coord": {
+                                        "lon": "2.2766735",
+                                        "lat": "48.730158"
+                                    }
+                                }
+                            ],
+                            "stop_area": {
+                                "id": "stop_area:SNCF:87393702",
+                                "name": "Massy TGV",
+                                "codes": [
+                                    {
+                                        "type": "source",
+                                        "value": "87393702"
+                                    },
+                                    {
+                                        "type": "uic",
+                                        "value": "87393702"
+                                    }
+                                ],
+                                "timezone": "Europe/Paris",
+                                "label": "Massy TGV (Massy)",
+                                "coord": {
+                                    "lon": "2.261254",
+                                    "lat": "48.725758"
+                                },
+                                "links": []
+                            },
+                            "equipments": []
+                        },
+                        "embedded_type": "stop_point"
+                    },
+                    "from": {
+                        "id": "stop_point:SNCF:87758797:RapidTransit",
+                        "name": "Massy - Palaiseau (Massy)",
+                        "quality": 0,
+                        "stop_point": {
+                            "id": "stop_point:SNCF:87758797:RapidTransit",
+                            "name": "Massy - Palaiseau",
+                            "label": "Massy - Palaiseau (Massy)",
+                            "coord": {
+                                "lon": "2.259839",
+                                "lat": "48.725152"
+                            },
+                            "links": [],
+                            "administrative_regions": [
+                                {
+                                    "id": "admin:fr:91377",
+                                    "name": "Massy",
+                                    "level": 8,
+                                    "zip_code": "91300",
+                                    "label": "Massy (91300)",
+                                    "insee": "91377",
+                                    "coord": {
+                                        "lon": "2.2766735",
+                                        "lat": "48.730158"
+                                    }
+                                }
+                            ],
+                            "stop_area": {
+                                "id": "stop_area:SNCF:87393579",
+                                "name": "Massy-Palaiseau",
+                                "codes": [
+                                    {
+                                        "type": "secondary_id",
+                                        "value": "SNCF:87758797"
+                                    },
+                                    {
+                                        "type": "source",
+                                        "value": "87393579"
+                                    },
+                                    {
+                                        "type": "source",
+                                        "value": "87758797"
+                                    },
+                                    {
+                                        "type": "uic",
+                                        "value": "87393579"
+                                    },
+                                    {
+                                        "type": "uic",
+                                        "value": "87758797"
+                                    }
+                                ],
+                                "timezone": "Europe/Paris",
+                                "label": "Massy-Palaiseau (Massy)",
+                                "coord": {
+                                    "lon": "2.257528",
+                                    "lat": "48.726421"
+                                },
+                                "links": []
+                            },
+                            "equipments": []
+                        },
+                        "embedded_type": "stop_point"
+                    },
+                    "geojson": {
+                        "type": "LineString",
+                        "coordinates": [
+                            [
+                                2.259839,
+                                48.725152
+                            ],
+                            [
+                                2.261254,
+                                48.725758
+                            ]
+                        ],
+                        "properties": [
+                            {
+                                "length": 123
+                            }
+                        ]
+                    },
+                    "type": "transfer",
+                    "links": []
+                },
+                {
+                    "id": "section_2_0",
+                    "duration": 311,
+                    "co2_emission": {
+                        "value": 0.0,
+                        "unit": "gEC"
+                    },
+                    "departure_date_time": "20240317T072019",
+                    "arrival_date_time": "20240317T072530",
+                    "type": "waiting",
+                    "links": []
+                },
+                {
+                    "id": "section_3_0",
+                    "duration": 7470,
+                    "co2_emission": {
+                        "value": 905.50604,
+                        "unit": "gEC"
+                    },
+                    "departure_date_time": "20240317T072530",
+                    "arrival_date_time": "20240317T093000",
+                    "base_departure_date_time": "20240317T072530",
+                    "base_arrival_date_time": "20240317T093000",
+                    "data_freshness": "base_schedule",
+                    "to": {
+                        "id": "stop_point:SNCF:87723197:LongDistanceTrain",
+                        "name": "Lyon Part Dieu (Lyon)",
+                        "quality": 0,
+                        "stop_point": {
+                            "id": "stop_point:SNCF:87723197:LongDistanceTrain",
+                            "name": "Lyon Part Dieu",
+                            "label": "Lyon Part Dieu (Lyon)",
+                            "coord": {
+                                "lon": "4.859409",
+                                "lat": "45.760596"
+                            },
+                            "links": [],
+                            "administrative_regions": [
+                                {
+                                    "id": "admin:fr:69123",
+                                    "name": "Lyon",
+                                    "level": 8,
+                                    "zip_code": "",
+                                    "label": "Lyon",
+                                    "insee": "69123",
+                                    "coord": {
+                                        "lon": "4.8320114",
+                                        "lat": "45.7578137"
+                                    }
+                                }
+                            ],
+                            "stop_area": {
+                                "id": "stop_area:SNCF:87723197",
+                                "name": "Lyon Part Dieu",
+                                "codes": [
+                                    {
+                                        "type": "source",
+                                        "value": "87723197"
+                                    },
+                                    {
+                                        "type": "uic",
+                                        "value": "87723197"
+                                    }
+                                ],
+                                "timezone": "Europe/Paris",
+                                "label": "Lyon Part Dieu (Lyon)",
+                                "coord": {
+                                    "lon": "4.859409",
+                                    "lat": "45.760596"
+                                },
+                                "links": []
+                            },
+                            "equipments": []
+                        },
+                        "embedded_type": "stop_point"
+                    },
+                    "from": {
+                        "id": "stop_point:SNCF:87393702:LongDistanceTrain",
+                        "name": "Massy TGV (Massy)",
+                        "quality": 0,
+                        "stop_point": {
+                            "id": "stop_point:SNCF:87393702:LongDistanceTrain",
+                            "name": "Massy TGV",
+                            "label": "Massy TGV (Massy)",
+                            "coord": {
+                                "lon": "2.261254",
+                                "lat": "48.725758"
+                            },
+                            "links": [],
+                            "administrative_regions": [
+                                {
+                                    "id": "admin:fr:91377",
+                                    "name": "Massy",
+                                    "level": 8,
+                                    "zip_code": "91300",
+                                    "label": "Massy (91300)",
+                                    "insee": "91377",
+                                    "coord": {
+                                        "lon": "2.2766735",
+                                        "lat": "48.730158"
+                                    }
+                                }
+                            ],
+                            "stop_area": {
+                                "id": "stop_area:SNCF:87393702",
+                                "name": "Massy TGV",
+                                "codes": [
+                                    {
+                                        "type": "source",
+                                        "value": "87393702"
+                                    },
+                                    {
+                                        "type": "uic",
+                                        "value": "87393702"
+                                    }
+                                ],
+                                "timezone": "Europe/Paris",
+                                "label": "Massy TGV (Massy)",
+                                "coord": {
+                                    "lon": "2.261254",
+                                    "lat": "48.725758"
+                                },
+                                "links": []
+                            },
+                            "equipments": []
+                        },
+                        "embedded_type": "stop_point"
+                    },
+                    "additional_informations": [
+                        "regular"
+                    ],
+                    "geojson": {
+                        "type": "LineString",
+                        "coordinates": [
+                            [
+                                2.261254,
+                                48.725758
+                            ],
+                            [
+                                4.859409,
+                                45.760596
+                            ]
+                        ],
+                        "properties": [
+                            {
+                                "length": 383689
+                            }
+                        ]
+                    },
+                    "type": "public_transport",
+                    "display_informations": {
+                        "commercial_mode": "TGV INOUI",
+                        "network": "TGV INOUI",
+                        "direction": "Montpellier Sud de France (Montpellier)",
+                        "label": "Nantes - Lyon Perrache",
+                        "color": "",
+                        "code": "",
+                        "name": "Nantes - Lyon Perrache",
+                        "links": [
+                            {
+                                "templated": false,
+                                "rel": "disruptions",
+                                "internal": true,
+                                "type": "disruption",
+                                "id": "12ec2e4e-2eee-4199-8918-42c2e3630c97"
+                            },
+                            {
+                                "templated": false,
+                                "rel": "terminus",
+                                "internal": true,
+                                "type": "stop_area",
+                                "id": "stop_area:SNCF:87481002"
+                            }
+                        ],
+                        "text_color": "",
+                        "description": "",
+                        "physical_mode": "Train grande vitesse",
+                        "equipments": [],
+                        "headsign": "5300",
+                        "trip_short_name": "5300"
+                    },
+                    "links": [
+                        {
+                            "type": "vehicle_journey",
+                            "id": "vehicle_journey:SNCF:2024-03-17:5300:1187:LongDistanceTrain"
+                        },
+                        {
+                            "type": "line",
+                            "id": "line:SNCF:CSR:081200"
+                        },
+                        {
+                            "type": "route",
+                            "id": "route:SNCF:CSR:081200"
+                        },
+                        {
+                            "type": "commercial_mode",
+                            "id": "commercial_mode:OUI"
+                        },
+                        {
+                            "type": "physical_mode",
+                            "id": "physical_mode:LongDistanceTrain"
+                        },
+                        {
+                            "type": "network",
+                            "id": "network:SNCF:OUI"
+                        }
+                    ],
+                    "stop_date_times": [
+                        {
+                            "departure_date_time": "20240317T072530",
+                            "base_departure_date_time": "20240317T072530",
+                            "arrival_date_time": "20240317T072230",
+                            "base_arrival_date_time": "20240317T072230",
+                            "stop_point": {
+                                "id": "stop_point:SNCF:87393702:LongDistanceTrain",
+                                "name": "Massy TGV",
+                                "label": "Massy TGV (Massy)",
+                                "coord": {
+                                    "lon": "2.261254",
+                                    "lat": "48.725758"
+                                },
+                                "links": [],
+                                "equipments": []
+                            },
+                            "additional_informations": [],
+                            "links": []
+                        },
+                        {
+                            "departure_date_time": "20240317T094000",
+                            "base_departure_date_time": "20240317T094000",
+                            "arrival_date_time": "20240317T093000",
+                            "base_arrival_date_time": "20240317T093000",
+                            "stop_point": {
+                                "id": "stop_point:SNCF:87723197:LongDistanceTrain",
+                                "name": "Lyon Part Dieu",
+                                "label": "Lyon Part Dieu (Lyon)",
+                                "coord": {
+                                    "lon": "4.859409",
+                                    "lat": "45.760596"
+                                },
+                                "links": [],
+                                "equipments": []
+                            },
+                            "additional_informations": [],
+                            "links": []
+                        }
+                    ]
+                },
+                {
+                    "id": "uYSkaTAJ64BxnxXN8BQ8GS_0",
+                    "duration": 0,
+                    "co2_emission": {
+                        "value": 0.0,
+                        "unit": "gEC"
+                    },
+                    "departure_date_time": "20240317T093000",
+                    "arrival_date_time": "20240317T093000",
+                    "to": {
+                        "id": "admin:fr:69123",
+                        "name": "Lyon",
+                        "quality": 0,
+                        "administrative_region": {
+                            "id": "admin:fr:69123",
+                            "name": "Lyon",
+                            "level": 8,
+                            "zip_code": "",
+                            "label": "Lyon",
+                            "insee": "69123",
+                            "coord": {
+                                "lon": "4.8320114",
+                                "lat": "45.7578137"
+                            }
+                        },
+                        "embedded_type": "administrative_region"
+                    },
+                    "from": {
+                        "id": "stop_point:SNCF:87723197:LongDistanceTrain",
+                        "name": "Lyon Part Dieu (Lyon)",
+                        "quality": 0,
+                        "stop_point": {
+                            "id": "stop_point:SNCF:87723197:LongDistanceTrain",
+                            "name": "Lyon Part Dieu",
+                            "label": "Lyon Part Dieu (Lyon)",
+                            "coord": {
+                                "lon": "4.859409",
+                                "lat": "45.760596"
+                            },
+                            "links": [],
+                            "administrative_regions": [
+                                {
+                                    "id": "admin:fr:69123",
+                                    "name": "Lyon",
+                                    "level": 8,
+                                    "zip_code": "",
+                                    "label": "Lyon",
+                                    "insee": "69123",
+                                    "coord": {
+                                        "lon": "4.8320114",
+                                        "lat": "45.7578137"
+                                    }
+                                }
+                            ],
+                            "stop_area": {
+                                "id": "stop_area:SNCF:87723197",
+                                "name": "Lyon Part Dieu",
+                                "codes": [
+                                    {
+                                        "type": "source",
+                                        "value": "87723197"
+                                    },
+                                    {
+                                        "type": "uic",
+                                        "value": "87723197"
+                                    }
+                                ],
+                                "timezone": "Europe/Paris",
+                                "label": "Lyon Part Dieu (Lyon)",
+                                "coord": {
+                                    "lon": "4.859409",
+                                    "lat": "45.760596"
+                                },
+                                "links": []
+                            },
+                            "equipments": []
+                        },
+                        "embedded_type": "stop_point"
+                    },
+                    "geojson": {
+                        "type": "LineString",
+                        "coordinates": [
+                            [
+                                4.859409,
+                                45.760596
+                            ],
+                            [
+                                4.8320114,
+                                45.7578137
+                            ]
+                        ],
+                        "properties": [
+                            {
+                                "length": 2148
+                            }
+                        ]
+                    },
+                    "mode": "walking",
+                    "type": "crow_fly",
+                    "links": []
+                }
+            ],
+            "links": [
+                {
+                    "href": "https://api.sncf.com/v1/coverage/sncf/journeys?from=admin%3Afr%3A75056&to=admin%3Afr%3A69123&datetime=20240317T070348&first_section_mode%5B%5D=walking&last_section_mode%5B%5D=walking&min_nb_transfers=1&direct_path=none&min_nb_journeys=5&is_journey_schedules=True&allowed_id%5B%5D=stop_point%3ASNCF%3A87758797%3ARapidTransit&allowed_id%5B%5D=stop_point%3ASNCF%3A87758649%3ARapidTransit&allowed_id%5B%5D=stop_point%3ASNCF%3A87723197%3ALongDistanceTrain&allowed_id%5B%5D=stop_point%3ASNCF%3A87393702%3ALongDistanceTrain",
+                    "templated": false,
+                    "rel": "same_journey_schedules",
+                    "type": "journeys"
+                },
+                {
+                    "href": "https://api.sncf.com/v1/coverage/sncf/journeys?from=admin%3Afr%3A75056&to=admin%3Afr%3A69123&datetime=20240317T070348&first_section_mode%5B%5D=walking&last_section_mode%5B%5D=walking&min_nb_transfers=1&direct_path=none&min_nb_journeys=1&is_journey_schedules=True&allowed_id%5B%5D=stop_point%3ASNCF%3A87758797%3ARapidTransit&allowed_id%5B%5D=stop_point%3ASNCF%3A87758649%3ARapidTransit&allowed_id%5B%5D=stop_point%3ASNCF%3A87723197%3ALongDistanceTrain&allowed_id%5B%5D=stop_point%3ASNCF%3A87393702%3ALongDistanceTrain&count=1",
+                    "templated": false,
+                    "rel": "this_journey",
+                    "type": "journeys"
+                }
+            ]
+        },
+        {
+            "duration": 7080,
+            "nb_transfers": 0,
+            "departure_date_time": "20240317T075100",
+            "arrival_date_time": "20240317T094900",
+            "requested_date_time": "20240316T210444",
+            "type": "fastest",
+            "status": "",
+            "tags": [
+                "walking",
+                "reliable",
+                "ecologic"
+            ],
+            "co2_emission": {
+                "value": 933.82132,
+                "unit": "gEC"
+            },
+            "air_pollutants": {
+                "unit": "g",
+                "values": {
+                    "nox": 0.0,
+                    "pm": 0.0
+                }
+            },
+            "durations": {
+                "total": 7080,
+                "walking": 0,
+                "bike": 0,
+                "car": 0,
+                "ridesharing": 0,
+                "taxi": 0
+            },
+            "distances": {
+                "walking": 0,
+                "bike": 0,
+                "car": 0,
+                "ridesharing": 0,
+                "taxi": 0
+            },
+            "fare": {
+                "found": false,
+                "total": {
+                    "value": "0.0"
+                },
+                "links": []
+            },
+            "calendars": [
+                {
+                    "week_pattern": {
+                        "monday": false,
+                        "tuesday": false,
+                        "wednesday": false,
+                        "thursday": false,
+                        "friday": false,
+                        "saturday": false,
+                        "sunday": true
+                    },
+                    "active_periods": [
+                        {
+                            "begin": "20240317",
+                            "end": "20240318"
+                        }
+                    ]
+                }
+            ],
+            "sections": [
+                {
+                    "id": "tjSGVvEwv2AuDQ2g74oCMM_0",
+                    "duration": 0,
+                    "co2_emission": {
+                        "value": 0.0,
+                        "unit": "gEC"
+                    },
+                    "departure_date_time": "20240317T075100",
+                    "arrival_date_time": "20240317T075100",
+                    "to": {
+                        "id": "stop_point:SNCF:87686006:LongDistanceTrain",
+                        "name": "Paris - Gare de Lyon - Hall 1 & 2 (Paris)",
+                        "quality": 0,
+                        "stop_point": {
+                            "id": "stop_point:SNCF:87686006:LongDistanceTrain",
+                            "name": "Paris - Gare de Lyon - Hall 1 & 2",
+                            "label": "Paris - Gare de Lyon - Hall 1 & 2 (Paris)",
+                            "coord": {
+                                "lon": "2.373481",
+                                "lat": "48.844945"
+                            },
+                            "links": [],
+                            "administrative_regions": [
+                                {
+                                    "id": "admin:fr:75056",
+                                    "name": "Paris",
+                                    "level": 8,
+                                    "zip_code": "75000;75116",
+                                    "label": "Paris (75000-75116)",
+                                    "insee": "75056",
+                                    "coord": {
+                                        "lon": "2.3483915",
+                                        "lat": "48.8534951"
+                                    }
+                                }
+                            ],
+                            "stop_area": {
+                                "id": "stop_area:SNCF:87686006",
+                                "name": "Paris - Gare de Lyon - Hall 1 & 2",
+                                "codes": [
+                                    {
+                                        "type": "secondary_id",
+                                        "value": "SNCF:87686030"
+                                    },
+                                    {
+                                        "type": "secondary_id",
+                                        "value": "SNCF:87758581"
+                                    },
+                                    {
+                                        "type": "source",
+                                        "value": "87686006"
+                                    },
+                                    {
+                                        "type": "source",
+                                        "value": "87686030"
+                                    },
+                                    {
+                                        "type": "source",
+                                        "value": "87758581"
+                                    },
+                                    {
+                                        "type": "uic",
+                                        "value": "87686006"
+                                    },
+                                    {
+                                        "type": "uic",
+                                        "value": "87686030"
+                                    },
+                                    {
+                                        "type": "uic",
+                                        "value": "87758581"
+                                    }
+                                ],
+                                "timezone": "Europe/Paris",
+                                "label": "Paris - Gare de Lyon - Hall 1 & 2 (Paris)",
+                                "coord": {
+                                    "lon": "2.373481",
+                                    "lat": "48.844945"
+                                },
+                                "links": []
+                            },
+                            "equipments": []
+                        },
+                        "embedded_type": "stop_point"
+                    },
+                    "from": {
+                        "id": "admin:fr:75056",
+                        "name": "Paris (75000-75116)",
+                        "quality": 0,
+                        "administrative_region": {
+                            "id": "admin:fr:75056",
+                            "name": "Paris",
+                            "level": 8,
+                            "zip_code": "75000;75116",
+                            "label": "Paris (75000-75116)",
+                            "insee": "75056",
+                            "coord": {
+                                "lon": "2.3483915",
+                                "lat": "48.8534951"
+                            }
+                        },
+                        "embedded_type": "administrative_region"
+                    },
+                    "geojson": {
+                        "type": "LineString",
+                        "coordinates": [
+                            [
+                                2.3483915,
+                                48.8534951
+                            ],
+                            [
+                                2.373481,
+                                48.844945
+                            ]
+                        ],
+                        "properties": [
+                            {
+                                "length": 2067
+                            }
+                        ]
+                    },
+                    "mode": "walking",
+                    "type": "crow_fly",
+                    "links": []
+                },
+                {
+                    "id": "section_4_0",
+                    "duration": 7080,
+                    "co2_emission": {
+                        "value": 933.82132,
+                        "unit": "gEC"
+                    },
+                    "departure_date_time": "20240317T075100",
+                    "arrival_date_time": "20240317T094900",
+                    "base_departure_date_time": "20240317T075100",
+                    "base_arrival_date_time": "20240317T094900",
+                    "data_freshness": "base_schedule",
+                    "to": {
+                        "id": "stop_point:SNCF:87723197:LongDistanceTrain",
+                        "name": "Lyon Part Dieu (Lyon)",
+                        "quality": 0,
+                        "stop_point": {
+                            "id": "stop_point:SNCF:87723197:LongDistanceTrain",
+                            "name": "Lyon Part Dieu",
+                            "label": "Lyon Part Dieu (Lyon)",
+                            "coord": {
+                                "lon": "4.859409",
+                                "lat": "45.760596"
+                            },
+                            "links": [],
+                            "administrative_regions": [
+                                {
+                                    "id": "admin:fr:69123",
+                                    "name": "Lyon",
+                                    "level": 8,
+                                    "zip_code": "",
+                                    "label": "Lyon",
+                                    "insee": "69123",
+                                    "coord": {
+                                        "lon": "4.8320114",
+                                        "lat": "45.7578137"
+                                    }
+                                }
+                            ],
+                            "stop_area": {
+                                "id": "stop_area:SNCF:87723197",
+                                "name": "Lyon Part Dieu",
+                                "codes": [
+                                    {
+                                        "type": "source",
+                                        "value": "87723197"
+                                    },
+                                    {
+                                        "type": "uic",
+                                        "value": "87723197"
+                                    }
+                                ],
+                                "timezone": "Europe/Paris",
+                                "label": "Lyon Part Dieu (Lyon)",
+                                "coord": {
+                                    "lon": "4.859409",
+                                    "lat": "45.760596"
+                                },
+                                "links": []
+                            },
+                            "equipments": []
+                        },
+                        "embedded_type": "stop_point"
+                    },
+                    "from": {
+                        "id": "stop_point:SNCF:87686006:LongDistanceTrain",
+                        "name": "Paris - Gare de Lyon - Hall 1 & 2 (Paris)",
+                        "quality": 0,
+                        "stop_point": {
+                            "id": "stop_point:SNCF:87686006:LongDistanceTrain",
+                            "name": "Paris - Gare de Lyon - Hall 1 & 2",
+                            "label": "Paris - Gare de Lyon - Hall 1 & 2 (Paris)",
+                            "coord": {
+                                "lon": "2.373481",
+                                "lat": "48.844945"
+                            },
+                            "links": [],
+                            "administrative_regions": [
+                                {
+                                    "id": "admin:fr:75056",
+                                    "name": "Paris",
+                                    "level": 8,
+                                    "zip_code": "75000;75116",
+                                    "label": "Paris (75000-75116)",
+                                    "insee": "75056",
+                                    "coord": {
+                                        "lon": "2.3483915",
+                                        "lat": "48.8534951"
+                                    }
+                                }
+                            ],
+                            "stop_area": {
+                                "id": "stop_area:SNCF:87686006",
+                                "name": "Paris - Gare de Lyon - Hall 1 & 2",
+                                "codes": [
+                                    {
+                                        "type": "secondary_id",
+                                        "value": "SNCF:87686030"
+                                    },
+                                    {
+                                        "type": "secondary_id",
+                                        "value": "SNCF:87758581"
+                                    },
+                                    {
+                                        "type": "source",
+                                        "value": "87686006"
+                                    },
+                                    {
+                                        "type": "source",
+                                        "value": "87686030"
+                                    },
+                                    {
+                                        "type": "source",
+                                        "value": "87758581"
+                                    },
+                                    {
+                                        "type": "uic",
+                                        "value": "87686006"
+                                    },
+                                    {
+                                        "type": "uic",
+                                        "value": "87686030"
+                                    },
+                                    {
+                                        "type": "uic",
+                                        "value": "87758581"
+                                    }
+                                ],
+                                "timezone": "Europe/Paris",
+                                "label": "Paris - Gare de Lyon - Hall 1 & 2 (Paris)",
+                                "coord": {
+                                    "lon": "2.373481",
+                                    "lat": "48.844945"
+                                },
+                                "links": []
+                            },
+                            "equipments": []
+                        },
+                        "embedded_type": "stop_point"
+                    },
+                    "additional_informations": [
+                        "regular"
+                    ],
+                    "geojson": {
+                        "type": "LineString",
+                        "coordinates": [
+                            [
+                                2.373481,
+                                48.844945
+                            ],
+                            [
+                                4.49943,
+                                46.765339
+                            ],
+                            [
+                                4.859409,
+                                45.760596
+                            ]
+                        ],
+                        "properties": [
+                            {
+                                "length": 395687
+                            }
+                        ]
+                    },
+                    "type": "public_transport",
+                    "display_informations": {
+                        "commercial_mode": "TGV INOUI",
+                        "network": "TGV INOUI",
+                        "direction": "Lyon Perrache (Lyon)",
+                        "label": "Lyon Perrache - Paris - Gare de Lyon - Hall 1 & 2",
+                        "color": "",
+                        "code": "",
+                        "name": "Lyon Perrache - Paris - Gare de Lyon - Hall 1 & 2",
+                        "links": [
+                            {
+                                "templated": false,
+                                "rel": "terminus",
+                                "internal": true,
+                                "type": "stop_area",
+                                "id": "stop_area:SNCF:87686006"
+                            }
+                        ],
+                        "text_color": "",
+                        "description": "",
+                        "physical_mode": "Train grande vitesse",
+                        "equipments": [],
+                        "headsign": "6605",
+                        "trip_short_name": "6605"
+                    },
+                    "links": [
+                        {
+                            "type": "vehicle_journey",
+                            "id": "vehicle_journey:SNCF:2024-03-17:6605:1187:LongDistanceTrain"
+                        },
+                        {
+                            "type": "line",
+                            "id": "line:SNCF:CSR:601100"
+                        },
+                        {
+                            "type": "route",
+                            "id": "route:SNCF:CSR:601100"
+                        },
+                        {
+                            "type": "commercial_mode",
+                            "id": "commercial_mode:OUI"
+                        },
+                        {
+                            "type": "physical_mode",
+                            "id": "physical_mode:LongDistanceTrain"
+                        },
+                        {
+                            "type": "network",
+                            "id": "network:SNCF:OUI"
+                        }
+                    ],
+                    "stop_date_times": [
+                        {
+                            "departure_date_time": "20240317T075100",
+                            "base_departure_date_time": "20240317T075100",
+                            "arrival_date_time": "20240317T075100",
+                            "base_arrival_date_time": "20240317T075100",
+                            "stop_point": {
+                                "id": "stop_point:SNCF:87686006:LongDistanceTrain",
+                                "name": "Paris - Gare de Lyon - Hall 1 & 2",
+                                "label": "Paris - Gare de Lyon - Hall 1 & 2 (Paris)",
+                                "coord": {
+                                    "lon": "2.373481",
+                                    "lat": "48.844945"
+                                },
+                                "links": [],
+                                "equipments": []
+                            },
+                            "additional_informations": [],
+                            "links": []
+                        },
+                        {
+                            "departure_date_time": "20240317T091200",
+                            "base_departure_date_time": "20240317T091200",
+                            "arrival_date_time": "20240317T090900",
+                            "base_arrival_date_time": "20240317T090900",
+                            "stop_point": {
+                                "id": "stop_point:SNCF:87694109:LongDistanceTrain",
+                                "name": "Le Creusot - Montceau-les-Mines - Montchanin TGV",
+                                "label": "Le Creusot - Montceau-les-Mines - Montchanin TGV (Écuisses)",
+                                "coord": {
+                                    "lon": "4.49943",
+                                    "lat": "46.765339"
+                                },
+                                "links": [],
+                                "equipments": []
+                            },
+                            "additional_informations": [],
+                            "links": []
+                        },
+                        {
+                            "departure_date_time": "20240317T095500",
+                            "base_departure_date_time": "20240317T095500",
+                            "arrival_date_time": "20240317T094900",
+                            "base_arrival_date_time": "20240317T094900",
+                            "stop_point": {
+                                "id": "stop_point:SNCF:87723197:LongDistanceTrain",
+                                "name": "Lyon Part Dieu",
+                                "label": "Lyon Part Dieu (Lyon)",
+                                "coord": {
+                                    "lon": "4.859409",
+                                    "lat": "45.760596"
+                                },
+                                "links": [],
+                                "equipments": []
+                            },
+                            "additional_informations": [],
+                            "links": []
+                        }
+                    ]
+                },
+                {
+                    "id": "2rQ5HTPwrKbsxRJ4JakqEY_0",
+                    "duration": 0,
+                    "co2_emission": {
+                        "value": 0.0,
+                        "unit": "gEC"
+                    },
+                    "departure_date_time": "20240317T094900",
+                    "arrival_date_time": "20240317T094900",
+                    "to": {
+                        "id": "admin:fr:69123",
+                        "name": "Lyon",
+                        "quality": 0,
+                        "administrative_region": {
+                            "id": "admin:fr:69123",
+                            "name": "Lyon",
+                            "level": 8,
+                            "zip_code": "",
+                            "label": "Lyon",
+                            "insee": "69123",
+                            "coord": {
+                                "lon": "4.8320114",
+                                "lat": "45.7578137"
+                            }
+                        },
+                        "embedded_type": "administrative_region"
+                    },
+                    "from": {
+                        "id": "stop_point:SNCF:87723197:LongDistanceTrain",
+                        "name": "Lyon Part Dieu (Lyon)",
+                        "quality": 0,
+                        "stop_point": {
+                            "id": "stop_point:SNCF:87723197:LongDistanceTrain",
+                            "name": "Lyon Part Dieu",
+                            "label": "Lyon Part Dieu (Lyon)",
+                            "coord": {
+                                "lon": "4.859409",
+                                "lat": "45.760596"
+                            },
+                            "links": [],
+                            "administrative_regions": [
+                                {
+                                    "id": "admin:fr:69123",
+                                    "name": "Lyon",
+                                    "level": 8,
+                                    "zip_code": "",
+                                    "label": "Lyon",
+                                    "insee": "69123",
+                                    "coord": {
+                                        "lon": "4.8320114",
+                                        "lat": "45.7578137"
+                                    }
+                                }
+                            ],
+                            "stop_area": {
+                                "id": "stop_area:SNCF:87723197",
+                                "name": "Lyon Part Dieu",
+                                "codes": [
+                                    {
+                                        "type": "source",
+                                        "value": "87723197"
+                                    },
+                                    {
+                                        "type": "uic",
+                                        "value": "87723197"
+                                    }
+                                ],
+                                "timezone": "Europe/Paris",
+                                "label": "Lyon Part Dieu (Lyon)",
+                                "coord": {
+                                    "lon": "4.859409",
+                                    "lat": "45.760596"
+                                },
+                                "links": []
+                            },
+                            "equipments": []
+                        },
+                        "embedded_type": "stop_point"
+                    },
+                    "geojson": {
+                        "type": "LineString",
+                        "coordinates": [
+                            [
+                                4.859409,
+                                45.760596
+                            ],
+                            [
+                                4.8320114,
+                                45.7578137
+                            ]
+                        ],
+                        "properties": [
+                            {
+                                "length": 2148
+                            }
+                        ]
+                    },
+                    "mode": "walking",
+                    "type": "crow_fly",
+                    "links": []
+                }
+            ],
+            "links": [
+                {
+                    "href": "https://api.sncf.com/v1/coverage/sncf/journeys?from=admin%3Afr%3A75056&to=admin%3Afr%3A69123&datetime=20240317T075100&first_section_mode%5B%5D=walking&last_section_mode%5B%5D=walking&min_nb_transfers=0&direct_path=none&min_nb_journeys=5&is_journey_schedules=True&allowed_id%5B%5D=stop_point%3ASNCF%3A87686006%3ALongDistanceTrain&allowed_id%5B%5D=stop_point%3ASNCF%3A87723197%3ALongDistanceTrain",
+                    "templated": false,
+                    "rel": "same_journey_schedules",
+                    "type": "journeys"
+                },
+                {
+                    "href": "https://api.sncf.com/v1/coverage/sncf/journeys?from=admin%3Afr%3A75056&to=admin%3Afr%3A69123&datetime=20240317T075100&first_section_mode%5B%5D=walking&last_section_mode%5B%5D=walking&min_nb_transfers=0&direct_path=none&min_nb_journeys=1&is_journey_schedules=True&allowed_id%5B%5D=stop_point%3ASNCF%3A87686006%3ALongDistanceTrain&allowed_id%5B%5D=stop_point%3ASNCF%3A87723197%3ALongDistanceTrain&count=1",
+                    "templated": false,
+                    "rel": "this_journey",
+                    "type": "journeys"
+                }
+            ]
+        }
+    ],
+    "tickets": [],
+    "disruptions": [
+        {
+            "id": "12ec2e4e-2eee-4199-8918-42c2e3630c97",
+            "disruption_id": "12ec2e4e-2eee-4199-8918-42c2e3630c97",
+            "impact_id": "12ec2e4e-2eee-4199-8918-42c2e3630c97",
+            "application_periods": [
+                {
+                    "begin": "20240317T045000",
+                    "end": "20240317T122300"
+                }
+            ],
+            "status": "past",
+            "updated_at": "20240318T203436",
+            "cause": "",
+            "severity": {
+                "name": "detour",
+                "effect": "DETOUR",
+                "color": "#000000",
+                "priority": 42
+            },
+            "messages": [
+                {
+                    "text": "Panne de signalisation",
+                    "channel": {
+                        "content_type": "",
+                        "id": "rt",
+                        "name": "rt",
+                        "types": [
+                            "web",
+                            "mobile"
+                        ]
+                    }
+                }
+            ],
+            "impacted_objects": [
+                {
+                    "pt_object": {
+                        "id": "SNCF:2024-03-17:5300:1187:LongDistanceTrain",
+                        "name": "SNCF:2024-03-17:5300:1187:LongDistanceTrain",
+                        "quality": 0,
+                        "trip": {
+                            "id": "SNCF:2024-03-17:5300:1187:LongDistanceTrain",
+                            "name": "5300"
+                        },
+                        "embedded_type": "trip"
+                    },
+                    "impacted_stops": [
+                        {
+                            "stop_point": {
+                                "id": "stop_point:SNCF:87481002:LongDistanceTrain",
+                                "name": "Nantes",
+                                "label": "Nantes (Nantes)",
+                                "coord": {
+                                    "lon": "-1.542077",
+                                    "lat": "47.217491"
+                                },
+                                "links": [],
+                                "equipments": []
+                            },
+                            "base_arrival_time": "045000",
+                            "base_departure_time": "045000",
+                            "amended_arrival_time": "045000",
+                            "amended_departure_time": "045000",
+                            "cause": "",
+                            "stop_time_effect": "unchanged",
+                            "departure_status": "unchanged",
+                            "arrival_status": "unchanged",
+                            "is_detour": false
+                        },
+                        {
+                            "stop_point": {
+                                "id": "stop_point:SNCF:87484006:LongDistanceTrain",
+                                "name": "Angers Saint-Laud",
+                                "label": "Angers Saint-Laud (Angers)",
+                                "coord": {
+                                    "lon": "-0.55677",
+                                    "lat": "47.464649"
+                                },
+                                "links": [],
+                                "equipments": []
+                            },
+                            "base_arrival_time": "052630",
+                            "base_departure_time": "052930",
+                            "amended_arrival_time": "052630",
+                            "amended_departure_time": "052930",
+                            "cause": "",
+                            "stop_time_effect": "unchanged",
+                            "departure_status": "unchanged",
+                            "arrival_status": "unchanged",
+                            "is_detour": false
+                        },
+                        {
+                            "stop_point": {
+                                "id": "stop_point:SNCF:87571240:LongDistanceTrain",
+                                "name": "Saint-Pierre-des-Corps",
+                                "label": "Saint-Pierre-des-Corps (Saint-Pierre-des-Corps)",
+                                "coord": {
+                                    "lon": "0.723539",
+                                    "lat": "47.38614"
+                                },
+                                "links": [],
+                                "equipments": []
+                            },
+                            "base_arrival_time": "062400",
+                            "base_departure_time": "062800",
+                            "amended_arrival_time": "062400",
+                            "amended_departure_time": "062800",
+                            "cause": "",
+                            "stop_time_effect": "unchanged",
+                            "departure_status": "unchanged",
+                            "arrival_status": "unchanged",
+                            "is_detour": false
+                        },
+                        {
+                            "stop_point": {
+                                "id": "stop_point:SNCF:87393702:LongDistanceTrain",
+                                "name": "Massy TGV",
+                                "label": "Massy TGV (Massy)",
+                                "coord": {
+                                    "lon": "2.261254",
+                                    "lat": "48.725758"
+                                },
+                                "links": [],
+                                "equipments": []
+                            },
+                            "base_arrival_time": "072230",
+                            "base_departure_time": "072530",
+                            "amended_arrival_time": "072230",
+                            "amended_departure_time": "072530",
+                            "cause": "",
+                            "stop_time_effect": "unchanged",
+                            "departure_status": "unchanged",
+                            "arrival_status": "unchanged",
+                            "is_detour": false
+                        },
+                        {
+                            "stop_point": {
+                                "id": "stop_point:SNCF:87723197:LongDistanceTrain",
+                                "name": "Lyon Part Dieu",
+                                "label": "Lyon Part Dieu (Lyon)",
+                                "coord": {
+                                    "lon": "4.859409",
+                                    "lat": "45.760596"
+                                },
+                                "links": [],
+                                "equipments": []
+                            },
+                            "base_arrival_time": "093000",
+                            "base_departure_time": "094000",
+                            "amended_arrival_time": "093000",
+                            "amended_departure_time": "095000",
+                            "cause": "Panne d'un aiguillage",
+                            "stop_time_effect": "delayed",
+                            "departure_status": "delayed",
+                            "arrival_status": "unchanged",
+                            "is_detour": false
+                        },
+                        {
+                            "stop_point": {
+                                "id": "stop_point:SNCF:87763029:LongDistanceTrain",
+                                "name": "Valence TGV Rhône-Alpes Sud",
+                                "label": "Valence TGV Rhône-Alpes Sud (Alixan)",
+                                "coord": {
+                                    "lon": "4.978652",
+                                    "lat": "44.991907"
+                                },
+                                "links": [],
+                                "equipments": []
+                            },
+                            "base_arrival_time": "101900",
+                            "base_departure_time": "102200",
+                            "cause": "Panne de signalisation",
+                            "stop_time_effect": "deleted",
+                            "departure_status": "deleted",
+                            "arrival_status": "deleted",
+                            "is_detour": true
+                        },
+                        {
+                            "stop_point": {
+                                "id": "stop_point:SNCF:87761007:LongDistanceTrain",
+                                "name": "Valence Ville",
+                                "label": "Valence Ville (Valence)",
+                                "coord": {
+                                    "lon": "4.893288",
+                                    "lat": "44.928081"
+                                },
+                                "links": [],
+                                "equipments": []
+                            },
+                            "amended_arrival_time": "101900",
+                            "amended_departure_time": "102200",
+                            "cause": "Panne de signalisation",
+                            "stop_time_effect": "added",
+                            "departure_status": "added",
+                            "arrival_status": "added",
+                            "is_detour": true
+                        },
+                        {
+                            "stop_point": {
+                                "id": "stop_point:SNCF:87703975:LongDistanceTrain",
+                                "name": "Nîmes Pont-du-Gard",
+                                "label": "Nîmes Pont-du-Gard (Manduel)",
+                                "coord": {
+                                    "lon": "4.507678",
+                                    "lat": "43.816809"
+                                },
+                                "links": [],
+                                "equipments": []
+                            },
+                            "base_arrival_time": "110000",
+                            "base_departure_time": "110300",
+                            "amended_arrival_time": "120000",
+                            "amended_departure_time": "120300",
+                            "cause": "Panne de signalisation",
+                            "stop_time_effect": "delayed",
+                            "departure_status": "delayed",
+                            "arrival_status": "delayed",
+                            "is_detour": false
+                        },
+                        {
+                            "stop_point": {
+                                "id": "stop_point:SNCF:87688887:LongDistanceTrain",
+                                "name": "Montpellier Sud de France",
+                                "label": "Montpellier Sud de France (Montpellier)",
+                                "coord": {
+                                    "lon": "3.924009",
+                                    "lat": "43.595146"
+                                },
+                                "links": [],
+                                "equipments": []
+                            },
+                            "base_arrival_time": "112300",
+                            "base_departure_time": "112300",
+                            "amended_arrival_time": "122300",
+                            "amended_departure_time": "122300",
+                            "cause": "Panne de signalisation",
+                            "stop_time_effect": "delayed",
+                            "departure_status": "unchanged",
+                            "arrival_status": "delayed",
+                            "is_detour": false
+                        }
+                    ]
+                }
+            ],
+            "uri": "12ec2e4e-2eee-4199-8918-42c2e3630c97",
+            "disruption_uri": "12ec2e4e-2eee-4199-8918-42c2e3630c97",
+            "contributor": "realtime.sncf.piv"
+        }
+    ],
+    "terminus": [
+        {
+            "id": "stop_area:SNCF:87001479",
+            "name": "Aéroport - Charles-de-Gaulle 2 RER",
+            "codes": [
+                {
+                    "type": "source",
+                    "value": "87001479"
+                },
+                {
+                    "type": "uic",
+                    "value": "87001479"
+                }
+            ],
+            "timezone": "Europe/Paris",
+            "label": "Aéroport - Charles-de-Gaulle 2 RER (Tremblay-en-France)",
+            "coord": {
+                "lon": "2.570665",
+                "lat": "49.003965"
+            },
+            "links": []
+        },
+        {
+            "id": "stop_area:SNCF:87481002",
+            "name": "Nantes",
+            "codes": [
+                {
+                    "type": "source",
+                    "value": "87481002"
+                },
+                {
+                    "type": "uic",
+                    "value": "87481002"
+                }
+            ],
+            "timezone": "Europe/Paris",
+            "label": "Nantes (Nantes)",
+            "coord": {
+                "lon": "-1.542077",
+                "lat": "47.217491"
+            },
+            "links": []
+        },
+        {
+            "id": "stop_area:SNCF:87686006",
+            "name": "Paris - Gare de Lyon - Hall 1 & 2",
+            "codes": [
+                {
+                    "type": "secondary_id",
+                    "value": "SNCF:87686030"
+                },
+                {
+                    "type": "secondary_id",
+                    "value": "SNCF:87758581"
+                },
+                {
+                    "type": "source",
+                    "value": "87686006"
+                },
+                {
+                    "type": "source",
+                    "value": "87686030"
+                },
+                {
+                    "type": "source",
+                    "value": "87758581"
+                },
+                {
+                    "type": "uic",
+                    "value": "87686006"
+                },
+                {
+                    "type": "uic",
+                    "value": "87686030"
+                },
+                {
+                    "type": "uic",
+                    "value": "87758581"
+                }
+            ],
+            "timezone": "Europe/Paris",
+            "label": "Paris - Gare de Lyon - Hall 1 & 2 (Paris)",
+            "coord": {
+                "lon": "2.373481",
+                "lat": "48.844945"
+            },
+            "links": []
+        }
+    ],
+    "context": {
+        "car_direct_path": {
+            "co2_emission": {
+                "value": 97353.5638833653,
+                "unit": "gEC"
+            },
+            "air_pollutants": {
+                "unit": "g",
+                "values": {
+                    "nox": 172.4459,
+                    "pm": 21.9477
+                }
+            }
+        },
+        "current_datetime": "20240318T203526",
+        "timezone": "Europe/Paris"
+    },
+    "notes": [],
+    "exceptions": []
+}

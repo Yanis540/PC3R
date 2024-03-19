@@ -1,0 +1,1956 @@
+{
+    "pagination": {
+        "total_result": 992,
+        "start_page": 0,
+        "items_per_page": 25,
+        "items_on_page": 25
+    },
+    "feed_publishers": [
+        {
+            "id": "sncf",
+            "name": "SNCF PIV Production",
+            "url": "",
+            "license": "Private (unspecified)"
+        },
+        {
+            "id": "SNCF:sncf-piv",
+            "name": "SNCF PIV Production",
+            "url": "",
+            "license": "Private (unspecified)"
+        }
+    ],
+    "disruptions": [],
+    "context": {
+        "current_datetime": "20240318T214725",
+        "timezone": "Europe/Paris"
+    },
+    "routes": [
+        {
+            "id": "route:SNCF:CSR:671100",
+            "name": "Frankfurt am Main - Hauptbahnhof - Marseille Saint-Charles",
+            "is_frequence": "False",
+            "direction_type": "forward",
+            "direction": {
+                "id": "stop_area:SNCF:87751008",
+                "name": "Marseille Saint-Charles (Marseille)",
+                "quality": 0,
+                "stop_area": {
+                    "id": "stop_area:SNCF:87751008",
+                    "name": "Marseille Saint-Charles",
+                    "codes": [
+                        {
+                            "type": "source",
+                            "value": "87751008"
+                        },
+                        {
+                            "type": "uic",
+                            "value": "87751008"
+                        }
+                    ],
+                    "timezone": "Europe/Paris",
+                    "label": "Marseille Saint-Charles (Marseille)",
+                    "coord": {
+                        "lon": "5.380407",
+                        "lat": "43.302666"
+                    },
+                    "links": []
+                },
+                "embedded_type": "stop_area"
+            },
+            "geojson": {
+                "type": "MultiLineString",
+                "coordinates": []
+            },
+            "links": [],
+            "line": {
+                "id": "line:SNCF:CSR:671100",
+                "name": "Frankfurt am Main - Hauptbahnhof - Marseille Saint-Charles",
+                "code": "",
+                "color": "",
+                "text_color": "",
+                "codes": [],
+                "physical_modes": [
+                    {
+                        "id": "physical_mode:LongDistanceTrain",
+                        "name": "Train grande vitesse"
+                    }
+                ],
+                "commercial_mode": {
+                    "id": "commercial_mode:DBS",
+                    "name": "DB SNCF"
+                },
+                "network": {
+                    "id": "network:SNCF:DBS",
+                    "name": "DB SNCF",
+                    "links": []
+                },
+                "opening_time": "081200",
+                "closing_time": "214900",
+                "geojson": {
+                    "type": "MultiLineString",
+                    "coordinates": []
+                },
+                "links": []
+            }
+        },
+        {
+            "id": "route:SNCF:CSR:651100",
+            "name": "Frankfurt am Main - Hauptbahnhof - Paris Est",
+            "is_frequence": "False",
+            "direction_type": "forward",
+            "direction": {
+                "id": "stop_area:SNCF:87113001",
+                "name": "Paris Est (Paris)",
+                "quality": 0,
+                "stop_area": {
+                    "id": "stop_area:SNCF:87113001",
+                    "name": "Paris Est",
+                    "codes": [
+                        {
+                            "type": "source",
+                            "value": "87113001"
+                        },
+                        {
+                            "type": "uic",
+                            "value": "87113001"
+                        }
+                    ],
+                    "timezone": "Europe/Paris",
+                    "label": "Paris Est (Paris)",
+                    "coord": {
+                        "lon": "2.358424",
+                        "lat": "48.876742"
+                    },
+                    "links": []
+                },
+                "embedded_type": "stop_area"
+            },
+            "geojson": {
+                "type": "MultiLineString",
+                "coordinates": []
+            },
+            "links": [],
+            "line": {
+                "id": "line:SNCF:CSR:651100",
+                "name": "Frankfurt am Main - Hauptbahnhof - Paris Est",
+                "code": "",
+                "color": "",
+                "text_color": "",
+                "codes": [],
+                "physical_modes": [
+                    {
+                        "id": "physical_mode:LongDistanceTrain",
+                        "name": "Train grande vitesse"
+                    }
+                ],
+                "commercial_mode": {
+                    "id": "commercial_mode:DBS",
+                    "name": "DB SNCF"
+                },
+                "network": {
+                    "id": "network:SNCF:DBS",
+                    "name": "DB SNCF",
+                    "links": []
+                },
+                "opening_time": "065600",
+                "closing_time": "204500",
+                "geojson": {
+                    "type": "MultiLineString",
+                    "coordinates": []
+                },
+                "links": []
+            }
+        },
+        {
+            "id": "route:SNCF:FR:Line::2515CEC3-EF8D-40D6-AA15-5DC17572BCFA:",
+            "name": "Lauterbourg - Woerth Rhein",
+            "is_frequence": "False",
+            "direction_type": "forward",
+            "direction": {
+                "id": "stop_area:SNCF:87212464",
+                "name": "Lauterbourg (Lauterbourg)",
+                "quality": 0,
+                "stop_area": {
+                    "id": "stop_area:SNCF:87212464",
+                    "name": "Lauterbourg",
+                    "codes": [
+                        {
+                            "type": "source",
+                            "value": "87212464"
+                        },
+                        {
+                            "type": "uic",
+                            "value": "87212464"
+                        }
+                    ],
+                    "timezone": "Europe/Paris",
+                    "label": "Lauterbourg (Lauterbourg)",
+                    "coord": {
+                        "lon": "8.182682",
+                        "lat": "48.967697"
+                    },
+                    "links": []
+                },
+                "embedded_type": "stop_area"
+            },
+            "geojson": {
+                "type": "MultiLineString",
+                "coordinates": []
+            },
+            "links": [],
+            "line": {
+                "id": "line:SNCF:FR:Line::2515CEC3-EF8D-40D6-AA15-5DC17572BCFA:",
+                "name": "Lauterbourg - Woerth Rhein",
+                "code": "",
+                "color": "",
+                "text_color": "",
+                "codes": [],
+                "physical_modes": [
+                    {
+                        "id": "physical_mode:LongDistanceTrain",
+                        "name": "Train grande vitesse"
+                    }
+                ],
+                "commercial_mode": {
+                    "id": "commercial_mode:DBS",
+                    "name": "DB SNCF"
+                },
+                "network": {
+                    "id": "network:SNCF:DBS",
+                    "name": "DB SNCF",
+                    "links": []
+                },
+                "opening_time": "043900",
+                "closing_time": "220430",
+                "geojson": {
+                    "type": "MultiLineString",
+                    "coordinates": []
+                },
+                "links": []
+            }
+        },
+        {
+            "id": "route:SNCF:CSR:651200",
+            "name": "Paris Est - Frankfurt am Main - Hauptbahnhof",
+            "is_frequence": "False",
+            "direction_type": "forward",
+            "direction": {
+                "id": "stop_area:SNCF:80110684",
+                "name": "Frankfurt am Main - Hauptbahnhof (Frankfurt am Main)",
+                "quality": 0,
+                "stop_area": {
+                    "id": "stop_area:SNCF:80110684",
+                    "name": "Frankfurt am Main - Hauptbahnhof",
+                    "codes": [
+                        {
+                            "type": "source",
+                            "value": "80110684"
+                        },
+                        {
+                            "type": "uic",
+                            "value": "80110684"
+                        }
+                    ],
+                    "timezone": "Europe/Paris",
+                    "label": "Frankfurt am Main - Hauptbahnhof (Frankfurt am Main)",
+                    "coord": {
+                        "lon": "8.6624",
+                        "lat": "50.1073"
+                    },
+                    "links": []
+                },
+                "embedded_type": "stop_area"
+            },
+            "geojson": {
+                "type": "MultiLineString",
+                "coordinates": []
+            },
+            "links": [],
+            "line": {
+                "id": "line:SNCF:CSR:651200",
+                "name": "Paris Est - Frankfurt am Main - Hauptbahnhof",
+                "code": "",
+                "color": "",
+                "text_color": "",
+                "codes": [],
+                "physical_modes": [
+                    {
+                        "id": "physical_mode:LongDistanceTrain",
+                        "name": "Train grande vitesse"
+                    }
+                ],
+                "commercial_mode": {
+                    "id": "commercial_mode:DBS",
+                    "name": "DB SNCF"
+                },
+                "network": {
+                    "id": "network:SNCF:DBS",
+                    "name": "DB SNCF",
+                    "links": []
+                },
+                "opening_time": "055600",
+                "closing_time": "225900",
+                "geojson": {
+                    "type": "MultiLineString",
+                    "coordinates": []
+                },
+                "links": []
+            }
+        },
+        {
+            "id": "route:SNCF:CSR:661100",
+            "name": "Paris Est - Karlsruhe Hauptbahnhof",
+            "is_frequence": "False",
+            "direction_type": "forward",
+            "direction": {
+                "id": "stop_area:SNCF:87113001",
+                "name": "Paris Est (Paris)",
+                "quality": 0,
+                "stop_area": {
+                    "id": "stop_area:SNCF:87113001",
+                    "name": "Paris Est",
+                    "codes": [
+                        {
+                            "type": "source",
+                            "value": "87113001"
+                        },
+                        {
+                            "type": "uic",
+                            "value": "87113001"
+                        }
+                    ],
+                    "timezone": "Europe/Paris",
+                    "label": "Paris Est (Paris)",
+                    "coord": {
+                        "lon": "2.358424",
+                        "lat": "48.876742"
+                    },
+                    "links": []
+                },
+                "embedded_type": "stop_area"
+            },
+            "geojson": {
+                "type": "MultiLineString",
+                "coordinates": []
+            },
+            "links": [],
+            "line": {
+                "id": "line:SNCF:CSR:661100",
+                "name": "Paris Est - Karlsruhe Hauptbahnhof",
+                "code": "",
+                "color": "",
+                "text_color": "",
+                "codes": [],
+                "physical_modes": [
+                    {
+                        "id": "physical_mode:LongDistanceTrain",
+                        "name": "Train grande vitesse"
+                    }
+                ],
+                "commercial_mode": {
+                    "id": "commercial_mode:DBS",
+                    "name": "DB SNCF"
+                },
+                "network": {
+                    "id": "network:SNCF:DBS",
+                    "name": "DB SNCF",
+                    "links": []
+                },
+                "opening_time": "064900",
+                "closing_time": "232600",
+                "geojson": {
+                    "type": "MultiLineString",
+                    "coordinates": []
+                },
+                "links": []
+            }
+        },
+        {
+            "id": "route:SNCF:0018-84000588-88140010",
+            "name": "Amsterdam Centraal - Bruxelles-Midi / Brussel-Zuid",
+            "is_frequence": "False",
+            "direction_type": "forward",
+            "direction": {
+                "id": "stop_area:SNCF:88140010",
+                "name": "Bruxelles-Midi / Brussel-Zuid (Saint-Gilles - Sint-Gillis)",
+                "quality": 0,
+                "stop_area": {
+                    "id": "stop_area:SNCF:88140010",
+                    "name": "Bruxelles-Midi / Brussel-Zuid",
+                    "codes": [
+                        {
+                            "type": "source",
+                            "value": "88140010"
+                        },
+                        {
+                            "type": "uic",
+                            "value": "88140010"
+                        }
+                    ],
+                    "timezone": "Europe/Paris",
+                    "label": "Bruxelles-Midi / Brussel-Zuid (Saint-Gilles - Sint-Gillis)",
+                    "coord": {
+                        "lon": "4.336",
+                        "lat": "50.836"
+                    },
+                    "links": []
+                },
+                "embedded_type": "stop_area"
+            },
+            "geojson": {
+                "type": "MultiLineString",
+                "coordinates": []
+            },
+            "links": [],
+            "line": {
+                "id": "line:SNCF:0018-84000588-88140010",
+                "name": "Amsterdam Centraal - Bruxelles-Midi / Brussel-Zuid",
+                "code": "",
+                "color": "",
+                "text_color": "",
+                "codes": [],
+                "physical_modes": [
+                    {
+                        "id": "physical_mode:LongDistanceTrain",
+                        "name": "Train grande vitesse"
+                    }
+                ],
+                "commercial_mode": {
+                    "id": "commercial_mode:EUROSTAR",
+                    "name": "Eurostar"
+                },
+                "network": {
+                    "id": "network:SNCF:EUROSTAR",
+                    "name": "Eurostar",
+                    "links": []
+                },
+                "opening_time": "101100",
+                "closing_time": "000800",
+                "geojson": {
+                    "type": "MultiLineString",
+                    "coordinates": []
+                },
+                "links": []
+            }
+        },
+        {
+            "id": "route:SNCF:0018-84000588-87111849",
+            "name": "Amsterdam Centraal - Marne-la-Vallée - Chessy",
+            "is_frequence": "False",
+            "direction_type": "forward",
+            "direction": {
+                "id": "stop_area:SNCF:87111849",
+                "name": "Marne-la-Vallée - Chessy (Chessy)",
+                "quality": 0,
+                "stop_area": {
+                    "id": "stop_area:SNCF:87111849",
+                    "name": "Marne-la-Vallée - Chessy",
+                    "codes": [
+                        {
+                            "type": "source",
+                            "value": "87111849"
+                        },
+                        {
+                            "type": "uic",
+                            "value": "87111849"
+                        }
+                    ],
+                    "timezone": "Europe/Paris",
+                    "label": "Marne-la-Vallée - Chessy (Chessy)",
+                    "coord": {
+                        "lon": "2.782626",
+                        "lat": "48.869898"
+                    },
+                    "links": []
+                },
+                "embedded_type": "stop_area"
+            },
+            "geojson": {
+                "type": "MultiLineString",
+                "coordinates": []
+            },
+            "links": [],
+            "line": {
+                "id": "line:SNCF:0018-84000588-87111849",
+                "name": "Amsterdam Centraal - Marne-la-Vallée - Chessy",
+                "code": "",
+                "color": "",
+                "text_color": "",
+                "codes": [],
+                "physical_modes": [
+                    {
+                        "id": "physical_mode:LongDistanceTrain",
+                        "name": "Train grande vitesse"
+                    }
+                ],
+                "commercial_mode": {
+                    "id": "commercial_mode:EUROSTAR",
+                    "name": "Eurostar"
+                },
+                "network": {
+                    "id": "network:SNCF:EUROSTAR",
+                    "name": "Eurostar",
+                    "links": []
+                },
+                "opening_time": "064700",
+                "closing_time": "110500",
+                "geojson": {
+                    "type": "MultiLineString",
+                    "coordinates": []
+                },
+                "links": []
+            }
+        },
+        {
+            "id": "route:SNCF:0018-84000588-87271007",
+            "name": "Amsterdam Centraal - Paris Nord",
+            "is_frequence": "False",
+            "direction_type": "forward",
+            "direction": {
+                "id": "stop_area:SNCF:87271007",
+                "name": "Paris Nord (Paris)",
+                "quality": 0,
+                "stop_area": {
+                    "id": "stop_area:SNCF:87271007",
+                    "name": "Paris Nord",
+                    "codes": [
+                        {
+                            "type": "secondary_id",
+                            "value": "SNCF:87271023"
+                        },
+                        {
+                            "type": "secondary_id",
+                            "value": "SNCF:87271031"
+                        },
+                        {
+                            "type": "source",
+                            "value": "87271007"
+                        },
+                        {
+                            "type": "source",
+                            "value": "87271023"
+                        },
+                        {
+                            "type": "source",
+                            "value": "87271031"
+                        },
+                        {
+                            "type": "uic",
+                            "value": "87271007"
+                        },
+                        {
+                            "type": "uic",
+                            "value": "87271023"
+                        },
+                        {
+                            "type": "uic",
+                            "value": "87271031"
+                        }
+                    ],
+                    "timezone": "Europe/Paris",
+                    "label": "Paris Nord (Paris)",
+                    "coord": {
+                        "lon": "2.354851",
+                        "lat": "48.880136"
+                    },
+                    "links": []
+                },
+                "embedded_type": "stop_area"
+            },
+            "geojson": {
+                "type": "MultiLineString",
+                "coordinates": []
+            },
+            "links": [],
+            "line": {
+                "id": "line:SNCF:0018-84000588-87271007",
+                "name": "Amsterdam Centraal - Paris Nord",
+                "code": "",
+                "color": "",
+                "text_color": "",
+                "codes": [],
+                "physical_modes": [
+                    {
+                        "id": "physical_mode:LongDistanceTrain",
+                        "name": "Train grande vitesse"
+                    }
+                ],
+                "commercial_mode": {
+                    "id": "commercial_mode:EUROSTAR",
+                    "name": "Eurostar"
+                },
+                "network": {
+                    "id": "network:SNCF:EUROSTAR",
+                    "name": "Eurostar",
+                    "links": []
+                },
+                "opening_time": "061100",
+                "closing_time": "234300",
+                "geojson": {
+                    "type": "MultiLineString",
+                    "coordinates": []
+                },
+                "links": []
+            }
+        },
+        {
+            "id": "route:SNCF:0019-84000588-70154005",
+            "name": "Amsterdam Centraal - St Pancras International",
+            "is_frequence": "False",
+            "direction_type": "forward",
+            "direction": {
+                "id": "stop_area:SNCF:70154005",
+                "name": "St Pancras International (Camden Town)",
+                "quality": 0,
+                "stop_area": {
+                    "id": "stop_area:SNCF:70154005",
+                    "name": "St Pancras International",
+                    "codes": [
+                        {
+                            "type": "source",
+                            "value": "70154005"
+                        },
+                        {
+                            "type": "uic",
+                            "value": "70154005"
+                        }
+                    ],
+                    "timezone": "Europe/Paris",
+                    "label": "St Pancras International (Camden Town)",
+                    "coord": {
+                        "lon": "-0.12807",
+                        "lat": "51.5338"
+                    },
+                    "links": []
+                },
+                "embedded_type": "stop_area"
+            },
+            "geojson": {
+                "type": "MultiLineString",
+                "coordinates": []
+            },
+            "links": [],
+            "line": {
+                "id": "line:SNCF:0019-84000588-70154005",
+                "name": "Amsterdam Centraal - St Pancras International",
+                "code": "",
+                "color": "",
+                "text_color": "",
+                "codes": [],
+                "physical_modes": [
+                    {
+                        "id": "physical_mode:LongDistanceTrain",
+                        "name": "Train grande vitesse"
+                    }
+                ],
+                "commercial_mode": {
+                    "id": "commercial_mode:EUROSTAR",
+                    "name": "Eurostar"
+                },
+                "network": {
+                    "id": "network:SNCF:EUROSTAR",
+                    "name": "Eurostar",
+                    "links": []
+                },
+                "opening_time": "064500",
+                "closing_time": "235700",
+                "geojson": {
+                    "type": "MultiLineString",
+                    "coordinates": []
+                },
+                "links": []
+            }
+        },
+        {
+            "id": "route:SNCF:0018-87741793-84000588",
+            "name": "Bourg-Saint-Maurice - Amsterdam Centraal",
+            "is_frequence": "False",
+            "direction_type": "forward",
+            "direction": {
+                "id": "stop_area:SNCF:84000588",
+                "name": "Amsterdam Centraal (Amsterdam)",
+                "quality": 0,
+                "stop_area": {
+                    "id": "stop_area:SNCF:84000588",
+                    "name": "Amsterdam Centraal",
+                    "codes": [
+                        {
+                            "type": "source",
+                            "value": "84000588"
+                        },
+                        {
+                            "type": "uic",
+                            "value": "84000588"
+                        }
+                    ],
+                    "timezone": "Europe/Paris",
+                    "label": "Amsterdam Centraal (Amsterdam)",
+                    "coord": {
+                        "lon": "4.900632",
+                        "lat": "52.37908"
+                    },
+                    "links": []
+                },
+                "embedded_type": "stop_area"
+            },
+            "geojson": {
+                "type": "MultiLineString",
+                "coordinates": []
+            },
+            "links": [],
+            "line": {
+                "id": "line:SNCF:0018-87741793-84000588",
+                "name": "Bourg-Saint-Maurice - Amsterdam Centraal",
+                "code": "",
+                "color": "",
+                "text_color": "",
+                "codes": [],
+                "physical_modes": [
+                    {
+                        "id": "physical_mode:LongDistanceTrain",
+                        "name": "Train grande vitesse"
+                    }
+                ],
+                "commercial_mode": {
+                    "id": "commercial_mode:EUROSTAR",
+                    "name": "Eurostar"
+                },
+                "network": {
+                    "id": "network:SNCF:EUROSTAR",
+                    "name": "Eurostar",
+                    "links": []
+                },
+                "opening_time": "153800",
+                "closing_time": "002800",
+                "geojson": {
+                    "type": "MultiLineString",
+                    "coordinates": []
+                },
+                "links": []
+            }
+        },
+        {
+            "id": "route:SNCF:0018-87741793-88140010",
+            "name": "Bourg-Saint-Maurice - Bruxelles-Midi / Brussel-Zuid",
+            "is_frequence": "False",
+            "direction_type": "forward",
+            "direction": {
+                "id": "stop_area:SNCF:88140010",
+                "name": "Bruxelles-Midi / Brussel-Zuid (Saint-Gilles - Sint-Gillis)",
+                "quality": 0,
+                "stop_area": {
+                    "id": "stop_area:SNCF:88140010",
+                    "name": "Bruxelles-Midi / Brussel-Zuid",
+                    "codes": [
+                        {
+                            "type": "source",
+                            "value": "88140010"
+                        },
+                        {
+                            "type": "uic",
+                            "value": "88140010"
+                        }
+                    ],
+                    "timezone": "Europe/Paris",
+                    "label": "Bruxelles-Midi / Brussel-Zuid (Saint-Gilles - Sint-Gillis)",
+                    "coord": {
+                        "lon": "4.336",
+                        "lat": "50.836"
+                    },
+                    "links": []
+                },
+                "embedded_type": "stop_area"
+            },
+            "geojson": {
+                "type": "MultiLineString",
+                "coordinates": []
+            },
+            "links": [],
+            "line": {
+                "id": "line:SNCF:0018-87741793-88140010",
+                "name": "Bourg-Saint-Maurice - Bruxelles-Midi / Brussel-Zuid",
+                "code": "",
+                "color": "",
+                "text_color": "",
+                "codes": [],
+                "physical_modes": [
+                    {
+                        "id": "physical_mode:LongDistanceTrain",
+                        "name": "Train grande vitesse"
+                    }
+                ],
+                "commercial_mode": {
+                    "id": "commercial_mode:EUROSTAR",
+                    "name": "Eurostar"
+                },
+                "network": {
+                    "id": "network:SNCF:EUROSTAR",
+                    "name": "Eurostar",
+                    "links": []
+                },
+                "opening_time": "153800",
+                "closing_time": "221600",
+                "geojson": {
+                    "type": "MultiLineString",
+                    "coordinates": []
+                },
+                "links": []
+            }
+        },
+        {
+            "id": "route:SNCF:0018-88140010-84000588",
+            "name": "Bruxelles-Midi / Brussel-Zuid - Amsterdam Centraal",
+            "is_frequence": "False",
+            "direction_type": "forward",
+            "direction": {
+                "id": "stop_area:SNCF:84000588",
+                "name": "Amsterdam Centraal (Amsterdam)",
+                "quality": 0,
+                "stop_area": {
+                    "id": "stop_area:SNCF:84000588",
+                    "name": "Amsterdam Centraal",
+                    "codes": [
+                        {
+                            "type": "source",
+                            "value": "84000588"
+                        },
+                        {
+                            "type": "uic",
+                            "value": "84000588"
+                        }
+                    ],
+                    "timezone": "Europe/Paris",
+                    "label": "Amsterdam Centraal (Amsterdam)",
+                    "coord": {
+                        "lon": "4.900632",
+                        "lat": "52.37908"
+                    },
+                    "links": []
+                },
+                "embedded_type": "stop_area"
+            },
+            "geojson": {
+                "type": "MultiLineString",
+                "coordinates": []
+            },
+            "links": [],
+            "line": {
+                "id": "line:SNCF:0018-88140010-84000588",
+                "name": "Bruxelles-Midi / Brussel-Zuid - Amsterdam Centraal",
+                "code": "",
+                "color": "",
+                "text_color": "",
+                "codes": [],
+                "physical_modes": [
+                    {
+                        "id": "physical_mode:LongDistanceTrain",
+                        "name": "Train grande vitesse"
+                    }
+                ],
+                "commercial_mode": {
+                    "id": "commercial_mode:EUROSTAR",
+                    "name": "Eurostar"
+                },
+                "network": {
+                    "id": "network:SNCF:EUROSTAR",
+                    "name": "Eurostar",
+                    "links": []
+                },
+                "opening_time": "065200",
+                "closing_time": "184400",
+                "geojson": {
+                    "type": "MultiLineString",
+                    "coordinates": []
+                },
+                "links": []
+            }
+        },
+        {
+            "id": "route:SNCF:0018-88140010-87741793",
+            "name": "Bruxelles-Midi / Brussel-Zuid - Bourg-Saint-Maurice",
+            "is_frequence": "False",
+            "direction_type": "forward",
+            "direction": {
+                "id": "stop_area:SNCF:87741793",
+                "name": "Bourg-Saint-Maurice (Bourg-Saint-Maurice)",
+                "quality": 0,
+                "stop_area": {
+                    "id": "stop_area:SNCF:87741793",
+                    "name": "Bourg-Saint-Maurice",
+                    "codes": [
+                        {
+                            "type": "source",
+                            "value": "87741793"
+                        },
+                        {
+                            "type": "uic",
+                            "value": "87741793"
+                        }
+                    ],
+                    "timezone": "Europe/Paris",
+                    "label": "Bourg-Saint-Maurice (Bourg-Saint-Maurice)",
+                    "coord": {
+                        "lon": "6.771273",
+                        "lat": "45.619036"
+                    },
+                    "links": []
+                },
+                "embedded_type": "stop_area"
+            },
+            "geojson": {
+                "type": "MultiLineString",
+                "coordinates": []
+            },
+            "links": [],
+            "line": {
+                "id": "line:SNCF:0018-88140010-87741793",
+                "name": "Bruxelles-Midi / Brussel-Zuid - Bourg-Saint-Maurice",
+                "code": "",
+                "color": "",
+                "text_color": "",
+                "codes": [],
+                "physical_modes": [
+                    {
+                        "id": "physical_mode:LongDistanceTrain",
+                        "name": "Train grande vitesse"
+                    }
+                ],
+                "commercial_mode": {
+                    "id": "commercial_mode:EUROSTAR",
+                    "name": "Eurostar"
+                },
+                "network": {
+                    "id": "network:SNCF:EUROSTAR",
+                    "name": "Eurostar",
+                    "links": []
+                },
+                "opening_time": "075200",
+                "closing_time": "144100",
+                "geojson": {
+                    "type": "MultiLineString",
+                    "coordinates": []
+                },
+                "links": []
+            }
+        },
+        {
+            "id": "route:SNCF:0018-88140010-87271007",
+            "name": "Bruxelles-Midi / Brussel-Zuid - Paris Nord",
+            "is_frequence": "False",
+            "direction_type": "forward",
+            "direction": {
+                "id": "stop_area:SNCF:87271007",
+                "name": "Paris Nord (Paris)",
+                "quality": 0,
+                "stop_area": {
+                    "id": "stop_area:SNCF:87271007",
+                    "name": "Paris Nord",
+                    "codes": [
+                        {
+                            "type": "secondary_id",
+                            "value": "SNCF:87271023"
+                        },
+                        {
+                            "type": "secondary_id",
+                            "value": "SNCF:87271031"
+                        },
+                        {
+                            "type": "source",
+                            "value": "87271007"
+                        },
+                        {
+                            "type": "source",
+                            "value": "87271023"
+                        },
+                        {
+                            "type": "source",
+                            "value": "87271031"
+                        },
+                        {
+                            "type": "uic",
+                            "value": "87271007"
+                        },
+                        {
+                            "type": "uic",
+                            "value": "87271023"
+                        },
+                        {
+                            "type": "uic",
+                            "value": "87271031"
+                        }
+                    ],
+                    "timezone": "Europe/Paris",
+                    "label": "Paris Nord (Paris)",
+                    "coord": {
+                        "lon": "2.354851",
+                        "lat": "48.880136"
+                    },
+                    "links": []
+                },
+                "embedded_type": "stop_area"
+            },
+            "geojson": {
+                "type": "MultiLineString",
+                "coordinates": []
+            },
+            "links": [],
+            "line": {
+                "id": "line:SNCF:0018-88140010-87271007",
+                "name": "Bruxelles-Midi / Brussel-Zuid - Paris Nord",
+                "code": "",
+                "color": "",
+                "text_color": "",
+                "codes": [],
+                "physical_modes": [
+                    {
+                        "id": "physical_mode:LongDistanceTrain",
+                        "name": "Train grande vitesse"
+                    }
+                ],
+                "commercial_mode": {
+                    "id": "commercial_mode:EUROSTAR",
+                    "name": "Eurostar"
+                },
+                "network": {
+                    "id": "network:SNCF:EUROSTAR",
+                    "name": "Eurostar",
+                    "links": []
+                },
+                "opening_time": "063300",
+                "closing_time": "221400",
+                "geojson": {
+                    "type": "MultiLineString",
+                    "coordinates": []
+                },
+                "links": []
+            }
+        },
+        {
+            "id": "route:SNCF:0019-88140010-70154005",
+            "name": "Bruxelles-Midi / Brussel-Zuid - St Pancras International",
+            "is_frequence": "False",
+            "direction_type": "forward",
+            "direction": {
+                "id": "stop_area:SNCF:70154005",
+                "name": "St Pancras International (Camden Town)",
+                "quality": 0,
+                "stop_area": {
+                    "id": "stop_area:SNCF:70154005",
+                    "name": "St Pancras International",
+                    "codes": [
+                        {
+                            "type": "source",
+                            "value": "70154005"
+                        },
+                        {
+                            "type": "uic",
+                            "value": "70154005"
+                        }
+                    ],
+                    "timezone": "Europe/Paris",
+                    "label": "St Pancras International (Camden Town)",
+                    "coord": {
+                        "lon": "-0.12807",
+                        "lat": "51.5338"
+                    },
+                    "links": []
+                },
+                "embedded_type": "stop_area"
+            },
+            "geojson": {
+                "type": "MultiLineString",
+                "coordinates": []
+            },
+            "links": [],
+            "line": {
+                "id": "line:SNCF:0019-88140010-70154005",
+                "name": "Bruxelles-Midi / Brussel-Zuid - St Pancras International",
+                "code": "",
+                "color": "",
+                "text_color": "",
+                "codes": [],
+                "physical_modes": [
+                    {
+                        "id": "physical_mode:LongDistanceTrain",
+                        "name": "Train grande vitesse"
+                    }
+                ],
+                "commercial_mode": {
+                    "id": "commercial_mode:EUROSTAR",
+                    "name": "Eurostar"
+                },
+                "network": {
+                    "id": "network:SNCF:EUROSTAR",
+                    "name": "Eurostar",
+                    "links": []
+                },
+                "opening_time": "075600",
+                "closing_time": "225700",
+                "geojson": {
+                    "type": "MultiLineString",
+                    "coordinates": []
+                },
+                "links": []
+            }
+        },
+        {
+            "id": "route:SNCF:0018-80100537-87271007",
+            "name": "Dortmund Hbf - Paris Nord",
+            "is_frequence": "False",
+            "direction_type": "forward",
+            "direction": {
+                "id": "stop_area:SNCF:87271007",
+                "name": "Paris Nord (Paris)",
+                "quality": 0,
+                "stop_area": {
+                    "id": "stop_area:SNCF:87271007",
+                    "name": "Paris Nord",
+                    "codes": [
+                        {
+                            "type": "secondary_id",
+                            "value": "SNCF:87271023"
+                        },
+                        {
+                            "type": "secondary_id",
+                            "value": "SNCF:87271031"
+                        },
+                        {
+                            "type": "source",
+                            "value": "87271007"
+                        },
+                        {
+                            "type": "source",
+                            "value": "87271023"
+                        },
+                        {
+                            "type": "source",
+                            "value": "87271031"
+                        },
+                        {
+                            "type": "uic",
+                            "value": "87271007"
+                        },
+                        {
+                            "type": "uic",
+                            "value": "87271023"
+                        },
+                        {
+                            "type": "uic",
+                            "value": "87271031"
+                        }
+                    ],
+                    "timezone": "Europe/Paris",
+                    "label": "Paris Nord (Paris)",
+                    "coord": {
+                        "lon": "2.354851",
+                        "lat": "48.880136"
+                    },
+                    "links": []
+                },
+                "embedded_type": "stop_area"
+            },
+            "geojson": {
+                "type": "MultiLineString",
+                "coordinates": []
+            },
+            "links": [],
+            "line": {
+                "id": "line:SNCF:0018-80100537-87271007",
+                "name": "Dortmund Hbf - Paris Nord",
+                "code": "",
+                "color": "",
+                "text_color": "",
+                "codes": [],
+                "physical_modes": [
+                    {
+                        "id": "physical_mode:LongDistanceTrain",
+                        "name": "Train grande vitesse"
+                    }
+                ],
+                "commercial_mode": {
+                    "id": "commercial_mode:EUROSTAR",
+                    "name": "Eurostar"
+                },
+                "network": {
+                    "id": "network:SNCF:EUROSTAR",
+                    "name": "Eurostar",
+                    "links": []
+                },
+                "opening_time": "051800",
+                "closing_time": "161100",
+                "geojson": {
+                    "type": "MultiLineString",
+                    "coordinates": []
+                },
+                "links": []
+            }
+        },
+        {
+            "id": "route:SNCF:0018-80080945-87271007",
+            "name": "Düsseldorf - Hauptbahnhof - Paris Nord",
+            "is_frequence": "False",
+            "direction_type": "forward",
+            "direction": {
+                "id": "stop_area:SNCF:87271007",
+                "name": "Paris Nord (Paris)",
+                "quality": 0,
+                "stop_area": {
+                    "id": "stop_area:SNCF:87271007",
+                    "name": "Paris Nord",
+                    "codes": [
+                        {
+                            "type": "secondary_id",
+                            "value": "SNCF:87271023"
+                        },
+                        {
+                            "type": "secondary_id",
+                            "value": "SNCF:87271031"
+                        },
+                        {
+                            "type": "source",
+                            "value": "87271007"
+                        },
+                        {
+                            "type": "source",
+                            "value": "87271023"
+                        },
+                        {
+                            "type": "source",
+                            "value": "87271031"
+                        },
+                        {
+                            "type": "uic",
+                            "value": "87271007"
+                        },
+                        {
+                            "type": "uic",
+                            "value": "87271023"
+                        },
+                        {
+                            "type": "uic",
+                            "value": "87271031"
+                        }
+                    ],
+                    "timezone": "Europe/Paris",
+                    "label": "Paris Nord (Paris)",
+                    "coord": {
+                        "lon": "2.354851",
+                        "lat": "48.880136"
+                    },
+                    "links": []
+                },
+                "embedded_type": "stop_area"
+            },
+            "geojson": {
+                "type": "MultiLineString",
+                "coordinates": []
+            },
+            "links": [],
+            "line": {
+                "id": "line:SNCF:0018-80080945-87271007",
+                "name": "Düsseldorf - Hauptbahnhof - Paris Nord",
+                "code": "",
+                "color": "",
+                "text_color": "",
+                "codes": [],
+                "physical_modes": [
+                    {
+                        "id": "physical_mode:LongDistanceTrain",
+                        "name": "Train grande vitesse"
+                    }
+                ],
+                "commercial_mode": {
+                    "id": "commercial_mode:EUROSTAR",
+                    "name": "Eurostar"
+                },
+                "network": {
+                    "id": "network:SNCF:EUROSTAR",
+                    "name": "Eurostar",
+                    "links": []
+                },
+                "opening_time": "160500",
+                "closing_time": "221400",
+                "geojson": {
+                    "type": "MultiLineString",
+                    "coordinates": []
+                },
+                "links": []
+            }
+        },
+        {
+            "id": "route:SNCF:0018-80101840-87271007",
+            "name": "Essen Hbf - Paris Nord",
+            "is_frequence": "False",
+            "direction_type": "forward",
+            "direction": {
+                "id": "stop_area:SNCF:87271007",
+                "name": "Paris Nord (Paris)",
+                "quality": 0,
+                "stop_area": {
+                    "id": "stop_area:SNCF:87271007",
+                    "name": "Paris Nord",
+                    "codes": [
+                        {
+                            "type": "secondary_id",
+                            "value": "SNCF:87271023"
+                        },
+                        {
+                            "type": "secondary_id",
+                            "value": "SNCF:87271031"
+                        },
+                        {
+                            "type": "source",
+                            "value": "87271007"
+                        },
+                        {
+                            "type": "source",
+                            "value": "87271023"
+                        },
+                        {
+                            "type": "source",
+                            "value": "87271031"
+                        },
+                        {
+                            "type": "uic",
+                            "value": "87271007"
+                        },
+                        {
+                            "type": "uic",
+                            "value": "87271023"
+                        },
+                        {
+                            "type": "uic",
+                            "value": "87271031"
+                        }
+                    ],
+                    "timezone": "Europe/Paris",
+                    "label": "Paris Nord (Paris)",
+                    "coord": {
+                        "lon": "2.354851",
+                        "lat": "48.880136"
+                    },
+                    "links": []
+                },
+                "embedded_type": "stop_area"
+            },
+            "geojson": {
+                "type": "MultiLineString",
+                "coordinates": []
+            },
+            "links": [],
+            "line": {
+                "id": "line:SNCF:0018-80101840-87271007",
+                "name": "Essen Hbf - Paris Nord",
+                "code": "",
+                "color": "",
+                "text_color": "",
+                "codes": [],
+                "physical_modes": [
+                    {
+                        "id": "physical_mode:LongDistanceTrain",
+                        "name": "Train grande vitesse"
+                    }
+                ],
+                "commercial_mode": {
+                    "id": "commercial_mode:EUROSTAR",
+                    "name": "Eurostar"
+                },
+                "network": {
+                    "id": "network:SNCF:EUROSTAR",
+                    "name": "Eurostar",
+                    "links": []
+                },
+                "opening_time": "073500",
+                "closing_time": "221400",
+                "geojson": {
+                    "type": "MultiLineString",
+                    "coordinates": []
+                },
+                "links": []
+            }
+        },
+        {
+            "id": "route:SNCF:0018-80154583-87271007",
+            "name": "Köln - Hauptbahnhof - Paris Nord",
+            "is_frequence": "False",
+            "direction_type": "forward",
+            "direction": {
+                "id": "stop_area:SNCF:87271007",
+                "name": "Paris Nord (Paris)",
+                "quality": 0,
+                "stop_area": {
+                    "id": "stop_area:SNCF:87271007",
+                    "name": "Paris Nord",
+                    "codes": [
+                        {
+                            "type": "secondary_id",
+                            "value": "SNCF:87271023"
+                        },
+                        {
+                            "type": "secondary_id",
+                            "value": "SNCF:87271031"
+                        },
+                        {
+                            "type": "source",
+                            "value": "87271007"
+                        },
+                        {
+                            "type": "source",
+                            "value": "87271023"
+                        },
+                        {
+                            "type": "source",
+                            "value": "87271031"
+                        },
+                        {
+                            "type": "uic",
+                            "value": "87271007"
+                        },
+                        {
+                            "type": "uic",
+                            "value": "87271023"
+                        },
+                        {
+                            "type": "uic",
+                            "value": "87271031"
+                        }
+                    ],
+                    "timezone": "Europe/Paris",
+                    "label": "Paris Nord (Paris)",
+                    "coord": {
+                        "lon": "2.354851",
+                        "lat": "48.880136"
+                    },
+                    "links": []
+                },
+                "embedded_type": "stop_area"
+            },
+            "geojson": {
+                "type": "MultiLineString",
+                "coordinates": []
+            },
+            "links": [],
+            "line": {
+                "id": "line:SNCF:0018-80154583-87271007",
+                "name": "Köln - Hauptbahnhof - Paris Nord",
+                "code": "",
+                "color": "",
+                "text_color": "",
+                "codes": [],
+                "physical_modes": [
+                    {
+                        "id": "physical_mode:LongDistanceTrain",
+                        "name": "Train grande vitesse"
+                    }
+                ],
+                "commercial_mode": {
+                    "id": "commercial_mode:EUROSTAR",
+                    "name": "Eurostar"
+                },
+                "network": {
+                    "id": "network:SNCF:EUROSTAR",
+                    "name": "Eurostar",
+                    "links": []
+                },
+                "opening_time": "052100",
+                "closing_time": "231400",
+                "geojson": {
+                    "type": "MultiLineString",
+                    "coordinates": []
+                },
+                "links": []
+            }
+        },
+        {
+            "id": "route:SNCF:0018-87111849-84000588",
+            "name": "Marne-la-Vallée - Chessy - Amsterdam Centraal",
+            "is_frequence": "False",
+            "direction_type": "forward",
+            "direction": {
+                "id": "stop_area:SNCF:84000588",
+                "name": "Amsterdam Centraal (Amsterdam)",
+                "quality": 0,
+                "stop_area": {
+                    "id": "stop_area:SNCF:84000588",
+                    "name": "Amsterdam Centraal",
+                    "codes": [
+                        {
+                            "type": "source",
+                            "value": "84000588"
+                        },
+                        {
+                            "type": "uic",
+                            "value": "84000588"
+                        }
+                    ],
+                    "timezone": "Europe/Paris",
+                    "label": "Amsterdam Centraal (Amsterdam)",
+                    "coord": {
+                        "lon": "4.900632",
+                        "lat": "52.37908"
+                    },
+                    "links": []
+                },
+                "embedded_type": "stop_area"
+            },
+            "geojson": {
+                "type": "MultiLineString",
+                "coordinates": []
+            },
+            "links": [],
+            "line": {
+                "id": "line:SNCF:0018-87111849-84000588",
+                "name": "Marne-la-Vallée - Chessy - Amsterdam Centraal",
+                "code": "",
+                "color": "",
+                "text_color": "",
+                "codes": [],
+                "physical_modes": [
+                    {
+                        "id": "physical_mode:LongDistanceTrain",
+                        "name": "Train grande vitesse"
+                    }
+                ],
+                "commercial_mode": {
+                    "id": "commercial_mode:EUROSTAR",
+                    "name": "Eurostar"
+                },
+                "network": {
+                    "id": "network:SNCF:EUROSTAR",
+                    "name": "Eurostar",
+                    "links": []
+                },
+                "opening_time": "114200",
+                "closing_time": "231400",
+                "geojson": {
+                    "type": "MultiLineString",
+                    "coordinates": []
+                },
+                "links": []
+            }
+        },
+        {
+            "id": "route:SNCF:0018-87271007-84000588",
+            "name": "Paris Nord - Amsterdam Centraal",
+            "is_frequence": "False",
+            "direction_type": "forward",
+            "direction": {
+                "id": "stop_area:SNCF:84000588",
+                "name": "Amsterdam Centraal (Amsterdam)",
+                "quality": 0,
+                "stop_area": {
+                    "id": "stop_area:SNCF:84000588",
+                    "name": "Amsterdam Centraal",
+                    "codes": [
+                        {
+                            "type": "source",
+                            "value": "84000588"
+                        },
+                        {
+                            "type": "uic",
+                            "value": "84000588"
+                        }
+                    ],
+                    "timezone": "Europe/Paris",
+                    "label": "Amsterdam Centraal (Amsterdam)",
+                    "coord": {
+                        "lon": "4.900632",
+                        "lat": "52.37908"
+                    },
+                    "links": []
+                },
+                "embedded_type": "stop_area"
+            },
+            "geojson": {
+                "type": "MultiLineString",
+                "coordinates": []
+            },
+            "links": [],
+            "line": {
+                "id": "line:SNCF:0018-87271007-84000588",
+                "name": "Paris Nord - Amsterdam Centraal",
+                "code": "",
+                "color": "",
+                "text_color": "",
+                "codes": [],
+                "physical_modes": [
+                    {
+                        "id": "physical_mode:LongDistanceTrain",
+                        "name": "Train grande vitesse"
+                    }
+                ],
+                "commercial_mode": {
+                    "id": "commercial_mode:EUROSTAR",
+                    "name": "Eurostar"
+                },
+                "network": {
+                    "id": "network:SNCF:EUROSTAR",
+                    "name": "Eurostar",
+                    "links": []
+                },
+                "opening_time": "061800",
+                "closing_time": "004400",
+                "geojson": {
+                    "type": "MultiLineString",
+                    "coordinates": []
+                },
+                "links": []
+            }
+        },
+        {
+            "id": "route:SNCF:0018-87271007-88140010",
+            "name": "Paris Nord - Bruxelles-Midi / Brussel-Zuid",
+            "is_frequence": "False",
+            "direction_type": "forward",
+            "direction": {
+                "id": "stop_area:SNCF:88140010",
+                "name": "Bruxelles-Midi / Brussel-Zuid (Saint-Gilles - Sint-Gillis)",
+                "quality": 0,
+                "stop_area": {
+                    "id": "stop_area:SNCF:88140010",
+                    "name": "Bruxelles-Midi / Brussel-Zuid",
+                    "codes": [
+                        {
+                            "type": "source",
+                            "value": "88140010"
+                        },
+                        {
+                            "type": "uic",
+                            "value": "88140010"
+                        }
+                    ],
+                    "timezone": "Europe/Paris",
+                    "label": "Bruxelles-Midi / Brussel-Zuid (Saint-Gilles - Sint-Gillis)",
+                    "coord": {
+                        "lon": "4.336",
+                        "lat": "50.836"
+                    },
+                    "links": []
+                },
+                "embedded_type": "stop_area"
+            },
+            "geojson": {
+                "type": "MultiLineString",
+                "coordinates": []
+            },
+            "links": [],
+            "line": {
+                "id": "line:SNCF:0018-87271007-88140010",
+                "name": "Paris Nord - Bruxelles-Midi / Brussel-Zuid",
+                "code": "",
+                "color": "",
+                "text_color": "",
+                "codes": [],
+                "physical_modes": [
+                    {
+                        "id": "physical_mode:LongDistanceTrain",
+                        "name": "Train grande vitesse"
+                    }
+                ],
+                "commercial_mode": {
+                    "id": "commercial_mode:EUROSTAR",
+                    "name": "Eurostar"
+                },
+                "network": {
+                    "id": "network:SNCF:EUROSTAR",
+                    "name": "Eurostar",
+                    "links": []
+                },
+                "opening_time": "070700",
+                "closing_time": "000600",
+                "geojson": {
+                    "type": "MultiLineString",
+                    "coordinates": []
+                },
+                "links": []
+            }
+        },
+        {
+            "id": "route:SNCF:0018-87271007-80100537",
+            "name": "Paris Nord - Dortmund Hbf",
+            "is_frequence": "False",
+            "direction_type": "forward",
+            "direction": {
+                "id": "stop_area:SNCF:80100537",
+                "name": "Dortmund Hbf (Dortmund)",
+                "quality": 0,
+                "stop_area": {
+                    "id": "stop_area:SNCF:80100537",
+                    "name": "Dortmund Hbf",
+                    "codes": [
+                        {
+                            "type": "source",
+                            "value": "80100537"
+                        },
+                        {
+                            "type": "uic",
+                            "value": "80100537"
+                        }
+                    ],
+                    "timezone": "Europe/Paris",
+                    "label": "Dortmund Hbf (Dortmund)",
+                    "coord": {
+                        "lon": "7.4592",
+                        "lat": "51.518"
+                    },
+                    "links": []
+                },
+                "embedded_type": "stop_area"
+            },
+            "geojson": {
+                "type": "MultiLineString",
+                "coordinates": []
+            },
+            "links": [],
+            "line": {
+                "id": "line:SNCF:0018-87271007-80100537",
+                "name": "Paris Nord - Dortmund Hbf",
+                "code": "",
+                "color": "",
+                "text_color": "",
+                "codes": [],
+                "physical_modes": [
+                    {
+                        "id": "physical_mode:LongDistanceTrain",
+                        "name": "Train grande vitesse"
+                    }
+                ],
+                "commercial_mode": {
+                    "id": "commercial_mode:EUROSTAR",
+                    "name": "Eurostar"
+                },
+                "network": {
+                    "id": "network:SNCF:EUROSTAR",
+                    "name": "Eurostar",
+                    "links": []
+                },
+                "opening_time": "154800",
+                "closing_time": "225500",
+                "geojson": {
+                    "type": "MultiLineString",
+                    "coordinates": []
+                },
+                "links": []
+            }
+        },
+        {
+            "id": "route:SNCF:0018-87271007-80080945",
+            "name": "Paris Nord - Düsseldorf - Hauptbahnhof",
+            "is_frequence": "False",
+            "direction_type": "forward",
+            "direction": {
+                "id": "stop_area:SNCF:80080945",
+                "name": "Düsseldorf - Hauptbahnhof (Düsseldorf)",
+                "quality": 0,
+                "stop_area": {
+                    "id": "stop_area:SNCF:80080945",
+                    "name": "Düsseldorf - Hauptbahnhof",
+                    "codes": [
+                        {
+                            "type": "source",
+                            "value": "80080945"
+                        },
+                        {
+                            "type": "uic",
+                            "value": "80080945"
+                        }
+                    ],
+                    "timezone": "Europe/Paris",
+                    "label": "Düsseldorf - Hauptbahnhof (Düsseldorf)",
+                    "coord": {
+                        "lon": "6.7946",
+                        "lat": "51.2194"
+                    },
+                    "links": []
+                },
+                "embedded_type": "stop_area"
+            },
+            "geojson": {
+                "type": "MultiLineString",
+                "coordinates": []
+            },
+            "links": [],
+            "line": {
+                "id": "line:SNCF:0018-87271007-80080945",
+                "name": "Paris Nord - Düsseldorf - Hauptbahnhof",
+                "code": "",
+                "color": "",
+                "text_color": "",
+                "codes": [],
+                "physical_modes": [
+                    {
+                        "id": "physical_mode:LongDistanceTrain",
+                        "name": "Train grande vitesse"
+                    }
+                ],
+                "commercial_mode": {
+                    "id": "commercial_mode:EUROSTAR",
+                    "name": "Eurostar"
+                },
+                "network": {
+                    "id": "network:SNCF:EUROSTAR",
+                    "name": "Eurostar",
+                    "links": []
+                },
+                "opening_time": "095500",
+                "closing_time": "160000",
+                "geojson": {
+                    "type": "MultiLineString",
+                    "coordinates": []
+                },
+                "links": []
+            }
+        },
+        {
+            "id": "route:SNCF:0018-87271007-80101840",
+            "name": "Paris Nord - Essen Hbf",
+            "is_frequence": "False",
+            "direction_type": "forward",
+            "direction": {
+                "id": "stop_area:SNCF:80101840",
+                "name": "Essen Hbf (Essen)",
+                "quality": 0,
+                "stop_area": {
+                    "id": "stop_area:SNCF:80101840",
+                    "name": "Essen Hbf",
+                    "codes": [
+                        {
+                            "type": "source",
+                            "value": "80101840"
+                        },
+                        {
+                            "type": "uic",
+                            "value": "80101840"
+                        }
+                    ],
+                    "timezone": "Europe/Paris",
+                    "label": "Essen Hbf (Essen)",
+                    "coord": {
+                        "lon": "7.0138",
+                        "lat": "51.4516"
+                    },
+                    "links": []
+                },
+                "embedded_type": "stop_area"
+            },
+            "geojson": {
+                "type": "MultiLineString",
+                "coordinates": []
+            },
+            "links": [],
+            "line": {
+                "id": "line:SNCF:0018-87271007-80101840",
+                "name": "Paris Nord - Essen Hbf",
+                "code": "",
+                "color": "",
+                "text_color": "",
+                "codes": [],
+                "physical_modes": [
+                    {
+                        "id": "physical_mode:LongDistanceTrain",
+                        "name": "Train grande vitesse"
+                    }
+                ],
+                "commercial_mode": {
+                    "id": "commercial_mode:EUROSTAR",
+                    "name": "Eurostar"
+                },
+                "network": {
+                    "id": "network:SNCF:EUROSTAR",
+                    "name": "Eurostar",
+                    "links": []
+                },
+                "opening_time": "095500",
+                "closing_time": "201900",
+                "geojson": {
+                    "type": "MultiLineString",
+                    "coordinates": []
+                },
+                "links": []
+            }
+        }
+    ],
+    "links": [
+        {
+            "href": "https://api.sncf.com/v1/coverage/sncf/stop_areas/{stop_area.id}",
+            "templated": true,
+            "rel": "stop_areas",
+            "type": "stop_area"
+        },
+        {
+            "href": "https://api.sncf.com/v1/coverage/sncf/lines/{line.id}",
+            "templated": true,
+            "rel": "lines",
+            "type": "line"
+        },
+        {
+            "href": "https://api.sncf.com/v1/coverage/sncf/routes/{routes.id}",
+            "templated": true,
+            "rel": "routes",
+            "type": "routes"
+        },
+        {
+            "href": "https://api.sncf.com/v1/coverage/sncf/physical_modes/{physical_modes.id}",
+            "templated": true,
+            "rel": "physical_modes",
+            "type": "physical_modes"
+        },
+        {
+            "href": "https://api.sncf.com/v1/coverage/sncf/networks/{network.id}",
+            "templated": true,
+            "rel": "networks",
+            "type": "network"
+        },
+        {
+            "href": "https://api.sncf.com/v1/coverage/sncf/commercial_modes/{commercial_mode.id}",
+            "templated": true,
+            "rel": "commercial_modes",
+            "type": "commercial_mode"
+        },
+        {
+            "href": "https://api.sncf.com/v1/coverage/sncf/routes/{routes.id}/route_schedules",
+            "rel": "route_schedules",
+            "type": "route_schedules",
+            "templated": true
+        },
+        {
+            "href": "https://api.sncf.com/v1/coverage/sncf/routes/{routes.id}/stop_schedules",
+            "rel": "stop_schedules",
+            "type": "stop_schedules",
+            "templated": true
+        },
+        {
+            "href": "https://api.sncf.com/v1/coverage/sncf/routes/{routes.id}/arrivals",
+            "rel": "arrivals",
+            "type": "arrivals",
+            "templated": true
+        },
+        {
+            "href": "https://api.sncf.com/v1/coverage/sncf/routes/{routes.id}/departures",
+            "rel": "departures",
+            "type": "departures",
+            "templated": true
+        },
+        {
+            "href": "https://api.sncf.com/v1/coverage/sncf/routes/{routes.id}/places_nearby",
+            "rel": "places_nearby",
+            "type": "places_nearby",
+            "templated": true
+        },
+        {
+            "href": "https://api.sncf.com/v1/coverage/sncf/routes?start_page=1",
+            "type": "next",
+            "templated": false
+        },
+        {
+            "href": "https://api.sncf.com/v1/coverage/sncf/routes?start_page=39",
+            "type": "last",
+            "templated": false
+        },
+        {
+            "href": "https://api.sncf.com/v1/coverage/sncf/routes",
+            "type": "first",
+            "templated": false
+        }
+    ]
+}
