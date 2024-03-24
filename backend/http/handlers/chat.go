@@ -7,7 +7,8 @@ import (
 	"pc3r/projet/db"
 	"pc3r/projet/global"
 	types "pc3r/projet/http/types"
-	"time"
+	sncf "pc3r/projet/sncf"
+	types_sncf "pc3r/projet/sncf/types"
 )
 
 type ResponseGetChatBody struct {
@@ -59,24 +60,10 @@ func GetChat(res http.ResponseWriter, req *http.Request) {
 
 }
 
-type ChatProps struct {
-	Name string `json:"name"`
-}
-type TripProps struct {
-	Departure_time         time.Time `json:"departure_time"`
-	Estimated_arrival_time time.Time `json:"estimated_arrival_time"`
-	From                   string    `json:"from"`
-	To                     string    `json:"to"`
-}
-
-type ResponseCreateChatBody struct {
-	Chat types.ChatRes `json:"chat"`
-}
-
 func CreateChat(res http.ResponseWriter, req *http.Request) {
 	var body CreateChatProps
 	err := json.NewDecoder(req.Body).Decode(&body)
-	if (err != nil) || body.Chat.Name == "" || body.Trip.To == "" || body.Trip.From == "" {
+	if (err != nil) || body.Trip.To.Id == "" || body.Trip.From.Id == "" {
 		res.WriteHeader(http.StatusUnauthorized)
 		message := "Missing propreties"
 		json.NewEncoder(res).Encode(types.MakeError(message, types.INPUT_ERROR))
@@ -106,25 +93,31 @@ func CreateChat(res http.ResponseWriter, req *http.Request) {
 }
 
 type CreateChatProps struct {
-	Chat ChatProps `json:"chat"`
-	Trip TripProps `json:"trip"`
+	Trip types_sncf.Section `json:"trip"`
 }
 
 func CreateChatFn(props CreateChatProps) (*db.ChatModel, error) {
 	prisma, ctx := global.GetPrisma()
 
 	// Ensuite, créer le Chat en référençant le Trip créé
+	Name := props.Trip.From.Name + " " + props.Trip.To.Name
+	parsed_departure_time, err := sncf.ParseSNCFfDate(props.Trip.Departure_date_time)
+	parsed_arrival_time, _ := sncf.ParseSNCFfDate(props.Trip.Arrival_date_time)
+	if err != nil {
+		fmt.Printf("Error parsing date")
+		return nil, err
+	}
 	chat, err := prisma.Chat.CreateOne(
-		db.Chat.Name.Set(props.Chat.Name),
+		db.Chat.Name.Set(Name),
 	).Exec(ctx)
 	if err != nil {
 		return nil, err
 	}
 	_, err = prisma.Trip.CreateOne(
-		db.Trip.From.Set(props.Trip.From),
-		db.Trip.To.Set(props.Trip.To),
-		db.Trip.DepartureTime.Set(props.Trip.Departure_time),
-		db.Trip.EstimatedArrivalTime.Set(props.Trip.Estimated_arrival_time),
+		db.Trip.From.Set(props.Trip.From.Name),
+		db.Trip.To.Set(props.Trip.To.Name),
+		db.Trip.DepartureTime.Set(parsed_departure_time),
+		db.Trip.EstimatedArrivalTime.Set(parsed_arrival_time),
 		db.Trip.Chat.Link(
 			db.Chat.ID.Equals(chat.ID),
 		),
