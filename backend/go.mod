@@ -5,6 +5,7 @@ go 1.21.6
 require (
 	github.com/golang-jwt/jwt/v5 v5.2.1
 	github.com/gorilla/websocket v1.5.1
+	github.com/jasonlvhit/gocron v0.0.1
 	github.com/joho/godotenv v1.5.1
 	github.com/rs/cors v1.10.1
 	github.com/shopspring/decimal v1.3.1

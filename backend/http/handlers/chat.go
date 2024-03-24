@@ -99,8 +99,7 @@ type CreateChatProps struct {
 func CreateChatFn(props CreateChatProps) (*db.ChatModel, error) {
 	prisma, ctx := global.GetPrisma()
 
-	// Ensuite, créer le Chat en référençant le Trip créé
-	Name := props.Trip.From.Name + " " + props.Trip.To.Name
+	Name := props.Trip.From.Name + " - " + props.Trip.To.Name
 	parsed_departure_time, err := sncf.ParseSNCFfDate(props.Trip.Departure_date_time)
 	parsed_arrival_time, _ := sncf.ParseSNCFfDate(props.Trip.Arrival_date_time)
 	if err != nil {

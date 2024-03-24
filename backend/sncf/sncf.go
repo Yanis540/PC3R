@@ -30,7 +30,6 @@ func fetchFromUrl(URL string) (*http.Response, error) {
 
 func GetJourneys() ([]types.Journey, error) {
 	CURRENT_TIME := time.Now().Format("20060102")
-	fmt.Println(CURRENT_TIME)
 	URL := fmt.Sprintf("https://api.sncf.com/v1/coverage/sncf/journeys?from=admin:fr:75056&to=admin:fr:69123&datetime=%s", CURRENT_TIME)
 	fmt.Println(URL)
 	res, err := fetchFromUrl(URL)
@@ -45,7 +44,6 @@ func GetJourneys() ([]types.Journey, error) {
 		fmt.Println("Could not decode json")
 		return []types.Journey{}, err
 	}
-	fmt.Println(results.Journeys[0].Sections[0].Id)
 	return results.Journeys, nil
 
 }

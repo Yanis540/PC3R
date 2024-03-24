@@ -7,7 +7,10 @@ import (
 
 	"pc3r/projet/global"
 	http2 "pc3r/projet/http"
+	"pc3r/projet/http/handlers"
 	socket "pc3r/projet/socket"
+
+	gocron "github.com/jasonlvhit/gocron"
 
 	"github.com/rs/cors"
 )
@@ -33,17 +36,13 @@ func main() {
 	})
 
 	handler := cors_options.Handler(mux)
+
 	fmt.Println("Server running on PORT  5000")
-	log.Fatal(http.ListenAndServe(":5000", handler))
+	go func() {
+		log.Fatal(http.ListenAndServe(":5000", handler))
+	}()
+	scheduler := gocron.NewScheduler()
+	scheduler.Every(1).Day().At("00:00:01").Do(handlers.SeedDatabase)
+	<-scheduler.Start()
 
 }
-
-//! usefull later
-// requestURL := fmt.Sprintf("http://localhost:%d", serverPort)
-// res, err := http.Get(requestURL)
-// if err != nil {
-// 	fmt.Printf("error making http request: %s\n", err)
-// 	os.Exit(1)
-// }
-// fmt.Printf("client: got response!\n")
-// fmt.Printf("client: status code: %d\n", res.StatusCode)
