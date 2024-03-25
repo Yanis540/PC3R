@@ -1,12 +1,12 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { SignInSchema, signInSchema } from "../types";
 import { UseMutateFunction, useMutation } from "@tanstack/react-query";
 import {toast} from "sonner"
 import axios, { AxiosError } from "axios";
 import { SERVER_URL } from "@/env";
 import { useAuth } from "@/hooks";
 import { useRouter } from "next/navigation";
+import { signUpSchema, SignUpSchema } from "../types";
 type DataResponse = {
     error?: HTTPError, 
     user? : User, 
@@ -16,29 +16,27 @@ interface useLoginMutation  {
     data ?: any
     isPending : boolean 
     error : unknown 
-    mutate : UseMutateFunction<any, unknown,SignInSchema, unknown>
+    mutate : UseMutateFunction<any, unknown,SignUpSchema, unknown>
 }
 
-export const useSignIn = ()=>{
+export const useSignUp = ()=>{
     const { register, handleSubmit,reset,
-        formState: { errors }, } = useForm<SignInSchema>({
-        resolver: zodResolver(signInSchema),
+        formState: { errors }, } = useForm<SignUpSchema>({
+        resolver: zodResolver(signUpSchema),
     });
     const router = useRouter()
     const {set_user,set_tokens} = useAuth()
     const {data,mutate,isPending:isLoading,error}:useLoginMutation = useMutation({
-        mutationKey:["auth","sign-in"],
-        mutationFn:async({email,password})=>{
-            const response= await axios.post(SERVER_URL+"/auth/sign-in",{email,password}); 
+        mutationKey:["auth","sign-up"],
+        mutationFn:async(props)=>{
+            const response= await axios.post(SERVER_URL+"/auth/sign-up",props); 
             const data = await response.data ; 
             return data ; 
         },
         onSuccess : (data:DataResponse)=>{
-            toast.success("Signed in ! ",{}); 
-            set_user(data.user!)
-            set_tokens(data.tokens!)
+            toast.success("Signed in up! ",{}); 
             reset()
-            router.push('/')
+            router.push('/auth/sign-in')
 
         },
         onError:(err:any)=>{

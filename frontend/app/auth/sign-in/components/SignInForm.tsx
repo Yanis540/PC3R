@@ -50,7 +50,7 @@ function SignInForm({}:SignInFormProps) {
               }
             </div>
             <div className="grid gap-1">
-              <Label className="sr-only" htmlFor="email">
+              <Label className="sr-only" htmlFor="password">
                 Password
               </Label>
               <Input
@@ -62,7 +62,7 @@ function SignInForm({}:SignInFormProps) {
                 autoCorrect="off"
                 {...register("password")}
 
-                // disabled={isLoading}
+                disabled={isLoading}
               />
                {
                 errors.password?.message && (
@@ -76,7 +76,7 @@ function SignInForm({}:SignInFormProps) {
               {isLoading ? (
                 <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
               ):(
-                  "Sign In with Email"
+                  "Sign In"
               )
               }
             </Button>

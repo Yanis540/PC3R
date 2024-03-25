@@ -1,7 +1,8 @@
 'use client'
+import { Button } from "@/components/ui/button";
 import AuthContext from "@/context/AuthContext";
 import { useSocketStore } from "@/context/store";
-import { useSocket } from "@/hooks";
+import { useAuth, useSocket } from "@/hooks";
 import { cpSync } from "fs";
 import Image from "next/image";
 import { useEffect } from "react";
@@ -9,6 +10,7 @@ import { useEffect } from "react";
 function Home() {
   useSocket()
   const{socket} = useSocketStore()
+  const {set_user} = useAuth()
   useEffect(()=>{
     console.log(socket,socket?.connected)
     socket?.on('connect',(data)=>{
@@ -27,6 +29,7 @@ function Home() {
   return (
    <div className="flex-1 min-h-full bg-foreground ">
       <h1 className="text-background w-full ">hello</h1>
+      <Button onClick={()=>{set_user(undefined)}}>Sign Out</Button>
    </div>
   );
 }

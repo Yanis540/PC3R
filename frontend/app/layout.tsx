@@ -4,7 +4,6 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import QueryProvider from "@/context/QueryProvider";
 import { Toaster } from "@/components/ui/sonner";
-import AuthContext from "@/context/AuthContext";
 
 // const inter = Inter({ subsets: ["latin"] });
 const fontSans = FontSans({
@@ -29,7 +28,7 @@ export default function RootLayout({
       )}>
         <QueryProvider>
             {children}
-            <Toaster position="top-right" /> 
+            <Toaster position="top-right" richColors /> 
         </QueryProvider>
       </body>
     </html>
