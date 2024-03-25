@@ -4,10 +4,12 @@ import AuthContext from "@/context/AuthContext";
 import { useSocketStore } from "@/context/store";
 import { useSocket } from "@/hooks";
 import { useEffect } from "react";
+import { useFetchTrips } from "./hooks/use-fetch-trips";
 
 function Home() {
-  useSocket()
   const{socket} = useSocketStore()
+  const {data,isLoading,error} = useFetchTrips();
+  console.log(data,isLoading,error)
   useEffect(()=>{
     console.log(socket,socket?.connected)
     socket?.on('connect',(data)=>{

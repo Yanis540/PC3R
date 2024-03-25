@@ -1,4 +1,4 @@
-import { SERVER_URL } from '@/env';
+import { WS_SERVER_URL } from '@/env';
 import {EventEmitter} from 'events';
 // https://medium.com/@snassr/websockets-react-go-be6330ad547d
 export default class Socket {
@@ -7,7 +7,7 @@ export default class Socket {
     connected:boolean;
     constructor(protocols?: string | string[] | undefined) {
         this.connected = false; 
-        this.ws = new WebSocket(`ws://${SERVER_URL}/ws`,protocols);
+        this.ws = new WebSocket(`${WS_SERVER_URL}`,protocols);
         this.ee = new EventEmitter();
         // attach message function as event listener for incoming websocket messages.
         this.ws.onmessage = this.message.bind(this);

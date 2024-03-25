@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import QueryProvider from "@/context/QueryProvider";
 import { Toaster } from "@/components/ui/sonner";
 import Navbar from "@/components/Navbar";
+import SocketContext from "@/context/SocketContext";
 
 // const inter = Inter({ subsets: ["latin"] });
 const fontSans = FontSans({
@@ -24,17 +25,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body  className={cn(
-          "relative h-full font-sans antialiased",
-          fontSans.variable
+        "relative h-full font-sans antialiased",
+        fontSans.variable
       )}>
-        <QueryProvider>
-          <main className="flex flex-col min-h-screen">
-            <Navbar /> 
-            <div className="flex-grow flex-1 bg-foreground">
-              {children}
-            </div>
-          </main>
-        </QueryProvider>
+        <SocketContext>
+          <QueryProvider>
+            <main className="flex flex-col min-h-screen">
+              <Navbar /> 
+              <div className="flex-grow flex-1 bg-foreground">
+                {children}
+              </div>
+            </main>
+          </QueryProvider>
+        </SocketContext>
           <Toaster position="top-right" richColors /> 
       </body>
     </html>
