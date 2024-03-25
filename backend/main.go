@@ -7,11 +7,9 @@ import (
 
 	"pc3r/projet/global"
 	http2 "pc3r/projet/http"
-	"pc3r/projet/http/handlers"
 	socket "pc3r/projet/socket"
 
-	gocron "github.com/jasonlvhit/gocron"
-
+	"github.com/jasonlvhit/gocron"
 	"github.com/rs/cors"
 )
 
@@ -32,7 +30,7 @@ func main() {
 	cors_options := cors.New(cors.Options{
 		AllowedOrigins: []string{"*"},
 		AllowedMethods: []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
-		AllowedHeaders: []string{"Origin", "Content-Type", "Accept"},
+		AllowedHeaders: []string{"Origin", "Content-Type", "Accept", "Authorization"},
 	})
 
 	handler := cors_options.Handler(mux)
@@ -42,7 +40,7 @@ func main() {
 		log.Fatal(http.ListenAndServe(":5000", handler))
 	}()
 	scheduler := gocron.NewScheduler()
-	scheduler.Every(1).Day().At("00:00:01").Do(handlers.SeedDatabase)
+	// scheduler.Every(1).Day().At("00:00:01").Do(handlers.SeedDatabase)
 	<-scheduler.Start()
 
 }

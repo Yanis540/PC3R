@@ -17,14 +17,7 @@ type responseGetTripBody struct {
 }
 
 func GetTrips(res http.ResponseWriter, req *http.Request) {
-	var body GetTripsBody
-	err := json.NewDecoder(req.Body).Decode(&body)
-	if err != nil {
-		res.WriteHeader(http.StatusUnauthorized)
-		message := "Id not passed"
-		json.NewEncoder(res).Encode(types.MakeError(message, types.INPUT_ERROR))
-		return
-	}
+
 	prisma, ctx := global.GetPrisma()
 	trips_unstructured, err := prisma.Trip.FindMany(
 	// db.Trip.DepartureTime.AfterEquals(time.Now()),
