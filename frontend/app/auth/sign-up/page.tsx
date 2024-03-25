@@ -1,14 +1,16 @@
+'use client'
 import React from 'react';
 import SignUpForm from "./components/SignUpForm"
 import Link from 'next/link';
 
-interface pageProps {
+interface AuthProps {
 
 };
 
-function page({}:pageProps) {
+function Auth({}:AuthProps) {
+   
     return (
-    <div className="flex-1 flex flex-col items-center justify-center min-h-full bg-foreground w-full ">
+    <div className="flex-1 flex flex-col items-center justify-center min-h-screen bg-foreground w-full ">
         <div className="lg:p-8 border-[1px] border-primary rounded-md">
           <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
             <div className="flex flex-col space-y-2 text-center">
@@ -53,4 +55,4 @@ function page({}:pageProps) {
     );
 };
 
-export default page;
+export default Auth;

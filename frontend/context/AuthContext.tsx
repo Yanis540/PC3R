@@ -1,7 +1,7 @@
 "use client"
 import { useAuth } from '@/hooks';
-import { useRouter } from 'next/navigation';
 import React, { useEffect, useLayoutEffect } from 'react';
+import { redirect } from "next/navigation";
 
 interface AuthContextProps {
     children: React.ReactNode
@@ -10,18 +10,18 @@ interface AuthContextProps {
 function AuthContext(Component:any) {
    
     return function IsAuth(props: any) {
-        const {set_user,user} = useAuth(); 
-        const router = useRouter()
+        const {user} = useAuth(); 
         // useEffect(()=>{
         //     set_user(undefined)
         // },[])
-        useEffect(() => {
+        useLayoutEffect(() => {
           if (!user) {
-            return router.push("/auth/sign-in");
+            return redirect("/auth/sign-in");
           }
-        }, [user,router]);
+        }, []);
     
-    
+        if (typeof window == "undefined")
+          return null 
         if (!user) {
           return null;
         }

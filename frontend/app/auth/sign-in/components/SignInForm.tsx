@@ -19,12 +19,6 @@ function SignInForm({}:SignInFormProps) {
     const {onSubmit,errors,register,isLoading} = useSignIn();
     const {user} = useAuth()
     const router = useRouter()
-    useEffect(()=>{
-        if(user?.id){
-            router.push('/')
-        }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[user?.id])
     return (
     <div className={cn("grid gap-6")} >
         <form className="" onSubmit={onSubmit}>
