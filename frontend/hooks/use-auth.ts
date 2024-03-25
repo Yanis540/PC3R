@@ -5,6 +5,7 @@ interface AuthState {
   user?:  User
   tokens ? : Tokens
   set_user: (user?: User) => void
+  signOut: () => void
   set_tokens: (tokens?: Tokens) => void
 }
 
@@ -17,6 +18,10 @@ const useAuth =  create(
             }),
             set_tokens : (tokens?:Tokens)=>set((prev:AuthState)=>{
                 return {...prev,tokens:tokens}
+            }),
+           
+            signOut : ()=>set((prev:AuthState)=>{
+                return {...prev,user:null}
             }),
            
         }), 
