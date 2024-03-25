@@ -1,11 +1,12 @@
 'use client'
+import AuthContext from "@/context/AuthContext";
 import { useSocketStore } from "@/context/store";
 import { useSocket } from "@/hooks";
 import { cpSync } from "fs";
 import Image from "next/image";
 import { useEffect } from "react";
 
-export default function Home() {
+function Home() {
   useSocket()
   const{socket} = useSocketStore()
   useEffect(()=>{
@@ -29,3 +30,5 @@ export default function Home() {
    </div>
   );
 }
+
+export default AuthContext(Home)
