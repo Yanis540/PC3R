@@ -22,7 +22,9 @@ func GetTrips(res http.ResponseWriter, req *http.Request) {
 	trips_unstructured, err := prisma.Trip.FindMany(
 	// db.Trip.DepartureTime.AfterEquals(time.Now()),
 	).With(
-		db.Trip.Chat.Fetch(),
+		db.Trip.Chat.Fetch().With(
+			db.Chat.Users.Fetch(),
+		),
 	).Exec(ctx)
 
 	if err != nil {
@@ -33,9 +35,14 @@ func GetTrips(res http.ResponseWriter, req *http.Request) {
 	}
 	trips := []types.TripRes{}
 	for _, trip := range trips_unstructured {
+		users := ExtractChatUsersInformations(trip.Chat().Users())
+		chat_structre := types.TipChat{
+			ChatModel: trip.Chat(),
+			Users:     users,
+		}
 		trips = append(trips, types.TripRes{
 			TripModel: trip,
-			Chat:      trip.Chat(),
+			Chat:      chat_structre,
 		})
 	}
 	response := responseGetTripBody{

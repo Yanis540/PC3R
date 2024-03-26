@@ -43,7 +43,7 @@ func GetChat(res http.ResponseWriter, req *http.Request) {
 		json.NewEncoder(res).Encode(types.MakeError(message, types.NOT_FOUND))
 		return
 	}
-	users := extractUsersInformations(chat.Users())
+	users := ExtractChatUsersInformations(chat.Users())
 	trip, _ := chat.Trip()
 	messages := chat.Messages()
 	chatStructure := types.ChatRes{
@@ -76,7 +76,7 @@ func CreateChat(res http.ResponseWriter, req *http.Request) {
 		json.NewEncoder(res).Encode(types.MakeError(message, types.BAD_REQUEST))
 		return
 	}
-	users := extractUsersInformations(chat.Users())
+	users := ExtractChatUsersInformations(chat.Users())
 	trip, _ := chat.Trip()
 	messages := chat.Messages()
 	chatStructure := types.ChatRes{
@@ -136,7 +136,7 @@ func CreateChatFn(props CreateChatProps) (*db.ChatModel, error) {
 	}
 	return updated_chat, nil
 }
-func extractUsersInformations(chat_users []db.UserModel) []types.UserChatModel {
+func ExtractChatUsersInformations(chat_users []db.UserModel) []types.UserChatModel {
 	users := []types.UserChatModel{}
 	for _, user := range chat_users {
 		updated_user := types.UserChatModel{
@@ -196,7 +196,7 @@ func AddUserToChat(res http.ResponseWriter, req *http.Request) {
 	}
 
 	chat_users := updated_chat.Users()
-	users := extractUsersInformations(chat_users)
+	users := ExtractChatUsersInformations(chat_users)
 	trip, _ := updated_chat.Trip()
 	messages := updated_chat.Messages()
 
