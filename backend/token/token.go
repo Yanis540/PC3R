@@ -11,6 +11,7 @@ var secretKey = []byte("secret-key")
 
 func CreateToken(id string) (string, int64, error) {
 	exp := time.Now().Add(time.Hour * 24).Unix()
+	// sauvegarder dans le token le : id ainsi que l'horaire
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256,
 		jwt.MapClaims{
 			"id":  id,
@@ -26,6 +27,7 @@ func CreateToken(id string) (string, int64, error) {
 }
 
 func VerifyToken(tokenString string) (jwt.MapClaims, bool) {
+	// parser le token
 	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
 		// check token signing method etc
 		return secretKey, nil
@@ -34,7 +36,7 @@ func VerifyToken(tokenString string) (jwt.MapClaims, bool) {
 	if err != nil {
 		return nil, false
 	}
-
+	// vérifier si le token est valid, si oui on retourne les claims qui est une map  ({id,exp})
 	if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
 		return claims, true
 	} else {

@@ -15,6 +15,13 @@ type ResponseGetChatBody struct {
 	Chat types.ChatRes `json:"chat"`
 }
 
+/*
+@handler : Gets the chat from the @id query in the url
+
+	@returns : {
+		chat
+	}
+*/
 func GetChat(res http.ResponseWriter, req *http.Request) {
 	id := req.URL.Query().Get("id")
 	if id == "" {
@@ -96,6 +103,22 @@ type CreateChatProps struct {
 	Trip types_sncf.Section `json:"trip"`
 }
 
+/*
+@func : Create a chat
+
+		@props : {
+			trip : {
+				Id                  string
+				Departure_date_time string
+				Arrival_date_time   string
+				To                  Place
+				From                Place
+			}
+
+		}
+	}
+	@returns : (chat, err)
+*/
 func CreateChatFn(props CreateChatProps) (*db.ChatModel, error) {
 	prisma, ctx := global.GetPrisma()
 

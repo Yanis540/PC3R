@@ -12,6 +12,9 @@ import (
 	"slices"
 )
 
+/*
+@middleware : sets the content response as json
+*/
 func JsonContentMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
 		fmt.Printf("server: %s / %s \n", req.Method, req.URL)
@@ -21,6 +24,9 @@ func JsonContentMiddleware(next http.Handler) http.Handler {
 	})
 }
 
+/*
+@middleware : specifies which methods are allowed
+*/
 func AllowedMethodsMiddleware(next http.Handler, allowed_methods []string) http.Handler {
 	return http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
 		if !slices.Contains(allowed_methods, req.Method) {
@@ -33,6 +39,9 @@ func AllowedMethodsMiddleware(next http.Handler, allowed_methods []string) http.
 	})
 }
 
+/*
+@middleware : handles authentification
+*/
 func AuthMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
 		tokenString := req.Header.Get("Authorization")

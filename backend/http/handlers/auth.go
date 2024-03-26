@@ -19,10 +19,19 @@ type ResponseSignInBody struct {
 	Tokens types.AuthTokens `json:"tokens"`
 }
 
+/*
+@handler : Handles sign in of user by validating the input body from request
+
+	@returns : {
+		user, tokens : {
+			access
+		}
+	}
+*/
 func UserSignIn(res http.ResponseWriter, req *http.Request) {
 
 	var body SignInBody
-
+	// decoder le body
 	err := json.NewDecoder(req.Body).Decode(&body)
 	if (err != nil) || (body.Email == "" || body.Password == "") {
 		res.WriteHeader(http.StatusBadRequest)
@@ -30,7 +39,9 @@ func UserSignIn(res http.ResponseWriter, req *http.Request) {
 		json.NewEncoder(res).Encode(types.MakeError(message, types.INPUT_ERROR))
 		return
 	}
+
 	prisma, ctx := global.GetPrisma()
+	// vérifier que l'utilisateur existe
 
 	user, err := prisma.User.FindFirst(
 		db.User.Email.Equals(body.Email),
@@ -44,12 +55,15 @@ func UserSignIn(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 	user_password, _ := user.Password()
+	// vérifier que le password match
 	if user_password != body.Password {
 		res.WriteHeader(http.StatusUnauthorized)
 		message := "Invalid password"
 		json.NewEncoder(res).Encode(types.MakeError(message, types.INPUT_ERROR))
 		return
 	}
+
+	// l'utilisateur est bien connecté, lui envoyer les jettons de connections
 	userStruct := types.UserRes{
 		UserModel: user,
 		Chats:     user.Chats(),
@@ -79,10 +93,16 @@ type ResponseSignUpBody struct {
 	Message string `json:"message"`
 }
 
+/*
+@handler : Handles sign up of user by validating the input body from request
+
+	@returns : {
+		message, success
+	}
+*/
 func UserSignUp(res http.ResponseWriter, req *http.Request) {
 
 	var body SignUpBody
-
 	err := json.NewDecoder(req.Body).Decode(&body)
 	if (err != nil) || (body.Email == "" || body.Password == "" || body.Name == "") {
 		fmt.Printf(body.Email)

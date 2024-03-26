@@ -22,11 +22,15 @@ var mux = http.NewServeMux()
 
 func main() {
 	global.Init()
-
-	router := socket.UseSocketRouter()
-	mux.Handle("/ws", router)
+	// créer le routeur pour le websocket
+	socketRouter := socket.UseSocketRouter()
+	// réserver le endpoint : /ws pour le websocket
+	mux.Handle("/ws", socketRouter)
+	// lancer les handlers des https
 	http2.UseHttpRouter(mux)
-
+	// définir les cors policy, pour l'instant on accept n'importe quelle origine
+	// en pratique on passe la liste des URLS qu'on passe mais juste pour ne pas trop se casser la tête
+	// on définit les types de headers qu'on accepte
 	cors_options := cors.New(cors.Options{
 		AllowedOrigins: []string{"*"},
 		AllowedMethods: []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
@@ -36,9 +40,11 @@ func main() {
 	handler := cors_options.Handler(mux)
 
 	fmt.Println("Server running on PORT  5000")
+	// lancer le serveur sur son propre thread
 	go func() {
 		log.Fatal(http.ListenAndServe(":5000", handler))
 	}()
+	// on crée un cron pour mettre à jours la base de données chaque jour à minuit 01
 	scheduler := gocron.NewScheduler()
 	// scheduler.Every(1).Day().At("00:00:01").Do(handlers.SeedDatabase)
 	<-scheduler.Start()
