@@ -18,18 +18,13 @@ type ResponseGetBody struct {
 func getUser(res http.ResponseWriter, req *http.Request) {
 	var body GetUserBody
 	err := json.NewDecoder(req.Body).Decode(&body)
-	if (err != nil) || body.Id == "" {
+	if err != nil {
 		res.WriteHeader(http.StatusUnauthorized)
 		message := "Id not passed"
 		json.NewEncoder(res).Encode(types.MakeError(message, types.INPUT_ERROR))
 		return
 	}
-	prisma, ctx := global.GetPrisma()
-	user, err := prisma.User.FindFirst(
-		db.User.ID.Equals(body.Id),
-	).With(
-		db.User.Chats.Fetch(), // Récupérer les chats associés à l'utilisateur
-	).Exec(ctx)
+	user, _ := req.Context().Value(types.CtxAuthKey{}).(*db.UserModel)
 
 	if err != nil {
 		res.WriteHeader(http.StatusNotFound)
@@ -64,18 +59,15 @@ type ResponseUpdateBody struct {
 func updateUser(res http.ResponseWriter, req *http.Request) {
 	var body UpdateUserBody
 	err := json.NewDecoder(req.Body).Decode(&body)
-	if (err != nil) || body.Id == "" || (body.Name == "" && body.Password == "") {
+	if (err != nil) || (body.Name == "" && body.Password == "") {
 		res.WriteHeader(http.StatusAccepted)
 		message := "Nothing to Update"
 		json.NewEncoder(res).Encode(types.MessageResponse{Message: message})
 		return
 	}
+
 	prisma, ctx := global.GetPrisma()
-	user, err := prisma.User.FindFirst(
-		db.User.ID.Equals(body.Id),
-	).With(
-		db.User.Chats.Fetch(), // Récupérer les chats associés à l'utilisateur
-	).Exec(ctx)
+	user, _ := req.Context().Value(types.CtxAuthKey{}).(*db.UserModel)
 
 	if err != nil {
 		res.WriteHeader(http.StatusNotFound)
@@ -99,7 +91,7 @@ func updateUser(res http.ResponseWriter, req *http.Request) {
 	}
 
 	updated_user, err := prisma.User.FindUnique(
-		db.User.ID.Equals(body.Id),
+		db.User.ID.Equals(user.ID),
 	).With(
 		db.User.Chats.Fetch(), // Récupérer les chats associés à l'utilisateur
 	).Update(

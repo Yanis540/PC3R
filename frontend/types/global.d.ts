@@ -3,12 +3,12 @@
 
 declare global {
     interface User {
-        id: String 
-        name: String 
-        email: String 
-        photo ?: String 
-        createdAt ?: String 
-        updatedAt ?: String
+        id: spectring 
+        name: string 
+        email: string 
+        photo : string 
+        createdAt ?: string 
+        updatedAt ?: string
         chats : Chat []
     }
     type ChatUser = Omit<User, "createdAt"|"updatedAt"|"chats">

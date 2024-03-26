@@ -9,7 +9,7 @@ func UseHttpRouter(mux *http.ServeMux) {
 	mux.Handle("/", JsonContentMiddleware(AllowedMethodsMiddleware(http.HandlerFunc(handlers.BasicRoute), []string{"GET"})))
 	mux.Handle("/auth/sign-in", JsonContentMiddleware(AllowedMethodsMiddleware(http.HandlerFunc(handlers.UserSignIn), []string{"POST"})))
 	mux.Handle("/auth/sign-up", JsonContentMiddleware(AllowedMethodsMiddleware(http.HandlerFunc(handlers.UserSignUp), []string{"POST"})))
-	mux.Handle("/user", JsonContentMiddleware(AllowedMethodsMiddleware(http.HandlerFunc(handlers.UserRoute), []string{"GET", "PUT", "DELETE"})))
+	mux.Handle("/user", JsonContentMiddleware(AuthMiddleware(AllowedMethodsMiddleware(http.HandlerFunc(handlers.UserRoute), []string{"GET", "PUT", "DELETE"}))))
 	mux.Handle("/trips", JsonContentMiddleware(AllowedMethodsMiddleware(http.HandlerFunc(handlers.GetTrips), []string{"GET"})))
 	mux.Handle("/chat", JsonContentMiddleware(AuthMiddleware((AllowedMethodsMiddleware(http.HandlerFunc(handlers.GetChat), []string{"GET"})))))
 	// mux.Handle("/chat/new", JsonContentMiddleware(AuthMiddleware((AllowedMethodsMiddleware(http.HandlerFunc(handlers.CreateChat), []string{"POST"})))))

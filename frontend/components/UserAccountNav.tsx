@@ -4,12 +4,14 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSepara
 import { Button } from './ui/button';
 import Link from 'next/link';
 import {useAuth} from '@/hooks';
+import UpdatePhotoDrawer from './UpdatePhotoDrawer';
+import UpdateProfileInformationsDialog from './UpdateProfileInformationsDialog';
 
+ 
 interface UserAccountNavProps {
-    user: User
 };
 
-function UserAccountNav({user}:UserAccountNavProps) {
+function UserAccountNav({}:UserAccountNavProps) {
     const {signOut} = useAuth();
     return (
     <DropdownMenu>
@@ -19,10 +21,9 @@ function UserAccountNav({user}:UserAccountNavProps) {
             </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="bg-background w-60" align="end">
-            <div className="flex items-center justify-start gap-2 p-2 ">
-                <div className="flex flex-col space-y-0.5 leading-none">
-                    <p className="font-medium text-sm text-primary ">{user?.name}</p>
-                </div>
+            <div className="flex flex-row items-center justify-between gap-2 p-2 ">
+                <UpdateProfileInformationsDialog /> 
+                <UpdatePhotoDrawer /> 
             </div>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
