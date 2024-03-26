@@ -7,7 +7,6 @@ import { toast } from "sonner"
 
 type DataResponse = {
     error?: HTTPError, 
-    user? : User, 
     trips ? :Trip[]
 }
 interface useFetchTripsMutation  {

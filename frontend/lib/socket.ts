@@ -7,7 +7,7 @@ export default class Socket {
     connected:boolean;
     constructor(protocols?: string | string[] | undefined) {
         this.connected = false; 
-        this.ws = new WebSocket(`${WS_SERVER_URL}`,protocols);
+        this.ws = new WebSocket(`ws://localhost:5000/ws`,protocols);
         this.ee = new EventEmitter();
         // attach message function as event listener for incoming websocket messages.
         this.ws.onmessage = this.message.bind(this);
