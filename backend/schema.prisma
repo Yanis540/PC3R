@@ -34,6 +34,7 @@ model Chat {
     id       String    @id @default(cuid())
     date     DateTime  @default(now())
     name     String
+    photo    String?   @default("https://github.com/shadcn.png")
     trip     Trip?
     users    User[]
     Messages Message[]

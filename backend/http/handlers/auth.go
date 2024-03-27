@@ -46,7 +46,9 @@ func UserSignIn(res http.ResponseWriter, req *http.Request) {
 	user, err := prisma.User.FindFirst(
 		db.User.Email.Equals(body.Email),
 	).With(
-		db.User.Chats.Fetch(), // Récupérer les chats associés à l'utilisateur
+		db.User.Chats.Fetch().With(
+			db.Chat.Trip.Fetch(),
+		), // Récupérer les chats associés à l'utilisateur
 	).Exec(ctx)
 	if err != nil {
 		res.WriteHeader(http.StatusUnauthorized)
@@ -62,11 +64,11 @@ func UserSignIn(res http.ResponseWriter, req *http.Request) {
 		json.NewEncoder(res).Encode(types.MakeError(message, types.INPUT_ERROR))
 		return
 	}
-
+	chats := ParseChatTrip(user.Chats())
 	// l'utilisateur est bien connecté, lui envoyer les jettons de connections
 	userStruct := types.UserRes{
 		UserModel: user,
-		Chats:     user.Chats(),
+		Chats:     chats,
 	}
 	accesToken, _, _ := token.CreateToken(user.ID)
 	tokens := types.AuthTokens{

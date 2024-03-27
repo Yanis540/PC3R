@@ -32,9 +32,10 @@ func getUser(res http.ResponseWriter, req *http.Request) {
 		json.NewEncoder(res).Encode(types.MakeError(message, types.NOT_FOUND))
 		return
 	}
+	chats := ParseChatTrip(user.Chats())
 	userStruct := types.UserRes{
 		UserModel: user,
-		Chats:     user.Chats(),
+		Chats:     chats,
 	}
 	response := ResponseGetBody{
 		User: userStruct, // Assigner la structure User à response.User
@@ -93,7 +94,9 @@ func updateUser(res http.ResponseWriter, req *http.Request) {
 	updated_user, err := prisma.User.FindUnique(
 		db.User.ID.Equals(user.ID),
 	).With(
-		db.User.Chats.Fetch(), // Récupérer les chats associés à l'utilisateur
+		db.User.Chats.Fetch().With(
+			db.Chat.Trip.Fetch(),
+		),
 	).Update(
 		db.User.Name.Set(updated_name),
 		db.User.Password.Set(updated_password),
@@ -104,9 +107,10 @@ func updateUser(res http.ResponseWriter, req *http.Request) {
 		json.NewEncoder(res).Encode(types.MakeError(message, types.INTERNAL_SERVER_ERROR))
 		return
 	}
+	chats := ParseChatTrip(updated_user.Chats())
 	userStruct := types.UserRes{
 		UserModel: updated_user,
-		Chats:     updated_user.Chats(),
+		Chats:     chats,
 	}
 	response := ResponseUpdateBody{
 		Message: "User updated",

@@ -131,6 +131,7 @@ func CreateChatFn(props CreateChatProps) (*db.ChatModel, error) {
 	}
 	chat, err := prisma.Chat.CreateOne(
 		db.Chat.Name.Set(Name),
+		db.Chat.Date.Set(parsed_departure_time),
 	).Exec(ctx)
 	if err != nil {
 		return nil, err
@@ -278,4 +279,17 @@ func RemoveUserFromChat(res http.ResponseWriter, req *http.Request) {
 	res.WriteHeader(http.StatusAccepted)
 	message := "Left Channel"
 	json.NewEncoder(res).Encode(types.MessageResponse{Message: message})
+}
+
+func ParseChatTrip(unparsed_chat []db.ChatModel) []types.ChatTrip {
+	chats := []types.ChatTrip{}
+	for _, chat := range unparsed_chat {
+		trip, _ := chat.Trip()
+		parsed_chat := types.ChatTrip{
+			ChatModel: chat,
+			Trip:      trip,
+		}
+		chats = append(chats, parsed_chat)
+	}
+	return chats
 }
