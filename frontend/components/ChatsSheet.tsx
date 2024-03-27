@@ -16,7 +16,6 @@ import {
 } from "@/components/ui/sheet"
 import { useAuth } from '@/hooks';
 import Image from 'next/image';
-import AuthContext from '@/context/AuthContext';
 import { CiChat1 } from "react-icons/ci";
 import { useRouter } from 'next/navigation';
 
@@ -69,4 +68,4 @@ function Chats(){
     )
 }
 
-export default AuthContext(ChatsSheet);
+export default ChatsSheet;

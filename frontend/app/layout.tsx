@@ -30,9 +30,7 @@ export default function RootLayout({
         <QueryProvider>
           <main className="flex flex-col min-h-screen">
             <Navbar /> 
-            <div className="flex-grow flex-1 bg-foreground">
-              {children}
-            </div>
+            {children}
           </main>
         </QueryProvider>
         <Toaster position="top-right" richColors /> 
