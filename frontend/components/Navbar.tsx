@@ -6,7 +6,6 @@ import { buttonVariants } from './ui/button';
 // import Cart from './Cart';
 import { useAuth } from '@/hooks';
 import { Icons } from './icons';
-import NavItems from './NavItems';
 import UserAccountNav from './UserAccountNav';
 import ChatsSheet from './ChatsSheet';
 
@@ -32,11 +31,9 @@ function Navbar({}:NavbarProps) {
                                 </Link>
                             </div>
 
-                            <div className="hidden z-50 lg:ml-8 lg:block lg:self-stretch ">
-                                <NavItems /> 
-                            </div>
+                          
                             <div className="ml-auto flex items-center">
-                                <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
+                                <div className="flex flex-1 items-center justify-end space-x-6">
                                     <div className='ml-4 flow-root lg:ml-6'>
                                         {/* Cart */}
                                         <ChatsSheet /> 

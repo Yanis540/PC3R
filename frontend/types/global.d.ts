@@ -25,6 +25,7 @@ declare global {
         id :string
         date : Date 
         name : string 
+        photo : string 
         trip : Trip  
         users : ChatUser[]
         messages : Message[]
@@ -45,8 +46,15 @@ declare global {
     interface HTTPError {
         error : {
             message : string 
-            code : string 
+            code : HTTPErrorCode 
         }
+    }
+    enum HTTPErrorCode {
+        BAD_REQUEST="BAD_REQUEST",
+        UNAUTHORIZED="UNAUTHORIZED",
+        NOT_FOUND="NOT_FOUND",
+        INPUT_ERROR="INPUT_ERROR",
+        INTERNAL_SERVER_ERROR="INTERNAL_SERVER_ERROR",
     }
 }
 

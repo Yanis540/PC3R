@@ -1,28 +1,22 @@
 'use client'
 import AuthContext from '@/context/AuthContext';
-import { useParams, useSearchParams } from 'next/navigation';
 import React from 'react';
+import SideBar from './components/SideBar';
+import Chat from './components/Chat/Chat';
 
-interface ChatProps {
+interface ChatPageProps {
 
 };
 
-function Chat({}:ChatProps) {
-    const {id} = useParams(); 
-    console.log(id)
+function ChatPage({}:ChatPageProps) {
     return (
     <div className="flex-1 flex flex-col flex-grow bg-foreground ">
-        <div className="flex-1 flex flex-row gap-x-10 text-background  mt-2 border border-red-500 ">
-            <div>
-                Sidebar 
-                {/* TODO : mobile sidebar */}
-            </div>
-            <div>
-                Main chat 
-            </div>
+        <div className="flex-1 flex flex-row  border-t-[1px] border-gray-700 gap-x-10 text-background  mt-2  ">
+            <SideBar /> 
+            <Chat /> 
         </div>
     </div>
     );
 };
 
-export default AuthContext(Chat);
+export default AuthContext(ChatPage);

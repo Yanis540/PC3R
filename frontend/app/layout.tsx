@@ -28,7 +28,7 @@ export default function RootLayout({
         fontSans.variable
       )}>
         <QueryProvider>
-          <main className="flex flex-col min-h-screen">
+          <main className="flex flex-col min-h-screen bg-foreground">
             <Navbar /> 
             {children}
           </main>
