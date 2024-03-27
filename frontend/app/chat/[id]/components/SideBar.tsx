@@ -18,8 +18,8 @@ function SideBar({}:SideBarProps) {
     const isActiveChat = (id_chat:string)=>id_chat == id
     return (
     <div className="flex-[0.25] flex flex-col border-r-[1px] border-gray-700 rounded-sm">
-        <div className="flex-1 flex flex-col gap-y-1 py-1 px-1 text-background">
-            <div className="flex flex-col gap-y-2 pb-2 border-b-[1px]   border-gray-800 ">
+        <div className="flex-1 flex flex-col gap-y-1 py-2 px-3 text-background">
+            <div className="flex flex-col gap-y-2 pb-2 border-b-[1px]  border-gray-800 ">
                 <div className="flex flex-row items-center justify-between">
                     <h1 className='text-xl md:text-2xl font-semibold '>Discussion</h1>
                     <div className="flex flex-row items-center justify-between gap-x-2">
@@ -36,7 +36,7 @@ function SideBar({}:SideBarProps) {
                 {
                     user?.chats?.map((chat)=>(
                     <div key={chat.id} className={cn("flex flex-row items-center px-2 py-3 gap-x-4  border-b-[1px] border-gray-700 hover:bg-gray-900 transition-all duration-75",
-                        isActiveChat(chat.id) && "bg-gray-700"
+                        isActiveChat(chat.id) && "bg-blue-300/10"
                     )}>
                         <div>
                             <Avatar className="w-8 h-8">

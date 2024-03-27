@@ -21,7 +21,7 @@ function Navbar({}:NavbarProps) {
         <div className="bg-foreground sticky z-50 top-0  inset-x-0 h-16 ">
            <header className='relative bg-foreground'>
                 <MaxWidthWrapper>
-                    <div className="border-b-[1px] border-primary">
+                    <div className="">
                         <div className='flex h-16 items-center'>
                             {/* TODO : mobile NAV */}
 

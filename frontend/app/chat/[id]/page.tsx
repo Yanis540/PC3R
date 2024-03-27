@@ -11,7 +11,7 @@ interface ChatPageProps {
 function ChatPage({}:ChatPageProps) {
     return (
     <div className="flex-1 flex flex-col flex-grow bg-foreground ">
-        <div className="flex-1 flex flex-row  border-t-[1px] border-gray-700 gap-x-10 text-background  mt-2  ">
+        <div className="flex-1 flex flex-row gap-x-1 border-t-[1px] border-gray-700 text-background  mt-2  ">
             <SideBar /> 
             <Chat /> 
         </div>
@@ -19,4 +19,4 @@ function ChatPage({}:ChatPageProps) {
     );
 };
 
-export default AuthContext(ChatPage);
+export default ChatPage;

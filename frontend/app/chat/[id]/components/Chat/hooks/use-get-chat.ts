@@ -45,7 +45,8 @@ export const useGetChat = (id:string)=>{
 
 
     return {
-        data,isLoading,error
+        data,isLoading,
+        error : (error as AxiosError)?.response?.data?(error as AxiosError)?.response?.data as HTTPError : error
     }
 }
 
