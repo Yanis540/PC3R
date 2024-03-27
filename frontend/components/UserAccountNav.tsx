@@ -7,18 +7,20 @@ import {useAuth} from '@/hooks';
 import UpdatePhotoDrawer from './UpdatePhotoDrawer';
 import UpdateProfileInformationsDialog from './UpdateProfileInformationsDialog';
 
- 
+import { Avatar, AvatarImage } from './ui/avatar';
+import ChatsSheet from './ChatsSheet';
+
 interface UserAccountNavProps {
 };
 
 function UserAccountNav({}:UserAccountNavProps) {
-    const {signOut} = useAuth();
+    const {user,signOut} = useAuth();
     return (
     <DropdownMenu>
         <DropdownMenuTrigger asChild className='overflow-visible'>
-            <Button variant='ghost' size='sm' className='relative text-background' >
-                Account
-            </Button>
+            <Avatar className="w-8 h-8">
+                <AvatarImage src={user?.photo??"https://github.com/shadcn.png"} alt="" />
+            </Avatar>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="bg-background w-60" align="end">
             <div className="flex flex-row items-center justify-between gap-2 p-2 ">

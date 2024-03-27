@@ -24,7 +24,7 @@ declare global {
     interface Chat {
         id :string
         date : Date 
-        name : Date 
+        name : string 
         trip : Trip  
         users : ChatUser[]
         messages : Message[]

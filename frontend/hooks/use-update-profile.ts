@@ -32,7 +32,6 @@ export const useUpdateProfile = ()=>{
     const {data,mutate,isPending:isLoading,error}:useUpdateProfileMutation = useMutation({
         mutationKey:["user","update"],
         mutationFn:async(props)=>{
-            console.log(props)
             const config : AxiosRequestConfig = {
                 headers:{
                     Authorization:`Bearer ${tokens?.access??""}`

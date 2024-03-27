@@ -8,6 +8,7 @@ import { useAuth } from '@/hooks';
 import { Icons } from './icons';
 import NavItems from './NavItems';
 import UserAccountNav from './UserAccountNav';
+import ChatsSheet from './ChatsSheet';
 
 interface NavbarProps {
 
@@ -36,16 +37,13 @@ function Navbar({}:NavbarProps) {
                             </div>
                             <div className="ml-auto flex items-center">
                                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                                
-                                    <UserAccountNav /> 
-                                      
-                                    {/* {user?null : <div className="flex lg:ml-6">
-                                        <span  className="h-6 w-px bg-gray-200" aria-hidden="true" />
-                                    </div>} */}
                                     <div className='ml-4 flow-root lg:ml-6'>
                                         {/* Cart */}
-                                        {/* <Cart />  */}
+                                        <ChatsSheet /> 
                                     </div>
+                                    <UserAccountNav /> 
+                                      
+                                   
                                 </div>
                             </div>
                         </div>
