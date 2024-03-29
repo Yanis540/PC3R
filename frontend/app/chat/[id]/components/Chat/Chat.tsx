@@ -6,6 +6,9 @@ import { Icons } from '@/components/icons';
 import { CgSearchFound } from "react-icons/cg";
 import { MdError } from "react-icons/md";
 import { HTTPErrorCode } from '@/types';
+import ChatHeader from './components/Header/ChatHeader';
+import ChatBody from './components/Body/ChatBody';
+import ChatFooter from './components/Footer/ChatFooter';
 
 interface ChatProps {
 
@@ -19,7 +22,6 @@ function Chat({}:ChatProps) {
             <Icons.spinner /> 
         </div>
     )
-    
     if(error || ! data)return(
         <div className="flex-1 flex flex-col items-center justify-center ">
             <div className="">
@@ -38,8 +40,12 @@ function Chat({}:ChatProps) {
         </div>
     )
     return (
-    <div className="flex-1 border border-red-500">
-        Chat
+    <div className="flex-1 flex flex-col border border-red-500">
+        <div className="flex-1 flex flex-col ">
+            <ChatHeader /> 
+            <ChatBody /> 
+            <ChatFooter /> 
+        </div>
     </div>
     );
 };

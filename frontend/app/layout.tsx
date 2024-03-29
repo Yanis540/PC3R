@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import QueryProvider from "@/context/QueryProvider";
 import { Toaster } from "@/components/ui/sonner";
 import Navbar from "@/components/Navbar";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 // const inter = Inter({ subsets: ["latin"] });
 const fontSans = FontSans({
@@ -28,10 +29,12 @@ export default function RootLayout({
         fontSans.variable
       )}>
         <QueryProvider>
-          <main className="flex flex-col min-h-screen bg-foreground">
-            <Navbar /> 
-            {children}
-          </main>
+          <TooltipProvider>
+            <main className="flex flex-col min-h-screen bg-foreground">
+              <Navbar /> 
+              {children}
+            </main>
+          </TooltipProvider>
         </QueryProvider>
         <Toaster position="top-right" richColors /> 
       </body>
