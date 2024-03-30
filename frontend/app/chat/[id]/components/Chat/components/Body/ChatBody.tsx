@@ -6,7 +6,7 @@ interface ChatBodyProps {
 
 function ChatBody({}:ChatBodyProps) {
     return (
-        <div className="flex-1 border border-green-500">
+        <div className="flex-1 ">
            ChatBody
         </div>
     );

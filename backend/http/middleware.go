@@ -52,6 +52,12 @@ func AuthMiddleware(next http.Handler) http.Handler {
 			return
 		}
 		tokenString = tokenString[len("Bearer "):]
+		if tokenString == "" {
+			res.WriteHeader(http.StatusUnauthorized)
+			message := "Unauthorized"
+			json.NewEncoder(res).Encode(types.MakeError(message, types.UNAUTHORIZED))
+			return
+		}
 		claims, valid := token.VerifyToken(tokenString)
 		if !valid {
 			res.WriteHeader(http.StatusUnauthorized)

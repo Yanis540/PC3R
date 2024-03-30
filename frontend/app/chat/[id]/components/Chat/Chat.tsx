@@ -9,6 +9,7 @@ import { HTTPErrorCode } from '@/types';
 import ChatHeader from './components/Header/ChatHeader';
 import ChatBody from './components/Body/ChatBody';
 import ChatFooter from './components/Footer/ChatFooter';
+import AuthContext from '@/context/AuthContext';
 
 interface ChatProps {
 
@@ -22,11 +23,12 @@ function Chat({}:ChatProps) {
             <Icons.spinner /> 
         </div>
     )
-    if(error || ! data)return(
+    console.log(isLoading,data,error)
+    if(error || !isLoading && data == undefined)return(
         <div className="flex-1 flex flex-col items-center justify-center ">
             <div className="">
             {
-                (error as HTTPError)?.error?.code == HTTPErrorCode.NOT_FOUND ? (
+                (error)?.error?.code == HTTPErrorCode.NOT_FOUND ? (
                     <CgSearchFound className="text-red-600 w-16 h-16 " /> 
                 ): (
                     <MdError className="text-red-600 w-16 h-16 " /> 
@@ -35,12 +37,12 @@ function Chat({}:ChatProps) {
             </div>
             <h3 className="text-red-500 font-medium text-lg md:text-xl">
 
-                {(error as HTTPError)?.error?.message ??(error as Error).message}
+                {error?.error?.message ??error?.message}
             </h3>
         </div>
     )
     return (
-    <div className="flex-1 flex flex-col border border-red-500">
+    <div className="flex-1 flex flex-col ">
         <div className="flex-1 flex flex-col ">
             <ChatHeader /> 
             <ChatBody /> 
@@ -50,4 +52,4 @@ function Chat({}:ChatProps) {
     );
 };
 
-export default Chat;
+export default AuthContext(Chat);

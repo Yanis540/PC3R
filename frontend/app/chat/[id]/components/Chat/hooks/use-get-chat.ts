@@ -1,27 +1,31 @@
 
 import { SERVER_URL } from "@/env"
 import { useAuth } from "@/hooks"
-import { useQuery } from "@tanstack/react-query"
+import { UseMutateFunction, useMutation, useQuery } from "@tanstack/react-query"
 import axios, { AxiosError, AxiosRequestConfig } from "axios"
 import { useEffect } from "react"
 import { toast } from "sonner"
+import { useChat } from "./use-chat"
 
 type DataResponse = {
     error?: HTTPError, 
     chat ? :Chat
 }
-interface useGetChatQuery  {
+interface useGetChatMutation  {
     data ?: DataResponse
     isPending : boolean 
-    error : Error | null
+    error : any
+    mutate : UseMutateFunction<any, unknown,any, unknown>
+
 }
 
 export const useGetChat = (id:string)=>{
    
     const {tokens} = useAuth()
-    const {data,isPending:isLoading,error}:useGetChatQuery = useQuery({
-        queryKey:["chat","get"],
-        queryFn:async()=>{
+    const {set_chat} = useChat(); 
+    const {data,mutate,isPending:isLoading,error}:useGetChatMutation = useMutation({
+        mutationKey:["chat","get"],
+        mutationFn:async()=>{
             const config : AxiosRequestConfig ={
                 headers:{
                     "Authorization":`Bearer ${tokens?.access??""}`
@@ -30,17 +34,23 @@ export const useGetChat = (id:string)=>{
             const response= await axios.get(`${SERVER_URL}/chat?id=${id}`,config); 
             const data = await response.data ; 
             return data ; 
+        },
+        onError:(err)=>{
+            if(err instanceof AxiosError && err?.response?.data?.error?.message)
+                toast.error(`${err.response.data.error.message}`)
+            else 
+                toast.error(`${err.message}`)
+        },
+        onSuccess:(data:DataResponse)=>{
+            if(!data.chat)
+                return 
+            set_chat(data.chat)
         }
     })
+   
     useEffect(()=>{
-        if(error?.message){
-            if(error instanceof AxiosError && error?.response?.data?.error?.message)
-                toast.error(`${error.response.data.error.message}`)
-            else 
-                toast.error(`${error.message}`)
-        }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[error?.message])
+        mutate({})
+    },[mutate])
 
 
 

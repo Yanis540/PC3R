@@ -29,7 +29,7 @@ function ChatsSheet({ }: ChatsSheetProps) {
             <SheetTrigger asChild>
                 <Button  className="bg-transparent!important hover:bg-transparent border-none outline-none  text-background cursor-pointer"><CiChat1 className="w-8 h-8 text-primary"/></Button>
             </SheetTrigger>
-            <SheetContent className="flex flex-col gap-y-2 bg-foreground border-foreground text-foregorund">
+            <SheetContent className="flex flex-col gap-y-2 bg-foreground border-foreground text-background border-none border-0">
                 <SheetHeader>
                     <SheetTitle className='text-background'>Your Chats</SheetTitle>
                 </SheetHeader>
