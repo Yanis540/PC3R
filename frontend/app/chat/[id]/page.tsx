@@ -19,4 +19,4 @@ function ChatPage({}:ChatPageProps) {
     );
 };
 
-export default ChatPage;
+export default AuthContext(ChatPage);

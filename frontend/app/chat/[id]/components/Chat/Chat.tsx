@@ -23,7 +23,6 @@ function Chat({}:ChatProps) {
             <Icons.spinner /> 
         </div>
     )
-    console.log(isLoading,data,error)
     if(error || !isLoading && data == undefined)return(
         <div className="flex-1 flex flex-col items-center justify-center ">
             <div className="">
@@ -36,7 +35,6 @@ function Chat({}:ChatProps) {
             }
             </div>
             <h3 className="text-red-500 font-medium text-lg md:text-xl">
-
                 {error?.error?.message ??error?.message}
             </h3>
         </div>
@@ -52,4 +50,4 @@ function Chat({}:ChatProps) {
     );
 };
 
-export default AuthContext(Chat);
+export default Chat;
