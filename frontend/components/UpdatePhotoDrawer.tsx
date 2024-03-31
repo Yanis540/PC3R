@@ -30,7 +30,7 @@ function UpdatePhotoDrawer({}:UpdatePhotoDrawerProps) {
                 <AvatarFallback>{user?.name}</AvatarFallback>
             </Avatar>
         </DrawerTrigger>
-        <DrawerContent className="bg-foreground border-foreground">
+        <DrawerContent className="bg-background border-background">
             <div className="mx-auto w-full max-w-sm">
                 <DrawerHeader className="flex flex-col items-center ">
                     <Avatar className="w-16 h-16">

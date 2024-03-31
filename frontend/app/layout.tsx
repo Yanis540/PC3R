@@ -29,21 +29,21 @@ export default function RootLayout({
         "relative h-full font-sans antialiased",
         fontSans.variable
       )}>
-        {/* <ThemeProvider
+        <ThemeProvider
             attribute="class"
-            defaultTheme="system"
+            defaultTheme="dark"
             enableSystem
             disableTransitionOnChange
-          > */}
+          >
           <QueryProvider>
             <TooltipProvider>
-              <main className="flex flex-col min-h-screen bg-foreground">
+              <main className="flex flex-col min-h-screen bg-background">
                 <Navbar /> 
                 {children}
               </main>
             </TooltipProvider>
           </QueryProvider>
-        {/* </ThemeProvider> */}
+        </ThemeProvider>
         <Toaster position="top-right" richColors /> 
       </body>
     </html>

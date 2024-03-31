@@ -27,7 +27,7 @@ function ChatFooter({ }: ChatFooterProps) {
     return (
         <div className="relative flex flex-col rounded-xl p-2  ">
             <div className="flex-1 " />
-                <form onSubmit={handleSubmit}className="flex flex-row items-center justify-between relative overflow-hidden bg-foreground  rounded-lg border-[1px] border-gray-600 ">
+                <form onSubmit={handleSubmit}className="flex flex-row items-center justify-between relative overflow-hidden bg-background  rounded-lg border-[1px] border-gray-600 ">
                     <MessageAttachements /> 
                     <div className="flex-1 ">
                         <Label htmlFor="message" className="sr-only">
@@ -36,7 +36,7 @@ function ChatFooter({ }: ChatFooterProps) {
                         <Input
                             id="message"
                             placeholder="Type your message here..."
-                            className="h-full bg-foreground resize-none border-none border-0  shadow-none focus-visible:ring-0"
+                            className="h-full bg-background resize-none border-none border-0  shadow-none focus-visible:ring-0"
                         />
                     </div>
                     <div>

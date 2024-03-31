@@ -18,8 +18,8 @@ function Navbar({}:NavbarProps) {
     if(!user)
         return null 
     return (
-        <div className="bg-foreground sticky z-50 top-0  inset-x-0 h-16 ">
-           <header className='relative bg-foreground'>
+        <div className="bg-background sticky z-50 top-0  inset-x-0 h-16 ">
+           <header className='relative bg-background'>
                 <MaxWidthWrapper>
                     <div className="">
                         <div className='flex h-16 items-center'>

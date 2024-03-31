@@ -18,7 +18,7 @@ interface MessageAttachementsProps {
 
 function MessageAttachements({}:MessageAttachementsProps) {
     return (
-        <div className="flex items-center  pt-0">
+        <div className="flex items-center text-foreground  pt-0">
             <Tooltip>
                 <TooltipTrigger asChild>
                     <Button variant="ghost" size="icon">

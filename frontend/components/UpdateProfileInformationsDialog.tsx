@@ -27,9 +27,9 @@ function UpdateProfileInformationsDialog({ }: UpdateProfileInformationsDialogPro
                     <p className="font-medium text-sm text-foreground ">{user?.name}</p>
                 </div>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px] bg-foreground border-muted-foreground">
+            <DialogContent className="sm:max-w-[425px] bg-background border-[1px] border-muted-foreground">
                 <DialogHeader>
-                    <DialogTitle className="text-background">Edit profile</DialogTitle>
+                    <DialogTitle className="text-foreground">Edit profile</DialogTitle>
                     <DialogDescription>
                         Make changes to your profile here. Click save when you&apos;re done.
                     </DialogDescription>

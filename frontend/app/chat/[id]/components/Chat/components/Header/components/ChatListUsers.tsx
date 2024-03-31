@@ -23,9 +23,9 @@ function ChatListUsers({ }: ChatListUsersProps) {
             <SheetTrigger asChild>
                 <LuUsers2 className="h-8 w-8 text-muted-foreground hover:text-primary duration-75 cursor-pointer " />
             </SheetTrigger>
-            <SheetContent className="flex flex-col bg-foreground text-background border-none border-0">
+            <SheetContent className="flex flex-col bg-background text-foreground border-none border-0">
                 <SheetHeader>
-                    <SheetTitle className="text-background">Users</SheetTitle>
+                    <SheetTitle className="text-foreground">Users</SheetTitle>
                     <SheetDescription>
                         
                     </SheetDescription>
@@ -37,7 +37,7 @@ function ChatListUsers({ }: ChatListUsersProps) {
                                 <Avatar className="w-8 h-8">
                                     <AvatarImage src={user?.photo??"https://github.com/shadcn.png"} alt="" />
                                 </Avatar>
-                                <h1 className="text-md font-light text-gray-400">{user?.name}</h1>
+                                <h1 className="text-md font-semibold text-muted-foreground">{user?.name}</h1>
                             </div>
                         ))
                     }

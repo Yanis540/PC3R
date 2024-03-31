@@ -29,9 +29,9 @@ function ChatsSheet({ }: ChatsSheetProps) {
             <SheetTrigger asChild>
                 <Button  className="bg-transparent!important hover:bg-transparent border-none outline-none  text-background cursor-pointer"><CiChat1 className="w-8 h-8 text-primary"/></Button>
             </SheetTrigger>
-            <SheetContent className="flex flex-col gap-y-2 bg-foreground border-foreground text-background border-none border-0">
+            <SheetContent className="flex flex-col gap-y-2 bg-background border-background text-foreground border-none border-0">
                 <SheetHeader>
-                    <SheetTitle className='text-background'>Your Chats</SheetTitle>
+                    <SheetTitle className='text-foreground'>Your Chats</SheetTitle>
                 </SheetHeader>
                 <Chats /> 
              
@@ -49,7 +49,7 @@ function Chats(){
         return (
         <div className="flex flex-col items-center gap-y-4">
             <h1 className="text-muted-foreground text-sm ">Your chat list is empty, go get some friends ..</h1>
-            <TbMoodEmpty className="text-background w-10 h-10"/>
+            <TbMoodEmpty className="text-foreground w-10 h-10"/>
         </div>
         )
     return (
@@ -57,9 +57,9 @@ function Chats(){
         {
             user?.chats?.map((chat)=>(
                 <div key={chat?.id} onClick={()=>{redirectToChat(chat)}} className="flex flex-col p-4 cursor-pointer border-[1px] border-muted-foreground rounded-md  ">
-                    <h3 className="text-sm font-medium text-background">{chat.name}
+                    <h3 className="text-sm font-medium text-foreground">{chat.name}
                     </h3>
-                    <h6 className="text-xs font-medium text-background text-end w-full">{new Date(chat.date).toUTCString()}</h6>
+                    <h6 className="text-xs font-medium text-foreground text-end w-full">{new Date(chat.date).toUTCString()}</h6>
                 </div>
             ))
         }

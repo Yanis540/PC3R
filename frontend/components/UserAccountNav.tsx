@@ -22,7 +22,7 @@ function UserAccountNav({}:UserAccountNavProps) {
                 <AvatarImage src={user?.photo??"https://github.com/shadcn.png"} alt="" />
             </Avatar>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="bg-background w-60" align="end">
+        <DropdownMenuContent className="bg-background text-foreground w-60" align="end">
             <div className="flex flex-row items-center justify-between gap-2 p-2 ">
                 <UpdateProfileInformationsDialog /> 
                 <UpdatePhotoDrawer /> 

@@ -34,7 +34,7 @@ function Trips({}:TripsProps) {
             data?.trips?.map((trip)=>{
                 const userInChat = IsUserInChat(trip)
                 return (
-                <div key={trip.id} className="flex flex-col gap-3 p-4  bg-foreground border-[1px] border-primary rounded-md text-background">
+                <div key={trip.id} className="flex flex-col gap-3 p-4  bg-background border-[1px] border-primary rounded-md text-foreground">
                     {/* From To  */}
                     <div className="flex flex-col w-full  ">
                         <div className="flex flex-row items-center justify-between border-b-[0.5px] border-gray-300 pb-3">

@@ -23,11 +23,11 @@ function Auth({ }: AuthProps) {
     return null
   return (
     <BackgroundWrapper>
-      <div className="flex-1 flex flex-col items-center justify-center min-h-screen bg-foreground w-full ">
+      <div className="flex-1 flex flex-col items-center justify-center min-h-screen bg-background w-full ">
         <div className="lg:p-8 border-[1px] border-primary rounded-md">
           <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
             <div className="flex flex-col space-y-2 text-center">
-              <h1 className="text-2xl font-semibold tracking-tight text-background">
+              <h1 className="text-2xl font-semibold tracking-tight text-foreground">
                 Sign In
               </h1>
               <p className="text-sm text-muted-foreground">
@@ -39,7 +39,7 @@ function Auth({ }: AuthProps) {
               Don&apos;t have an account ? {" "}
               <Link
                 href="/auth/sign-up"
-                className="tracking-tight text-background hover:underline underline-offset-4 hover:text-muted-background"
+                className="tracking-tight text-foreground hover:underline underline-offset-4 hover:text-muted-background"
               >
                 Register
               </Link>

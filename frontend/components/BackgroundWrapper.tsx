@@ -6,7 +6,7 @@ interface BackgroundWrapperProps {
 
 function BackgroundWrapper({children}:BackgroundWrapperProps) {
     return (
-    <div className="flex-grow flex-1 bg-foreground">
+    <div className="flex-grow flex-1 bg-background">
         {children}
       </div>
     );

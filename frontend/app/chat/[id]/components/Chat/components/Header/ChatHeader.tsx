@@ -20,7 +20,7 @@ function ChatHeader({}:ChatHeaderProps) {
                     <AvatarImage src={chat?.photo??"https://github.com/shadcn.png"} alt="" />
                 </Avatar>
                 <div className="">
-                    <h1 className="text-lg font-semibold text-background transition-all duration-75">{chat?.name}</h1>
+                    <h1 className="text-lg font-semibold text-foreground transition-all duration-75">{chat?.name}</h1>
                     <div className='flex flex-row items-center gap-x-2'>
                         <h2 className="text-md font-medium text-gray-400 ">{new Date(chat?.trip?.departure_time!).toLocaleDateString()}{" à"}</h2>
                         <div className="flex flex-row items-center gap-x-2">
