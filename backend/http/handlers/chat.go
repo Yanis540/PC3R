@@ -163,9 +163,11 @@ func CreateChatFn(props CreateChatProps) (*db.ChatModel, error) {
 func ExtractChatUsersInformations(chat_users []db.UserModel) []types.UserChatModel {
 	users := []types.UserChatModel{}
 	for _, user := range chat_users {
+		photo, _ := user.Photo()
 		updated_user := types.UserChatModel{
 			Name:  user.Name,
 			Email: user.Email,
+			Photo: photo,
 			Id:    user.ID,
 		}
 		users = append(users, updated_user)

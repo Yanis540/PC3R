@@ -46,6 +46,7 @@ type MessageRes struct {
 type UserChatModel struct {
 	Name  string `json:"name"`
 	Email string `json:"email"`
+	Photo string `json:"photo"`
 	Id    string `json:"id"`
 }
 type ChatRes struct {
