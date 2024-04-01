@@ -1,7 +1,5 @@
 package socket
 
-import "fmt"
-
 type Hub struct {
 	// Registered clients.
 	clients map[*Client]bool
@@ -28,29 +26,37 @@ func NewHub() *Hub {
 
 // AddClient ajoute un client au hub.
 func (h *Hub) AddClient(client *Client) {
+	// fmt.Println("Registerer new client")
 	h.clients[client] = true
+	client.SubscribedHubs = append(client.SubscribedHubs, h) // Ajouter le hub à la liste des hubs abonnés du client
+	// fmt.Println("Added client to hub ", client.SubscribedHubs)
+}
+func (h *Hub) RemoveClient(client *Client) {
+	// fmt.Println("Trying to remove client", client)
+	if _, ok := h.clients[client]; ok {
+		delete(h.clients, client)
+		close(client.send)
+	}
 }
 
 func (h *Hub) run() {
 	for {
-		fmt.Println("Waiting for something to happen ... ")
+		// fmt.Println("Waiting for something to happen ... ")
 		select {
 		case client := <-h.register:
-			fmt.Println("Registerer new client")
-			h.clients[client] = true
+			h.AddClient(client)
 		case client := <-h.unregister:
-			if _, ok := h.clients[client]; ok {
-				delete(h.clients, client)
-				close(client.send)
-			}
+			h.RemoveClient(client)
 		case message := <-h.broadcast:
+			// fmt.Println("Trying to broadct ", message)
 			for client := range h.clients {
-				select {
-				case client.send <- message:
-				default:
-					close(client.send)
-					delete(h.clients, client)
-				}
+				go func(c *Client) {
+					// fmt.Println("Tryin to send ")
+					c.send <- message
+					// fmt.Println("Sent Message")
+				}(client)
+				client.Write()
+
 			}
 		}
 	}

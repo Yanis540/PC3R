@@ -77,5 +77,7 @@ func UseSocketRouter() *Router {
 	// handle events with messages named `helloFromClient` with handler
 	// helloFromClient (from above).
 	router.Handle("helloFromClient", helloFromClient)
+	router.Handle("register_to_chat", registerToChat)
+	router.Handle("send_message", sendMessage)
 	return router
 }

@@ -17,19 +17,21 @@ type FindHandler func(Event) (Handler, bool)
 
 // Client is a type that reads and writes on sockets.
 type Client struct {
-	send        chan Message
-	socket      *websocket.Conn
-	rt          *Router
-	findHandler FindHandler
+	send           chan Message
+	socket         *websocket.Conn
+	rt             *Router
+	findHandler    FindHandler
+	SubscribedHubs []*Hub // Ajouter un champ pour stocker les hubs auxquels le client est abonné
 }
 
 // NewClient accepts a socket and returns an initialized Client.
 func NewClient(rt *Router, socket *websocket.Conn, findHandler FindHandler) *Client {
 	return &Client{
-		send:        make(chan Message),
-		socket:      socket,
-		findHandler: findHandler,
-		rt:          rt,
+		send:           make(chan Message),
+		socket:         socket,
+		findHandler:    findHandler,
+		rt:             rt,
+		SubscribedHubs: []*Hub{},
 	}
 }
 
@@ -56,8 +58,12 @@ func (c *Client) Read() {
 			handler(c, msg.Data)
 		}
 	}
-	log.Println("exiting read loop")
 
 	// close interrupted socket connection
+	for _, hub := range c.SubscribedHubs {
+		go func(h *Hub) {
+			h.unregister <- c
+		}(hub)
+	}
 	c.socket.Close()
 }
