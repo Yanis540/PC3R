@@ -36,7 +36,7 @@ function ChatFooter({ }: ChatFooterProps) {
                         <Input
                             id="message"
                             placeholder="Type your message here..."
-                            className="h-full bg-background resize-none border-none border-0  shadow-none focus-visible:ring-0"
+                            className="h-full bg-background text-foreground resize-none border-none border-0  shadow-none focus-visible:ring-0"
                         />
                     </div>
                     <div>
