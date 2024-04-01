@@ -3,6 +3,7 @@ import AuthContext from '@/context/AuthContext';
 import React from 'react';
 import SideBar from './components/SideBar';
 import Chat from './components/Chat/Chat';
+import { useSocket } from '@/hooks';
 
 interface ChatPageProps {
 

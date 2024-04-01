@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useChat } from '../../hooks/use-chat';
-import { Avatar, AvatarImage } from '@/components/ui/avatar';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import Message from './components/Message';
+import { useSocketStore } from '@/context/store';
+import { useAuth, useSocket } from '@/hooks';
 
 interface ChatBodyProps {
 
@@ -10,6 +10,35 @@ interface ChatBodyProps {
 
 function ChatBody({}:ChatBodyProps) {
     const {chat} = useChat(); 
+    const {user} = useAuth();
+    const { socket } = useSocketStore()
+    useSocket()
+    useEffect(() => {
+        console.log(socket, socket?.connected)
+        socket?.on('connect', (data) => {
+            console.log("Connected")
+            console.log(socket.connected)
+            socket?.emit('register_to_chat',{
+                user_id : user?.id,
+                chat_id : "clu4troqx0000113lo5g6np5k",
+            })
+        })
+        socket?.on('registered_chat',(data)=>{
+            console.log(data)
+            socket.emit('send_message',{
+                user_id : user?.id,
+                chat_id : "clu4troqx0000113lo5g6np5k",
+                content : "Hello there"
+            })
+        })
+        socket?.on('receive_message',(data)=>{
+            console.log(data)
+        })
+        return () => {
+            socket?.off('connect', () => { });
+            // socket?.off('helloFromServer', () => { });
+        }
+    }, [socket])
     if(!chat)
         return null; 
     if(chat?.messages.length == 0)return (

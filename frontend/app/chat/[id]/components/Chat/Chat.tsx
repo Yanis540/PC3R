@@ -1,6 +1,6 @@
 "use client"
 import { useParams } from 'next/navigation';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useGetChat } from './hooks/use-get-chat';
 import { Icons } from '@/components/icons';
 import { CgSearchFound } from "react-icons/cg";

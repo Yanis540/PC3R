@@ -16,7 +16,8 @@ const useSocket = ()=>{
         // newSocket.userId=user.id;
         set_socket(newSocket)
         return ()=>{
-            newSocket.close(); 
+            newSocket.close();
+            console.log("closing connection") 
             set_socket(undefined)
         }
 
