@@ -86,7 +86,8 @@ func createSocketRouter() *Router {
 	return router
 }
 
-func UseSocketRouter(mux *http.ServeMux) {
+func UseSocketRouter(mux *http.ServeMux) *Router {
 	socketRouter := createSocketRouter()
 	mux.Handle("/ws", http2.AuthSocketMiddleware(socketRouter))
+	return socketRouter
 }
