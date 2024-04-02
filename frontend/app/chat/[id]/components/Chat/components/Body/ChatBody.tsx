@@ -14,20 +14,19 @@ function ChatBody({}:ChatBodyProps) {
     const { socket } = useSocketStore()
     useSocket()
     useEffect(() => {
-        console.log(socket, socket?.connected)
         socket?.on('connect', (data) => {
             console.log("Connected")
             console.log(socket.connected)
             socket?.emit('register_to_chat',{
                 user_id : user?.id,
-                chat_id : "clu4troqx0000113lo5g6np5k",
+                chat_id : chat?.id!,
             })
         })
         socket?.on('registered_chat',(data)=>{
             console.log(data)
             socket.emit('send_message',{
                 user_id : user?.id,
-                chat_id : "clu4troqx0000113lo5g6np5k",
+                chat_id : chat?.id!,
                 content : "Hello there"
             })
         })
@@ -38,7 +37,8 @@ function ChatBody({}:ChatBodyProps) {
             socket?.off('connect', () => { });
             // socket?.off('helloFromServer', () => { });
         }
-    }, [socket])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [socket,chat?.id])
     if(!chat)
         return null; 
     if(chat?.messages.length == 0)return (

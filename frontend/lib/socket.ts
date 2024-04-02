@@ -7,7 +7,7 @@ export default class Socket {
     connected:boolean;
     protocols ?: string | string[]
     private reconnectAttempts: number = 0;
-    private readonly maxReconnectAttempts: number = 3; // Nombre maximum de tentatives de reconnexion
+    private readonly maxReconnectAttempts: number = 100; // Nombre maximum de tentatives de reconnexion
     constructor(protocols?: string | string[] | undefined) {
         this.connected = false; 
         // passig headers: https://stackoverflow.com/questions/4361173/http-headers-in-websockets-client-api
@@ -24,13 +24,13 @@ export default class Socket {
     };
 
     // on adds a function as an event consumer/listener.
-    on(channel_name:string | symbol, fn: (...args: any[]) => void) {
-        this.ee.on(channel_name, fn);
+    on(event:ReceiveEvent | symbol, fn: (...args: any[]) => void) {
+        this.ee.on(event, fn);
     };
 
     // off removes a function as an event consumer/listener.
-    off(channel_name:string | symbol, fn: (...args: any[]) => void) {
-        this.ee.removeListener(channel_name, fn);
+    off(event:string | symbol, fn: (...args: any[]) => void) {
+        this.ee.removeListener(event, fn);
     };
 
     // open handles a connection to a websocket.
@@ -47,7 +47,7 @@ export default class Socket {
     
     // error handles an error on a websocket.
     error(e:any) {
-        console.log("websocket error: ", e);
+        console.warn("websocket error: ", e);
          // Tentative de reconnexion après un certain délai en cas d'erreur
         this.ws = undefined;
         if (this.reconnectAttempts < this.maxReconnectAttempts) {
@@ -71,7 +71,7 @@ export default class Socket {
     }
 
     // emit sends a message on a websocket.
-    emit(event:string | symbol, data:string | ArrayBufferLike | Blob | ArrayBufferView|Object) {
+    emit(event:EmitEvent | symbol, data:string | ArrayBufferLike | Blob | ArrayBufferView|Object) {
         const message = JSON.stringify({Event:event, Data:data});
         this.ws!?.send(message);
     }

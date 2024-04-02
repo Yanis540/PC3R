@@ -13,6 +13,8 @@ declare global {
         chats : Chat []
     }
     type ChatUser = Omit<User, "createdAt"|"updatedAt"|"chats">
+    type EmitEvent = "helloFromClient"|"register_to_chat"|"send_message"
+    type ReceiveEvent = "helloFromServer"|"registered_chat"|"receive_message"|"disconnect"|"connect"
     interface Trip {
         id : string 
         from : string 
