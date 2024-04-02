@@ -10,35 +10,7 @@ interface ChatBodyProps {
 
 function ChatBody({}:ChatBodyProps) {
     const {chat} = useChat(); 
-    const {user} = useAuth();
-    const { socket } = useSocketStore()
-    useSocket()
-    useEffect(() => {
-        socket?.on('connect', (data) => {
-            console.log("Connected")
-            console.log(socket.connected)
-            socket?.emit('register_to_chat',{
-                user_id : user?.id,
-                chat_id : chat?.id!,
-            })
-        })
-        socket?.on('registered_chat',(data)=>{
-            console.log(data)
-            socket.emit('send_message',{
-                user_id : user?.id,
-                chat_id : chat?.id!,
-                content : "Hello there"
-            })
-        })
-        socket?.on('receive_message',(data)=>{
-            console.log(data)
-        })
-        return () => {
-            socket?.off('connect', () => { });
-            // socket?.off('helloFromServer', () => { });
-        }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [socket,chat?.id])
+
     if(!chat)
         return null; 
     if(chat?.messages.length == 0)return (

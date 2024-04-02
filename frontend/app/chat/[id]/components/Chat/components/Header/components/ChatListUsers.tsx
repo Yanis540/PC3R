@@ -1,6 +1,6 @@
 'use client'
 import React from 'react';
-import { LuUsers2 } from "react-icons/lu";
+import { FiUsers } from "react-icons/fi";
 import {
     Sheet,
     SheetContent,
@@ -21,7 +21,10 @@ function ChatListUsers({ }: ChatListUsersProps) {
     return (
         <Sheet>
             <SheetTrigger asChild>
-                <LuUsers2 className="h-8 w-8 text-muted-foreground hover:text-primary duration-75 cursor-pointer " />
+                <div >
+
+                <FiUsers className="h-8 w-8 text-muted-foreground hover:text-primary duration-75 cursor-pointer " />
+                </div>
             </SheetTrigger>
             <SheetContent className="flex flex-col bg-background text-foreground border-none border-0">
                 <SheetHeader>
