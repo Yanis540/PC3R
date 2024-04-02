@@ -23,9 +23,8 @@ var mux = http.NewServeMux()
 func main() {
 	global.Init()
 	// créer le routeur pour le websocket
-	socketRouter := socket.UseSocketRouter()
 	// réserver le endpoint : /ws pour le websocket
-	mux.Handle("/ws", socketRouter)
+	socket.UseSocketRouter(mux)
 	// lancer les handlers des https
 	http2.UseHttpRouter(mux)
 	// définir les cors policy, pour l'instant on accept n'importe quelle origine

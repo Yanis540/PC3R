@@ -2,6 +2,7 @@ package socket
 
 import (
 	"log"
+	"pc3r/projet/db"
 
 	"github.com/gorilla/websocket"
 )
@@ -21,17 +22,19 @@ type Client struct {
 	socket         *websocket.Conn
 	rt             *Router
 	findHandler    FindHandler
+	user           *db.UserModel
 	SubscribedHubs []*Hub // Ajouter un champ pour stocker les hubs auxquels le client est abonné
 }
 
 // NewClient accepts a socket and returns an initialized Client.
-func NewClient(rt *Router, socket *websocket.Conn, findHandler FindHandler) *Client {
+func NewClient(rt *Router, socket *websocket.Conn, findHandler FindHandler, user *db.UserModel) *Client {
 	return &Client{
 		send:           make(chan Message),
 		socket:         socket,
 		findHandler:    findHandler,
 		rt:             rt,
 		SubscribedHubs: []*Hub{},
+		user:           user,
 	}
 }
 

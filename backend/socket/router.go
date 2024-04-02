@@ -3,6 +3,9 @@ package socket
 import (
 	"log"
 	"net/http"
+	"pc3r/projet/db"
+	http2 "pc3r/projet/http"
+	types "pc3r/projet/http/types"
 
 	"github.com/gorilla/websocket"
 )
@@ -28,7 +31,7 @@ func NewRouter() *Router {
 }
 
 // ServeHTTP creates the socket connection and begins the read routine.
-func (rt *Router) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (rt *Router) ServeHTTP(res http.ResponseWriter, req *http.Request) {
 	// configure upgrader
 	upgrader := websocket.Upgrader{
 		ReadBufferSize:  1024,
@@ -36,16 +39,17 @@ func (rt *Router) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		// accept all?
 		CheckOrigin: func(r *http.Request) bool { return true },
 	}
+	user, _ := req.Context().Value(types.CtxAuthKey{}).(*db.UserModel)
 
 	// upgrade connection to socket
-	socket, err := upgrader.Upgrade(w, r, nil)
+	socket, err := upgrader.Upgrade(res, req, nil)
 	if err != nil {
 		log.Printf("socket server configuration error: %v\n", err)
-		w.WriteHeader(http.StatusInternalServerError)
+		res.WriteHeader(http.StatusInternalServerError)
 		return
 	}
 
-	client := NewClient(rt, socket, rt.FindHandler)
+	client := NewClient(rt, socket, rt.FindHandler, user)
 
 	// running method for reading from sockets, in main routine
 	client.Read()
@@ -71,7 +75,7 @@ func (rt *Router) AddHub(id string) {
 	go hub.run()
 }
 
-func UseSocketRouter() *Router {
+func createSocketRouter() *Router {
 	// create router instance
 	router := NewRouter()
 	// handle events with messages named `helloFromClient` with handler
@@ -80,4 +84,9 @@ func UseSocketRouter() *Router {
 	router.Handle("register_to_chat", registerToChat)
 	router.Handle("send_message", sendMessage)
 	return router
+}
+
+func UseSocketRouter(mux *http.ServeMux) {
+	socketRouter := createSocketRouter()
+	mux.Handle("/ws", http2.AuthSocketMiddleware(socketRouter))
 }

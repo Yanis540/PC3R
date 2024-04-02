@@ -7,11 +7,13 @@ export default class Socket {
     connected:boolean;
     protocols ?: string | string[]
     private reconnectAttempts: number = 0;
+    private token ?:string ; 
     private readonly maxReconnectAttempts: number = 100; // Nombre maximum de tentatives de reconnexion
-    constructor(protocols?: string | string[] | undefined) {
+    constructor(token : string) {
         this.connected = false; 
+        this.token = token 
         // passig headers: https://stackoverflow.com/questions/4361173/http-headers-in-websockets-client-api
-        this.ws = new WebSocket(`${WS_SERVER_URL}`,protocols);
+        this.ws = new WebSocket(`${WS_SERVER_URL}?Authorization=Bearer ${this.token}`);
         this.ee = new EventEmitter();
         // attach message function as event listener for incoming websocket messages.
         this.ws.onmessage = this.message.bind(this);
@@ -57,7 +59,7 @@ export default class Socket {
                     return; 
                 console.log("Attempting to reconnect...");
                 this.reconnectAttempts++;
-                this.ws = new WebSocket(`${WS_SERVER_URL}`, this.protocols);
+                this.ws = new WebSocket(`${WS_SERVER_URL}?Authorization=Bearer ${this.token}`);
                 this.ws.onmessage = this.message.bind(this);
                 this.ws.onopen = this.open.bind(this);
                 this.ws.onclose = this.close.bind(this);

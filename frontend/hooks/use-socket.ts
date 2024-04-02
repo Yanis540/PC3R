@@ -1,16 +1,17 @@
 import { useEffect } from "react";
 import { useSocketStore } from "@/context/store/use-socket-store";
 import Socket from "@/lib/socket";
+import { useAuth } from "./use-auth";
 
 
 
 const useSocket = ()=>{
     const {socket,set_socket}= useSocketStore(); 
-
+    const {tokens} = useAuth();
     useEffect(()=>{
         if(socket)
             return ; 
-        const newSocket = new Socket();
+        const newSocket = new Socket(tokens?.access!);
         if(!newSocket)
             return ; 
         // newSocket.userId=user.id;
@@ -22,7 +23,7 @@ const useSocket = ()=>{
         }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[set_socket])
+    },[tokens?.access,set_socket])
 }
 
 export {

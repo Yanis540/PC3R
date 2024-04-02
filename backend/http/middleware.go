@@ -85,3 +85,15 @@ func AuthMiddleware(next http.Handler) http.Handler {
 		next.ServeHTTP(res, req)
 	})
 }
+
+/*
+@middleware : handles authentification
+*/
+func AuthSocketMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
+		fmt.Printf("websocket server: %s / %s \n", req.Method, req.URL)
+		tokenString := req.URL.Query().Get("Authorization")
+		req.Header.Set("Authorization", tokenString)
+		AuthMiddleware(next).ServeHTTP(res, req)
+	})
+}

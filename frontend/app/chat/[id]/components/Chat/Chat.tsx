@@ -19,7 +19,7 @@ function Chat({}:ChatProps) {
     const {id} = useParams(); 
     const {data,isLoading,error} = useGetChat(id as string);  
     if(isLoading)return(
-        <div className='flex-1 flex flex-col items-center justify-center text-primary border border-red-500'>
+        <div className='flex-1 flex flex-col items-center justify-center text-primary '>
             <Icons.spinner /> 
         </div>
     )
