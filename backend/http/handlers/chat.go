@@ -55,12 +55,12 @@ func GetChat(res http.ResponseWriter, req *http.Request) {
 	}
 	users := ExtractChatUsersInformations(chat.Users())
 	trip, _ := chat.Trip()
-	messages := chat.Messages()
+	messages := StructureMessages(chat.Messages())
 	chatStructure := types.ChatRes{
+		Messages:  messages,
 		ChatModel: chat,
 		Users:     users,
 		Trip:      trip,
-		Messages:  messages,
 	}
 	response := ResponseGetChatBody{
 		Chat: chatStructure,
@@ -88,12 +88,11 @@ func CreateChat(res http.ResponseWriter, req *http.Request) {
 	}
 	users := ExtractChatUsersInformations(chat.Users())
 	trip, _ := chat.Trip()
-	messages := chat.Messages()
 	chatStructure := types.ChatRes{
 		ChatModel: chat,
 		Users:     users,
 		Trip:      trip,
-		Messages:  messages,
+		Messages:  []types.MessageChatResponse{},
 	}
 	response := ResponseGetChatBody{
 		Chat: chatStructure,
@@ -178,6 +177,35 @@ func ExtractChatUsersInformations(chat_users []db.UserModel) []types.UserChatMod
 	return users
 }
 
+func StructureMessages(messages []db.MessageModel) []types.MessageChatResponse {
+	structured_messages := []types.MessageChatResponse{}
+	for _, message := range messages {
+		structured_message := StructureMessage(message)
+		structured_messages = append(structured_messages, structured_message)
+	}
+	return structured_messages
+}
+
+func StructureMessage(message db.MessageModel) types.MessageChatResponse {
+	m_user := message.User()
+	photo, _ := m_user.Photo()
+
+	message_user := types.MessageUser{
+		Id:    m_user.ID,
+		Name:  m_user.Name,
+		Photo: photo,
+	}
+	structured_message := types.MessageChatResponse{
+		Id:         message.ID,
+		Content:    message.Content,
+		Chat_id:    message.ChatID,
+		User_id:    message.UserID,
+		Created_at: message.CreatedAt,
+		User:       message_user,
+	}
+	return structured_message
+}
+
 /* added user */
 type ResponseAddUserToChatBody struct {
 	Chat types.ChatRes `json:"chat"`
@@ -208,7 +236,6 @@ func AddUserToChat(res http.ResponseWriter, req *http.Request) {
 	updated_chat, err := prisma.Chat.FindUnique(
 		db.Chat.ID.Equals(id),
 	).With(
-		db.Chat.Messages.Fetch(),
 		db.Chat.Trip.Fetch(),
 		db.Chat.Users.Fetch(),
 	).Update(
@@ -227,13 +254,13 @@ func AddUserToChat(res http.ResponseWriter, req *http.Request) {
 	chat_users := updated_chat.Users()
 	users := ExtractChatUsersInformations(chat_users)
 	trip, _ := updated_chat.Trip()
-	messages := updated_chat.Messages()
+	messages := StructureMessages(updated_chat.Messages())
 
 	chatStructure := types.ChatRes{
+		Messages:  messages,
 		ChatModel: updated_chat,
 		Users:     users,
 		Trip:      trip,
-		Messages:  messages,
 	}
 	response := ResponseAddUserToChatBody{
 		Chat: chatStructure,

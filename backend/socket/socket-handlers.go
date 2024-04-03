@@ -3,6 +3,9 @@ package socket
 import (
 	"fmt"
 	"log"
+	"pc3r/projet/db"
+	"pc3r/projet/global"
+	chat "pc3r/projet/http/handlers"
 )
 
 func helloFromClient(c *Client, data interface{}) {
@@ -53,10 +56,30 @@ func sendMessage(client *Client, d interface{}) {
 	chat_id := data["chat_id"].(string)
 	content := data["content"].(string)
 	hub, ok := client.rt.hubs[chat_id]
+	if !ok {
+		return
+	}
+	user := client.user
+	prisma, ctx := global.GetPrisma()
+	message, err := prisma.Message.CreateOne(
+		db.Message.Content.Set(content),
+		db.Message.Chat.Link(
+			db.Chat.ID.Equals(chat_id),
+		),
+		db.Message.User.Link(
+			db.User.ID.Equals(user.ID),
+		),
+	).With(
+		db.Message.User.Fetch(),
+	).Exec(ctx)
+	if err != nil {
+		return
+	}
+	structured_message := chat.StructureMessage(*message)
 	go func() {
 		hub.broadcast <- Message{
 			Event: "receive_message",
-			Data:  content,
+			Data:  structured_message,
 		}
 	}()
 
