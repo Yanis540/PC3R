@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useChat } from '../../hooks/use-chat';
 import Message from './components/Message';
-import { useSocketStore } from '@/context/store';
-import { useAuth, useSocket } from '@/hooks';
+import { useWatchMessages } from './hooks/use-watch-messages';
+import { useRegisterToChat } from './hooks/use-register-chat';
 
 interface ChatBodyProps {
 
@@ -10,7 +10,8 @@ interface ChatBodyProps {
 
 function ChatBody({}:ChatBodyProps) {
     const {chat} = useChat(); 
-
+    useWatchMessages();
+    useRegisterToChat(chat?.id!)
     if(!chat)
         return null; 
     if(chat?.messages.length == 0)return (

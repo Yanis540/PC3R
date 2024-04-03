@@ -10,6 +10,9 @@ import ChatHeader from './components/Header/ChatHeader';
 import ChatBody from './components/Body/ChatBody';
 import ChatFooter from './components/Footer/ChatFooter';
 import AuthContext from '@/context/AuthContext';
+import { useConnectSocket } from './hooks/use-connect-socket';
+import { useSocketStore } from '@/context/store';
+import { useChat } from './hooks/use-chat';
 
 interface ChatProps {
 
@@ -17,7 +20,9 @@ interface ChatProps {
 
 function Chat({}:ChatProps) {
     const {id} = useParams(); 
-    const {data,isLoading,error} = useGetChat(id as string); 
+    const {data,isLoading,error} = useGetChat(id as string);
+   
+
     if(isLoading)return(
         <div className='flex-1 flex flex-col items-center justify-center text-primary '>
             <Icons.spinner /> 
@@ -39,15 +44,26 @@ function Chat({}:ChatProps) {
             </h3>
         </div>
     )
-    return (
-    <div className="flex-1 flex flex-col relative ">
-        <div className="flex-1 flex flex-col relative  ">
-            <ChatHeader /> 
-            <ChatBody /> 
-            <ChatFooter /> 
-        </div>
-    </div>
-    );
+    return <MainChat />
+   
 };
+function MainChat(){
+    const {socket} = useSocketStore();  
+    const {chat} = useChat()
+    useConnectSocket(()=>{
+        socket?.emit("register_to_chat",{
+            chat_id : chat?.id
+        })
+    })
+    return (
+        <div className="flex-1 flex flex-col relative ">
+            <div className="flex-1 flex flex-col relative  ">
+                <ChatHeader /> 
+                <ChatBody /> 
+                <ChatFooter /> 
+            </div>
+        </div>
+    );
+}
 
 export default Chat;
