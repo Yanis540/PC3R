@@ -17,6 +17,9 @@ type ReqBody struct {
 	Message string
 }
 
+/*
+@handler : testing router
+*/
 func BasicRoute(res http.ResponseWriter, req *http.Request) {
 	var body ReqBody
 	err := json.NewDecoder(req.Body).Decode(&body)

@@ -10,6 +10,9 @@ import (
 	"time"
 )
 
+/*
+@handler : gets the sncf journeys, used for test
+*/
 func GetSNCFJourneys(res http.ResponseWriter, req *http.Request) {
 	journeys, err := sncf.GetJourneys()
 	if err != nil {
@@ -30,6 +33,9 @@ func GetSNCFJourneys(res http.ResponseWriter, req *http.Request) {
 
 }
 
+/*
+@func : Seeds the database at Midnight with the journeys
+*/
 func SeedDatabase() {
 	CURRENT_TIME := time.Now().Format("20060102")
 	fmt.Println(CURRENT_TIME)
@@ -39,8 +45,11 @@ func SeedDatabase() {
 	if err != nil {
 		return
 	}
+	// for each journey
 	for _, journey := range journeys {
+		// for each section
 		for _, section := range journey.Sections {
+			// create the chat for each section
 			chatProps := CreateChatProps{
 				Trip: section,
 			}

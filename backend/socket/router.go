@@ -19,7 +19,8 @@ type Event string
 // Router is a message routing object mapping events to function handlers.
 type Router struct {
 	rules map[Event]Handler // rules maps events to functions.
-	hubs  map[string]*Hub   // map of hubs
+	// every router has what we call a hub which is basically a thread that is awaiting for clients to register/unregister and or to broadcast a message
+	hubs map[string]*Hub // map of hubs
 }
 
 // NewRouter returns an initialized Router.
@@ -78,16 +79,19 @@ func (rt *Router) AddHub(id string) {
 func createSocketRouter() *Router {
 	// create router instance
 	router := NewRouter()
-	// handle events with messages named `helloFromClient` with handler
-	// helloFromClient (from above).
+	// assign handler for each event
 	router.Handle("helloFromClient", helloFromClient)
 	router.Handle("register_to_chat", registerToChat)
 	router.Handle("send_message", sendMessage)
 	return router
 }
 
+/*
+@func : bind the socket router to the /ws endpoint
+*/
 func UseSocketRouter(mux *http.ServeMux) *Router {
 	socketRouter := createSocketRouter()
+	// Imply that every uncomming socket is authenticated before the HTTP -> socket upgrade
 	mux.Handle("/ws", http2.AuthSocketMiddleware(socketRouter))
 	return socketRouter
 }

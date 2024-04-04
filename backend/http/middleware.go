@@ -40,7 +40,7 @@ func AllowedMethodsMiddleware(next http.Handler, allowed_methods []string) http.
 }
 
 /*
-@middleware : handles authentification
+@middleware : authenticates user on the endpoint, saves the user on the req context
 */
 func AuthMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {

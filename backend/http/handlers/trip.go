@@ -16,6 +16,9 @@ type responseGetTripBody struct {
 	Trips []types.TripRes `json:"trips"`
 }
 
+/*
+@handler : Gets the daily trips
+*/
 func GetTrips(res http.ResponseWriter, req *http.Request) {
 
 	prisma, ctx := global.GetPrisma()

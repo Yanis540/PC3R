@@ -68,21 +68,20 @@ type TripRes struct {
 type MessageResponse struct {
 	Message string `json:"message"`
 }
-type MessageUser struct {
-	Id    string `json:"id"`
-	Name  string `json:"name"`
-	Photo string `json:"photo"`
-}
+
 type MessageChatResponse struct {
-	Id         string      `json:"id"`
-	Content    string      `json:"content"`
-	Chat_id    string      `json:"chat_id"`
-	User_id    string      `json:"user_id"`
-	Created_at db.DateTime `json:"created_at"`
-	User       MessageUser `json:"user"`
+	Id         string        `json:"id"`
+	Content    string        `json:"content"`
+	Chat_id    string        `json:"chat_id"`
+	User_id    string        `json:"user_id"`
+	Created_at db.DateTime   `json:"created_at"`
+	User       UserChatModel `json:"user"`
 }
 type AuthTokens struct {
 	Access string `json:"access"`
 }
 
+/* @type : used to save user in the req context
+usage : auth middleware
+*/
 type CtxAuthKey struct{} // or exported to use outside the package

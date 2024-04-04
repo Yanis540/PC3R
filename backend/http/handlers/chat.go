@@ -70,6 +70,23 @@ func GetChat(res http.ResponseWriter, req *http.Request) {
 
 }
 
+/*
+@handler : Create a chat user based on the trip
+@expects :
+
+		Body:{ trip : {
+	            Id                  string
+	            Departure_date_time string
+	            Arrival_date_time   string
+	            To                  Place
+	            From                Place
+	        }
+		}
+
+		@returns :{
+			Chat : chat
+		}
+*/
 func CreateChat(res http.ResponseWriter, req *http.Request) {
 	var body CreateChatProps
 	err := json.NewDecoder(req.Body).Decode(&body)
@@ -162,10 +179,15 @@ func CreateChatFn(props CreateChatProps) (*db.ChatModel, error) {
 	}
 	return updated_chat, nil
 }
+
+/*
+@func : This functions allows to extract only necessary user informations to be displayed  in the chat, since go-prisma doesn't have this yet (may raise an issue in the repo )
+*/
 func ExtractChatUsersInformations(chat_users []db.UserModel) []types.UserChatModel {
 	users := []types.UserChatModel{}
 	for _, user := range chat_users {
 		photo, _ := user.Photo()
+		// extract only necessary informations such as : id, name , email , photo
 		updated_user := types.UserChatModel{
 			Name:  user.Name,
 			Email: user.Email,
@@ -177,6 +199,9 @@ func ExtractChatUsersInformations(chat_users []db.UserModel) []types.UserChatMod
 	return users
 }
 
+/*
+@func : Structures the messages
+*/
 func StructureMessages(messages []db.MessageModel) []types.MessageChatResponse {
 	structured_messages := []types.MessageChatResponse{}
 	for _, message := range messages {
@@ -186,14 +211,18 @@ func StructureMessages(messages []db.MessageModel) []types.MessageChatResponse {
 	return structured_messages
 }
 
+/*
+@func : Structures a message by letting only necessary user information
+*/
 func StructureMessage(message db.MessageModel) types.MessageChatResponse {
 	m_user := message.User()
 	photo, _ := m_user.Photo()
 
-	message_user := types.MessageUser{
+	message_user := types.UserChatModel{
 		Id:    m_user.ID,
 		Name:  m_user.Name,
 		Photo: photo,
+		Email: m_user.Email,
 	}
 	structured_message := types.MessageChatResponse{
 		Id:         message.ID,
@@ -211,6 +240,13 @@ type ResponseAddUserToChatBody struct {
 	Chat types.ChatRes `json:"chat"`
 }
 
+/*
+@handler : adds a user to the chat
+
+	Query Params : {
+		id : string
+	}
+*/
 func AddUserToChat(res http.ResponseWriter, req *http.Request) {
 	id := req.URL.Query().Get("id")
 	if id == "" {
@@ -225,7 +261,7 @@ func AddUserToChat(res http.ResponseWriter, req *http.Request) {
 	_, err := prisma.Chat.FindFirst(
 		db.Chat.ID.Equals(id),
 	).Exec(ctx)
-
+	// vérify if the chat exists
 	if err != nil {
 		res.WriteHeader(http.StatusNotFound)
 		message := "Chat Not found"
@@ -233,6 +269,7 @@ func AddUserToChat(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 	user, _ := req.Context().Value(types.CtxAuthKey{}).(*db.UserModel)
+	// update the chat by adding a user
 	updated_chat, err := prisma.Chat.FindUnique(
 		db.Chat.ID.Equals(id),
 	).With(
@@ -313,6 +350,9 @@ func RemoveUserFromChat(res http.ResponseWriter, req *http.Request) {
 	json.NewEncoder(res).Encode(types.MessageResponse{Message: message})
 }
 
+/*
+@func : Parses the chat so it can be used in the right format
+*/
 func ParseChatTrip(unparsed_chat []db.ChatModel) []types.ChatTrip {
 	chats := []types.ChatTrip{}
 	for _, chat := range unparsed_chat {

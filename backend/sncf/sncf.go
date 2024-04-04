@@ -28,6 +28,9 @@ func fetchFromUrl(URL string) (*http.Response, error) {
 	return res, nil
 }
 
+/*
+@func : Gets the journeys of the SNCF API, we are using only the endpoint between Paris and lyon
+*/
 func GetJourneys() ([]types.Journey, error) {
 	CURRENT_TIME := time.Now().Format("20060102")
 	URL := fmt.Sprintf("https://api.sncf.com/v1/coverage/sncf/journeys?from=admin:fr:75056&to=admin:fr:69123&datetime=%s", CURRENT_TIME)
@@ -48,6 +51,9 @@ func GetJourneys() ([]types.Journey, error) {
 
 }
 
+/*
+@func :Parses the date we get from SNCF so it can be used in go
+*/
 func ParseSNCFfDate(string_date string) (time.Time, error) {
 	date, err := time.Parse("20060102T150405", string_date)
 	return date, err

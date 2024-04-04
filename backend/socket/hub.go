@@ -1,5 +1,10 @@
 package socket
 
+/*
+	a hub is basically an equivalent to a room in Socket.IO, clients (or sockets) can register and unregister to it, and
+	broadcast, everything is a channel so we every client can await a message from the client, then the client sends a message to broadcast
+	it to the hub that takes care of that
+*/
 type Hub struct {
 	// Registered clients.
 	clients map[*Client]bool
