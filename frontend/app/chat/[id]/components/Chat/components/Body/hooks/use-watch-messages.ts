@@ -15,6 +15,9 @@ export const useWatchMessages = ()=>{
                 add_message(data)
             }
         })
+        return ()=>{
+            socket?.off('receive_message',()=>{})
+        }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[socket,chat?.id])
 }

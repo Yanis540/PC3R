@@ -3,7 +3,7 @@ import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import { SearchInput } from '@/components/ui/input';
 import { useAuth,useChatInformations } from '@/hooks';
 import { cn } from '@/lib/utils';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import React from 'react';
 import { PiDotsThreeCircleFill } from "react-icons/pi";
 import { RiEditCircleFill } from "react-icons/ri";
@@ -43,13 +43,15 @@ function SideBar({}:SideBarProps) {
 
 function SidebarChat({chat}:{chat:Chat}){
     const {id} = useParams(); 
-
+    const router = useRouter()
     const isActiveChat = (id_chat:string)=>id_chat == id
     const {name,photo} = useChatInformations(chat)
     return (
-    <div className={cn("flex flex-row items-center px-2 py-3 gap-x-4  border-b-[1px] border-gray-700 hover:bg-gray-900 transition-all duration-75",
+    <div className={cn("flex flex-row items-center px-2 py-3 gap-x-4  border-b-[1px] border-gray-700 hover:bg-gray-900 transition-all duration-75 cursor-pointer",
         isActiveChat(chat.id) && "bg-blue-300/10"
-    )}>
+    )}
+        onClick={()=>{router.push(`/chat/${chat?.id}`)}}
+    >
         <div>
             <Avatar className="w-8 h-8">
                 <AvatarImage src={photo} alt="" />
