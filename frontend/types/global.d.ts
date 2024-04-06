@@ -30,6 +30,7 @@ declare global {
         name : string 
         photo : string 
         trip : Trip  
+        is_group_chat : boolean
         users : ChatUser[]
         messages : Message[]
 

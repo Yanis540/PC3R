@@ -126,7 +126,8 @@ func CreateChat(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 	chat_name := user.ID + "-" + other_user.ID
-	chat, err := CreateChatFn(CreateChatFnProps{Name: chat_name, Date: time.Now()})
+	Date := time.Now()
+	chat, err := CreateChatFn(CreateChatFnProps{Name: chat_name, Date: Date})
 	if err != nil {
 		res.WriteHeader(http.StatusBadRequest)
 		message := "Could not create chat "

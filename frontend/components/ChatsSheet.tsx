@@ -14,7 +14,7 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet"
-import { useAuth } from '@/hooks';
+import { useAuth, useChatInformations } from '@/hooks';
 import Image from 'next/image';
 import { CiChat1 } from "react-icons/ci";
 import { useRouter } from 'next/navigation';
@@ -41,10 +41,7 @@ function ChatsSheet({ }: ChatsSheetProps) {
 };
 function Chats(){
     const {user} = useAuth(); 
-    const router = useRouter();
-    const redirectToChat = (chat : Chat)=>{
-        router.push(`/chat/${chat.id}`)
-    } 
+    
     if(user?.chats?.length == 0)
         return (
         <div className="flex flex-col items-center gap-y-4">
@@ -56,14 +53,24 @@ function Chats(){
     <div className="flex-1 flex flex-col gap-y-3 overflow-y-scroll scrollbar-hide ">
         {
             user?.chats?.map((chat)=>(
-                <div key={chat?.id} onClick={()=>{redirectToChat(chat)}} className="flex flex-col p-4 cursor-pointer border-[1px] border-muted-foreground rounded-md  ">
-                    <h3 className="text-sm font-medium text-foreground">{chat.name}
-                    </h3>
-                    <h6 className="text-xs font-medium text-foreground text-end w-full">{new Date(chat.date).toUTCString()}</h6>
-                </div>
+             <ChatComponent key={chat?.id} chat={chat} /> 
             ))
         }
-        
+    </div>
+    )
+}
+
+function ChatComponent({chat}:{chat:Chat}){
+    const router = useRouter();
+    const redirectToChat = (chat : Chat)=>{
+        router.push(`/chat/${chat.id}`)
+    } 
+    const {name} = useChatInformations(chat)
+    return (
+    <div key={chat?.id} onClick={()=>{redirectToChat(chat)}} className="flex flex-col p-4 cursor-pointer border-[1px] border-muted-foreground rounded-md  ">
+        <h3 className="text-sm font-medium text-foreground">{name}
+        </h3>
+        <h6 className="text-xs font-medium text-foreground text-end w-full">{new Date(chat.date).toUTCString()}</h6>
     </div>
     )
 }

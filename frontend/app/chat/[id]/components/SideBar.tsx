@@ -1,7 +1,7 @@
 'use client'
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import { SearchInput } from '@/components/ui/input';
-import { useAuth } from '@/hooks';
+import { useAuth,useChatInformations } from '@/hooks';
 import { cn } from '@/lib/utils';
 import { useParams } from 'next/navigation';
 import React from 'react';
@@ -14,8 +14,7 @@ interface SideBarProps {
 
 function SideBar({}:SideBarProps) {
     const {user} = useAuth(); 
-    const {id} = useParams(); 
-    const isActiveChat = (id_chat:string)=>id_chat == id
+  
     return (
     <div className="flex-[0.25] flex flex-col border-r-[1px] border-gray-700 rounded-sm">
         <div className="flex-1 flex flex-col gap-y-1 py-2 px-3 text-foreground">
@@ -34,31 +33,36 @@ function SideBar({}:SideBarProps) {
             {/* Chats */}
             <div className="flex flex-col gap-y-1 overflow-y-scroll scrollbar-hide ">
                 {
-                    user?.chats?.map((chat)=>(
-                    <div key={chat.id} className={cn("flex flex-row items-center px-2 py-3 gap-x-4  border-b-[1px] border-gray-700 hover:bg-gray-900 transition-all duration-75",
-                        isActiveChat(chat.id) && "bg-blue-300/10"
-                    )}>
-                        <div>
-                            <Avatar className="w-8 h-8">
-                                <AvatarImage src={chat.photo??"https://github.com/shadcn.png"} alt="" />
-                            </Avatar>
-                        </div>
-                        <div className="flex-1 flex flex-col h-full w-full items-start justify-between ">
-                            <h2 className=''>{chat?.name}</h2>
-                            <h6 className="text-xs font-medium w-full text-muted-foreground text-end">
-                                {new Date(chat.date).toLocaleDateString()}{" "}
-                                {new Date(chat.date).toLocaleTimeString()}  
-                            </h6>
-                        </div>
-                    </div>
-                    ))
+                    user?.chats?.map((chat)=><SidebarChat key={chat.id} chat={chat} /> )
                 }
-               
-            
             </div>
         </div>
     </div>
     );
 };
+
+function SidebarChat({chat}:{chat:Chat}){
+    const {id} = useParams(); 
+
+    const isActiveChat = (id_chat:string)=>id_chat == id
+    const {name,photo} = useChatInformations(chat)
+    return (
+    <div className={cn("flex flex-row items-center px-2 py-3 gap-x-4  border-b-[1px] border-gray-700 hover:bg-gray-900 transition-all duration-75",
+        isActiveChat(chat.id) && "bg-blue-300/10"
+    )}>
+        <div>
+            <Avatar className="w-8 h-8">
+                <AvatarImage src={photo} alt="" />
+            </Avatar>
+        </div>
+        <div className="flex-1 flex flex-col h-full w-full items-start justify-between ">
+            <h2 className=''>{name}</h2>
+            <h6 className="text-xs font-medium w-full text-muted-foreground text-end">
+                {new Date(chat.date).toLocaleDateString()}{" "}
+                {new Date(chat.date).toLocaleTimeString()}  
+            </h6>
+        </div>
+    </div>
+)}
 
 export default SideBar;
