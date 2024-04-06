@@ -50,14 +50,14 @@ func SeedDatabase() {
 		// for each section
 		for _, section := range journey.Sections {
 			// create the chat for each section
-			chatProps := CreateChatProps{
+			chatProps := CreateTripChatProps{
 				Trip: section,
 			}
 			// Ensuite, créer le Chat en référençant le Trip créé
 			if section.From.Name == "" || section.To.Name == "" {
 				continue
 			}
-			_, err := CreateChatFn(chatProps)
+			_, err := CreateTripChatFn(chatProps)
 			if err != nil {
 				name := section.From.Name + " " + section.To.Name
 				fmt.Printf("Could not create Chat for Trip : %s \n", name)

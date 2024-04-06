@@ -55,7 +55,13 @@ func UseHttpRouter(mux *http.ServeMux) {
 		)),
 		),
 	))
-	// mux.Handle("/chat/new", JsonContentMiddleware(AuthMiddleware((AllowedMethodsMiddleware(http.HandlerFunc(handlers.CreateChat), []string{"POST"})))))
+	mux.Handle("/chat/new", JsonContentMiddleware(
+		AuthMiddleware((AllowedMethodsMiddleware(
+			http.HandlerFunc(handlers.CreateChat),
+			[]string{"POST"},
+		)),
+		),
+	))
 	mux.Handle("/chat/join/user", JsonContentMiddleware(
 		AuthMiddleware((AllowedMethodsMiddleware(
 			http.HandlerFunc(handlers.AddUserToChat),

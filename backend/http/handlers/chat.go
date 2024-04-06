@@ -10,6 +10,7 @@ import (
 	sncf "pc3r/projet/sncf"
 	types_sncf "pc3r/projet/sncf/types"
 	"strings"
+	"time"
 )
 
 type ResponseGetChatBody struct {
@@ -70,41 +71,86 @@ func GetChat(res http.ResponseWriter, req *http.Request) {
 
 }
 
+type CreateChatProps struct {
+	Id string `json:"id"`
+}
+
 /*
 @handler : Create a chat user based on the trip
 @expects :
 
-		Body:{ trip : {
-	            Id                  string
-	            Departure_date_time string
-	            Arrival_date_time   string
-	            To                  Place
-	            From                Place
-	        }
-		}
+	Body:{ id : string ## ID of the other user
+	}
 
-		@returns :{
-			Chat : chat
-		}
+	@returns :{
+		Chat : chat
+	}
 */
 func CreateChat(res http.ResponseWriter, req *http.Request) {
 	var body CreateChatProps
 	err := json.NewDecoder(req.Body).Decode(&body)
-	if (err != nil) || body.Trip.To.Id == "" || body.Trip.From.Id == "" {
+	if (err != nil) || body.Id == "" {
 		res.WriteHeader(http.StatusUnauthorized)
 		message := "Missing properties"
 		json.NewEncoder(res).Encode(types.MakeError(message, types.INPUT_ERROR))
 		return
 	}
-	chat, err := CreateChatFn(body)
+
+	user, _ := req.Context().Value(types.CtxAuthKey{}).(*db.UserModel)
+
+	prisma, ctx := global.GetPrisma()
+	other_user, err := prisma.User.FindFirst(
+		db.User.ID.Equals(body.Id),
+	).Exec(ctx)
+
+	if err != nil {
+		res.WriteHeader(http.StatusNotFound)
+		message := "Not Found"
+		json.NewEncoder(res).Encode(types.MakeError(message, types.NOT_FOUND))
+		return
+	}
+	existing_chat, err := prisma.Chat.FindFirst(
+		db.Chat.Or(
+			db.Chat.And(
+				db.Chat.Name.Equals(user.ID+"-"+other_user.ID),
+			),
+			db.Chat.And(
+				db.Chat.Name.Equals(other_user.ID+"-"+user.ID),
+			),
+		),
+	).Exec(ctx)
+	if err == nil || existing_chat != nil {
+		res.WriteHeader(http.StatusBadRequest)
+		message := "Chat already created "
+		json.NewEncoder(res).Encode(types.MakeError(message, types.BAD_REQUEST))
+		return
+	}
+	chat_name := user.ID + "-" + other_user.ID
+	chat, err := CreateChatFn(CreateChatFnProps{Name: chat_name, Date: time.Now()})
 	if err != nil {
 		res.WriteHeader(http.StatusBadRequest)
 		message := "Could not create chat "
 		json.NewEncoder(res).Encode(types.MakeError(message, types.BAD_REQUEST))
 		return
 	}
-	users := ExtractChatUsersInformations(chat.Users())
-	trip, _ := chat.Trip()
+	// updating the chat
+	updated_chat, _ := prisma.Chat.FindUnique(
+		db.Chat.ID.Equals(chat.ID),
+	).With(
+		db.Chat.Users.Fetch(),
+		db.Chat.Messages.Fetch().With(
+			db.Message.User.Fetch(),
+		),
+		db.Chat.Trip.Fetch(),
+	).Update(
+		db.Chat.IsGroupChat.Set(false),
+		db.Chat.Users.Link(
+			db.User.ID.Equals(user.ID),
+			db.User.ID.Equals(other_user.ID),
+		),
+	).Exec(ctx)
+	users := ExtractChatUsersInformations(updated_chat.Users())
+	trip, _ := updated_chat.Trip()
 	chatStructure := types.ChatRes{
 		ChatModel: chat,
 		Users:     users,
@@ -118,7 +164,21 @@ func CreateChat(res http.ResponseWriter, req *http.Request) {
 	json.NewEncoder(res).Encode(response)
 }
 
-type CreateChatProps struct {
+type CreateChatFnProps struct {
+	Name string    `json:"name"`
+	Date time.Time `json:"date"`
+}
+
+func CreateChatFn(props CreateChatFnProps) (*db.ChatModel, error) {
+	prisma, ctx := global.GetPrisma()
+	chat, err := prisma.Chat.CreateOne(
+		db.Chat.Name.Set(props.Name),
+		db.Chat.Date.Set(props.Date),
+	).Exec(ctx)
+	return chat, err
+}
+
+type CreateTripChatProps struct {
 	Trip types_sncf.Section `json:"trip"`
 }
 
@@ -138,7 +198,7 @@ type CreateChatProps struct {
 	}
 	@returns : (chat, err)
 */
-func CreateChatFn(props CreateChatProps) (*db.ChatModel, error) {
+func CreateTripChatFn(props CreateTripChatProps) (*db.ChatModel, error) {
 	prisma, ctx := global.GetPrisma()
 
 	Name := props.Trip.From.Name + " - " + props.Trip.To.Name
@@ -148,10 +208,7 @@ func CreateChatFn(props CreateChatProps) (*db.ChatModel, error) {
 		fmt.Printf("Error parsing date")
 		return nil, err
 	}
-	chat, err := prisma.Chat.CreateOne(
-		db.Chat.Name.Set(Name),
-		db.Chat.Date.Set(parsed_departure_time),
-	).Exec(ctx)
+	chat, err := CreateChatFn(CreateChatFnProps{Name: Name, Date: parsed_departure_time})
 	if err != nil {
 		return nil, err
 	}
