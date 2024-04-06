@@ -96,6 +96,7 @@ func updateUser(res http.ResponseWriter, req *http.Request) {
 	).With(
 		db.User.Chats.Fetch().With(
 			db.Chat.Trip.Fetch(),
+			db.Chat.Users.Fetch(),
 		),
 	).Update(
 		db.User.Name.Set(updated_name),

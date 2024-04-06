@@ -32,7 +32,8 @@ func MakeError(message string, code Error) HTTPErrorRes {
 
 type ChatTrip struct {
 	db.ChatModel
-	Trip *db.TripModel `json:"trip"`
+	Users []UserChatModel `json:"users"`
+	Trip  *db.TripModel   `json:"trip"`
 }
 type UserRes struct {
 	*db.UserModel

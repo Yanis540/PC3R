@@ -415,8 +415,11 @@ func ParseChatTrip(unparsed_chat []db.ChatModel) []types.ChatTrip {
 	chats := []types.ChatTrip{}
 	for _, chat := range unparsed_chat {
 		trip, _ := chat.Trip()
+		chat_users := chat.Users()
+		users := ExtractChatUsersInformations(chat_users)
 		parsed_chat := types.ChatTrip{
 			ChatModel: chat,
+			Users:     users,
 			Trip:      trip,
 		}
 		chats = append(chats, parsed_chat)
