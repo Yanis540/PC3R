@@ -153,7 +153,7 @@ func CreateChat(res http.ResponseWriter, req *http.Request) {
 	users := ExtractChatUsersInformations(updated_chat.Users())
 	trip, _ := updated_chat.Trip()
 	chatStructure := types.ChatRes{
-		ChatModel: chat,
+		ChatModel: updated_chat,
 		Users:     users,
 		Trip:      trip,
 		Messages:  []types.MessageChatResponse{},
