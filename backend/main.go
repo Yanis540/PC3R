@@ -41,7 +41,7 @@ func main() {
 	fmt.Println("Server running on PORT  5000")
 	// lancer le serveur sur son propre thread
 	go func() {
-		log.Fatal(http.ListenAndServe("0.0.0.0:5000", handler))
+		log.Fatal(http.ListenAndServe(":5000", handler))
 	}()
 	// on crée un cron pour mettre à jours la base de données chaque jour à minuit 01
 	scheduler := gocron.NewScheduler()
