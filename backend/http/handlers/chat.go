@@ -121,8 +121,8 @@ func CreateChat(res http.ResponseWriter, req *http.Request) {
 	).Exec(ctx)
 	if err == nil || existing_chat != nil {
 		res.WriteHeader(http.StatusBadRequest)
-		message := "Chat already created "
-		json.NewEncoder(res).Encode(types.MakeError(message, types.BAD_REQUEST))
+		message := "Chat already created  :" + existing_chat.ID
+		json.NewEncoder(res).Encode(types.MakeError(message, types.CHAT_ALREADY_EXISTS))
 		return
 	}
 	chat_name := user.ID + "-" + other_user.ID

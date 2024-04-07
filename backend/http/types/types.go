@@ -10,6 +10,7 @@ const (
 	NOT_FOUND                   = "NOT_FOUND"
 	INPUT_ERROR                 = "INPUT_ERROR"
 	INTERNAL_SERVER_ERROR       = "INTERNAL_SERVER_ERROR"
+	CHAT_ALREADY_EXISTS         = "CHAT_ALREADY_EXISTS"
 )
 
 type HTTPError struct {

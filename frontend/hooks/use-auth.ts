@@ -7,6 +7,7 @@ interface AuthState {
   set_user: (user?: User) => void
   signOut: () => void
   set_tokens: (tokens?: Tokens) => void
+  add_chat: (chat?: Chat) => void
 }
 
 const useAuth =  create(
@@ -21,8 +22,12 @@ const useAuth =  create(
             }),
            
             signOut : ()=>set((prev:AuthState)=>{
-                return {...prev,user:null}
+                return {...prev,user:null,tokens:null}
             }),
+            add_chat : (chat?:Chat)=>set((prev:AuthState)=>{
+                return {...prev,user:prev.user==undefined || prev.user == null?undefined:{...prev.user,chats:[chat,...prev.user!.chats]}}
+            }),
+           
            
         }), 
         {

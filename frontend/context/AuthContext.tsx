@@ -10,11 +10,11 @@ function AuthContext(Component: any) {
 
   return function IsAuth(props: any) {
     const [isClient, setIsClient] = useState<boolean>(false);
-    const { user } = useStore(useAuth, (state) => state)
+    const { user } = useAuth()
 
     useEffect(() => {
       setIsClient(true)
-    }, [])
+    }, [user?.id])
 
     if (!isClient) {
       return null
