@@ -68,5 +68,30 @@ func (c *Client) Read() {
 			h.unregister <- c
 		}(hub)
 	}
+	c.SubscribedHubs = []*Hub{}
 	c.socket.Close()
+}
+
+// Ajouter un hub aux hubs abonnés du client
+func (c *Client) AddSubscribedHub(hub *Hub) {
+	c.SubscribedHubs = append(c.SubscribedHubs, hub)
+}
+func (c *Client) IsSubscribedToHub(hubToCheck *Hub) bool {
+	for _, hub := range c.SubscribedHubs {
+		if hub == hubToCheck {
+			return true
+		}
+	}
+	return false
+}
+
+// Enlever un hub des hubs abonnés du client
+func (c *Client) RemoveSubscribedHub(hub *Hub) {
+	for i, subscribedHub := range c.SubscribedHubs {
+		if subscribedHub == hub {
+			// Supprimer le hub de la liste des hubs abonnés
+			c.SubscribedHubs = append(c.SubscribedHubs[:i], c.SubscribedHubs[i+1:]...)
+			break
+		}
+	}
 }

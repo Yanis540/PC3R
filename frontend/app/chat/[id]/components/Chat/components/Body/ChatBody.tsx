@@ -20,11 +20,11 @@ function ChatBody({}:ChatBodyProps) {
         </div>
     )
     return (
-    <div className="flex-1 flex p-4 text-foreground">
+    <div className="flex-1 flex p-4 text-foreground border border-red-500">
         <div className="h-full w-full space-y-4 overflow-y-auto  ">
             {
-                chat?.messages?.map((message)=>(
-                    <Message key={message.id} message={message} /> 
+                chat?.messages?.map((message,i)=>(
+                    <Message key={message.id+" "+i} message={message} /> 
                 ))
             }
         </div>

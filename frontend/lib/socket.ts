@@ -44,6 +44,11 @@ export default class Socket {
     // close to handles a disconnection from a websocket.
     close() {
         this.connected = false
+        if (this.ws?.readyState  === 1) {
+            // notifier le serveur que le client se détache 
+            const message = JSON.stringify({Event:"close", Data:"Closing"});
+            this.ws!?.send(message);
+       }
         this.ee.emit('disconnect');
     };
     

@@ -3,14 +3,14 @@ import { useSocket } from "@/hooks"
 import { useEffect } from "react"
 
 
-export const useConnectSocket =(f ?: ()=>void)=>{
+export const useConnectSocket =(fmounted ?: ()=>void)=>{
     const { socket } = useSocketStore()
     useSocket()
     useEffect(() => {
         socket?.on('connect', (data) => {
             console.log("Connected ", socket.connected)
-            if (f) {
-                f()
+            if (fmounted) {
+                fmounted()
             }
         })
         return () => {

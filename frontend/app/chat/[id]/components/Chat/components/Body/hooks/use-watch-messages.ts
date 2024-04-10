@@ -16,6 +16,7 @@ export const useWatchMessages = ()=>{
             }
         })
         return ()=>{
+            console.log("trying to remove the message listener")
             socket?.off('receive_message',()=>{})
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps

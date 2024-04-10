@@ -82,7 +82,9 @@ func createSocketRouter() *Router {
 	// assign handler for each event
 	router.Handle("helloFromClient", helloFromClient)
 	router.Handle("register_to_chat", registerToChat)
+	// router.Handle("unregister_from_chat", unregisterFromChat)
 	router.Handle("send_message", sendMessage)
+	router.Handle("close", closeClientConnection)
 	return router
 }
 
