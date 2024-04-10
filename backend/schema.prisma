@@ -31,14 +31,20 @@ model Trip {
 }
 
 model Chat {
-    id            String    @id @default(cuid())
-    date          DateTime  @default(now())
-    name          String
-    photo         String?   @default("https://github.com/shadcn.png")
-    trip          Trip?
-    is_group_chat Boolean   @default(true)
-    users         User[]
-    Messages      Message[]
+    id       String    @id @default(cuid())
+    date     DateTime  @default(now())
+    name     String
+    photo    String?   @default("https://github.com/shadcn.png")
+    trip     Trip?
+    type     ChatType  @default(trip)
+    users    User[]
+    Messages Message[]
+}
+
+enum ChatType {
+    trip
+    duo
+    group
 }
 
 model Message {

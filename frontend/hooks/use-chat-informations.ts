@@ -1,11 +1,12 @@
 import { useAuth } from "@/hooks"
+import { ChatType } from "@/types"
 import { useMemo } from "react"
 
 
 export const useChatInformations = (chat:Chat)=>{
     const {user} = useAuth()
     const chatName = useMemo(()=>
-        chat?.is_group_chat == true 
+        chat?.type != ChatType.duo
         ?   chat.name
         :   chat?.users?.find((u)=>u.id!=user?.id)
             ?.name??
@@ -14,7 +15,7 @@ export const useChatInformations = (chat:Chat)=>{
         [chat?.id,user?.id]
     )
     const chatPhoto = useMemo(()=>
-        chat?.is_group_chat == true 
+        chat?.type != ChatType.duo
         ?   chat.photo
         :   chat?.users?.find((u)=>u.id!=user?.id)
             ?.photo??

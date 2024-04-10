@@ -5,6 +5,7 @@ import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import { IoIosInformationCircle } from "react-icons/io";
 import ChatListUsers from './components/ChatListUsers';
 import { useChatInformations } from '@/hooks';
+import { ChatType } from '@/types';
 
 interface ChatHeaderProps {
 
@@ -26,9 +27,9 @@ function ChatHeader({}:ChatHeaderProps) {
                 <div className="">
                     <h1 className="text-lg font-semibold text-foreground transition-all duration-75">{name}</h1>
                     {
-                        chat?.is_group_chat && (
+                        chat?.type == ChatType.trip && (
                             <div className='flex flex-row items-center gap-x-2'>
-                                <h2 className="text-md font-medium text-gray-400 ">{new Date(chat?.date!).toLocaleDateString()}{chat?.is_group_chat && " à"}</h2>
+                                <h2 className="text-md font-medium text-gray-400 ">{new Date(chat?.date!).toLocaleDateString()}{chat?.type == ChatType.trip && " à"}</h2>
                                 <div className="flex flex-row items-center gap-x-2">
                                     <h6 className="font-medium text-sm md:text-md text-muted-foreground ">{new Date(chat?.trip?.departure_time!).toLocaleTimeString()} {"-"}</h6>
                                     <h6 className="font-medium text-sm md:text-md text-muted-foreground ">{new Date(chat?.trip?.estimated_arrival_time!).toLocaleTimeString()}</h6>
@@ -41,7 +42,7 @@ function ChatHeader({}:ChatHeaderProps) {
             {/* Right Side */}
             <div className="flex flex-row items-center gap-x-2">
                 {
-                    chat?.is_group_chat && (
+                    (chat?.type == ChatType.group  || chat?.type == ChatType.trip) && (
                         <ChatListUsers /> 
                     )
                 }

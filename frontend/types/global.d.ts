@@ -1,4 +1,4 @@
-import { HTTPErrorCode } from "."
+import { ChatType, HTTPErrorCode } from "."
 
 
 
@@ -30,11 +30,12 @@ declare global {
         name : string 
         photo : string 
         trip : Trip  
-        is_group_chat : boolean
+        type : ChatType
         users : ChatUser[]
         messages : Message[]
 
     }
+    
     interface Message {
         id : string 
         content : string 

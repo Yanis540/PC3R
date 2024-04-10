@@ -71,7 +71,7 @@ func GetChat(res http.ResponseWriter, req *http.Request) {
 
 }
 
-type CreateChatProps struct {
+type CreateDuoChatProps struct {
 	Id string `json:"id"`
 }
 
@@ -86,8 +86,8 @@ type CreateChatProps struct {
 		Chat : chat
 	}
 */
-func CreateChat(res http.ResponseWriter, req *http.Request) {
-	var body CreateChatProps
+func CreateDuoChat(res http.ResponseWriter, req *http.Request) {
+	var body CreateDuoChatProps
 	err := json.NewDecoder(req.Body).Decode(&body)
 	if (err != nil) || body.Id == "" {
 		res.WriteHeader(http.StatusUnauthorized)
@@ -144,7 +144,7 @@ func CreateChat(res http.ResponseWriter, req *http.Request) {
 		),
 		db.Chat.Trip.Fetch(),
 	).Update(
-		db.Chat.IsGroupChat.Set(false),
+		db.Chat.Type.Set("duo"),
 		db.Chat.Users.Link(
 			db.User.ID.Equals(user.ID),
 			db.User.ID.Equals(other_user.ID),

@@ -21,3 +21,10 @@ export enum HTTPErrorCode {
     INTERNAL_SERVER_ERROR="INTERNAL_SERVER_ERROR",
     CHAT_ALREADY_EXISTS="CHAT_ALREADY_EXISTS",
 }
+
+export enum ChatType {
+    trip = "trip",
+    duo = "duo",
+    group = "group"
+    
+}

@@ -1,6 +1,7 @@
 import { useAuth } from "@/hooks";
 import { useRouter } from "next/navigation";
 import { useCreateChat } from "./use-create-chat";
+import { ChatType } from "@/types";
 
 
 
@@ -9,7 +10,7 @@ export const useRedirectPersonnalMessage = (chatUser:ChatUser)=>{
     const router = useRouter();
     const {create,isLoading} = useCreateChat(); 
     const redirectToUserChat = ()=>{
-        const chatExists = user?.chats?.find((chat)=>chat.is_group_chat == false && chat?.name.includes(chatUser?.id))
+        const chatExists = user?.chats?.find((chat)=>(chat?.type == ChatType.duo) && chat?.name.includes(chatUser?.id))
         if(chatExists){
             router.push(`/chat/${chatExists.id}`)
             return 

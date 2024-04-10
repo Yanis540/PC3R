@@ -20,14 +20,14 @@ export const useCreateChat = ()=>{
     const {tokens,add_chat} = useAuth()
     const router = useRouter()
     const {data,mutate,isPending:isLoading,error}:useLoginMutation = useMutation({
-        mutationKey:["chat","new"],
+        mutationKey:["chat","new","duo"],
         mutationFn:async(props)=>{
             const config :AxiosRequestConfig = {
                 headers:{
                     Authorization:`Bearer ${tokens?.access}`
                 }
             }
-            const response= await axios.post(SERVER_URL+"/chat/new",props,config); 
+            const response= await axios.post(SERVER_URL+"/chat/new/duo",props,config); 
             const data = await response.data ; 
             return data ; 
         },
