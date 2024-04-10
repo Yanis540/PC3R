@@ -37,7 +37,7 @@ export default function RootLayout({
           >
           <QueryProvider>
             <TooltipProvider>
-              <main className="flex flex-col min-h-screen bg-background">
+              <main className="flex flex-col h-screen bg-background">
                 <Navbar /> 
                 {children}
               </main>

@@ -16,8 +16,8 @@ function SideBar({}:SideBarProps) {
     const {user} = useAuth(); 
   
     return (
-    <div className="flex-[0.25] flex flex-col border-r-[1px] border-gray-700 rounded-sm">
-        <div className="flex-1 flex flex-col gap-y-1 py-2 px-3 text-foreground">
+    <div className="flex-[0.25] flex flex-col h-[100%] border-r-[1px] relative  border-gray-700 rounded-sm">
+        <div className="flex-1 flex flex-col h-[100%] gap-y-1 py-2 px-3 text-foreground">
             <div className="flex flex-col gap-y-2 pb-2 border-b-[1px]  border-gray-800 ">
                 <div className="flex flex-row items-center justify-between">
                     <h1 className='text-xl md:text-2xl font-semibold '>Discussion</h1>
@@ -31,7 +31,7 @@ function SideBar({}:SideBarProps) {
                 </div>
             </div>
             {/* Chats */}
-            <div className="flex flex-col gap-y-1 overflow-y-scroll scrollbar-hide ">
+            <div className="flex flex-col gap-y-1 overflow-y-auto  ">
                 {
                     user?.chats?.map((chat)=><SidebarChat key={chat.id} chat={chat} /> )
                 }

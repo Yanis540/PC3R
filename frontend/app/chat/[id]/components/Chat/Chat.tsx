@@ -56,12 +56,10 @@ function MainChat(){
         })
     })
     return (
-        <div className="flex-1 flex flex-col relative ">
-            <div className="flex-1 flex flex-col relative  ">
-                <ChatHeader /> 
-                <ChatBody /> 
-                <ChatFooter /> 
-            </div>
+        <div className="flex-1 flex flex-col  h-[100%] relative ">
+            <ChatHeader /> 
+            <ChatBody /> 
+            <ChatFooter /> 
         </div>
     );
 }
