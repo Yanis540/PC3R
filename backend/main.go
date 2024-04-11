@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	"pc3r/projet/global"
 	http2 "pc3r/projet/http"
@@ -37,15 +38,23 @@ func main() {
 	})
 
 	handler := cors_options.Handler(mux)
-
-	fmt.Println("Server running on PORT  5000")
+	port := envPort()
+	fmt.Println("Server running on PORT  " + port)
 	// lancer le serveur sur son propre thread
 	go func() {
-		log.Fatal(http.ListenAndServe(":5000", handler))
+		log.Fatal(http.ListenAndServe(port, handler))
 	}()
 	// on crée un cron pour mettre à jours la base de données chaque jour à minuit 01
 	scheduler := gocron.NewScheduler()
 	// scheduler.Every(1).Day().At("00:00:01").Do(handlers.SeedDatabase)
 	<-scheduler.Start()
 
+}
+func envPort() string {
+	// If `PORT` variable in environment exists, return it
+	if envPort := os.Getenv("PORT"); envPort != "" {
+		return ":" + envPort
+	}
+	// Otherwise, return the value of `port` variable from function argument
+	return ":" + "5000"
 }
