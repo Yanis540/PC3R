@@ -59,9 +59,7 @@ func unregisterFromChat(client *Client, d interface{}) {
 		return
 	}
 	chat_id := data["chat_id"].(string)
-	fmt.Println("HIII", chat_id)
 	// user_id := data["user_id"].(string)
-	fmt.Println(chat_id)
 	_, ok = client.rt.hubs[chat_id]
 	if !ok {
 		return
@@ -76,7 +74,7 @@ func unregisterFromChat(client *Client, d interface{}) {
 	client.Write()
 	hub, _ := client.rt.hubs[chat_id]
 	client.RemoveSubscribedHub(hub)
-	hub.register <- client
+	hub.unregister <- client
 
 }
 
@@ -86,13 +84,12 @@ func sendMessage(client *Client, d interface{}) {
 		return
 	}
 	chat_id := data["chat_id"].(string)
-	content := data["content"].(string)
-	fmt.Println(content)
+	// content := data["content"].(string)
 	hub, ok := client.rt.hubs[chat_id]
 	if !ok {
 		return
 	}
-	fmt.Println(hub)
+	fmt.Println(len(hub.clients))
 	// user := client.user
 	prisma, ctx := global.GetPrisma()
 	// message, err := prisma.Message.CreateOne(
