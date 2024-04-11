@@ -1,15 +1,26 @@
-# Utilisation de l'image de base de Nixpacks de Railway
-FROM ghcr.io/railwayapp/nixpacks:ubuntu-1707782610@sha256:8f4b0fd95dc3311cf9a59f236d8d7d7f956fe21a2a1d64b53c82f12c4e859f09 AS base
+# Utilisation de l'image de base Ubuntu
+FROM ubuntu:jammy
 
-# Installation de go
-RUN nix-env -if .nixpacks/nixpkgs-1f13eabcd6f5b00fe9de9575ac52c66a0e887ce6.nix && nix-collect-garbage -d
+# Mise à jour et installation de paquets nécessaires
+RUN apt-get update && \
+    apt-get install -y \
+    curl \
+    git \
+    gcc \
+    && rm -rf /var/lib/apt/lists/*
+
+# Installation de Go 1.21.6
+ENV GOLANG_VERSION 1.21.6
+RUN curl -fsSL https://golang.org/dl/go$GOLANG_VERSION.linux-amd64.tar.gz | tar -C /usr/local -xz
+
+# Configuration de l'environnement Go
+ENV PATH=$PATH:/usr/local/go/bin
 
 # Définition du répertoire de travail
 WORKDIR /app/
 
 # Copie des fichiers de l'application
 COPY . .
-
 # Exécution des commandes spécifiées
 RUN go get 
 RUN go run github.com/steebchen/prisma-client-go generate 
