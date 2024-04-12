@@ -11,7 +11,8 @@ var ctx context.Context
 func Init() {
 	prisma = db.NewClient()
 	ctx = context.Background()
-	prisma.Prisma.Connect()
+	// prisma.Prisma.Connect()
+	prisma.Connect()
 }
 
 func GetPrisma() (*db.PrismaClient, context.Context) {
