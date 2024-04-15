@@ -30,6 +30,13 @@ func NewHub() *Hub {
 }
 
 // AddClient ajoute un client au hub.
+func (h *Hub) Broadcast(msg Message) {
+	go func() {
+		h.broadcast <- msg
+	}()
+}
+
+// AddClient ajoute un client au hub.
 func (h *Hub) AddClient(client *Client) {
 	// fmt.Println("Registerer new client")
 	h.clients[client] = true

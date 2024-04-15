@@ -39,6 +39,14 @@ func NewClient(rt *Router, socket *websocket.Conn, findHandler FindHandler, user
 }
 
 // Write receives messages from the channel and writes to the socket.
+func (c *Client) Emit(msg Message) {
+	go func() {
+		c.send <- msg
+	}()
+	c.Write()
+}
+
+// Write receives messages from the channel and writes to the socket.
 func (c *Client) Write() {
 	msg := (<-c.send)
 	err := c.socket.WriteJSON(msg)

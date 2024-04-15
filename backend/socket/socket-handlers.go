@@ -12,10 +12,8 @@ func helloFromClient(c *Client, data interface{}) {
 	log.Printf("hello from client! message: %v\n", data)
 	log.Printf("%v", c.send)
 	c.rt.AddHub("yanis")
-	go func() {
-		c.send <- Message{Event: "helloFromServer", Data: "hello client!"}
-	}()
-	c.Write()
+	msg := Message{Event: "helloFromServer", Data: "hello client!"}
+	c.Emit(msg)
 	hub, _ := c.rt.hubs["yanis"]
 	hub.register <- c
 }
@@ -41,13 +39,11 @@ func registerToChat(client *Client, d interface{}) {
 	if client.IsSubscribedToHub(hub) == true {
 		return
 	}
-	go func() {
-		client.send <- Message{Event: "registered_chat", Data: responseRegisterToChat{
-			Message: "Registered correctly",
-			Chat_id: chat_id,
-		}}
-	}()
-	client.Write()
+	msg := Message{Event: "registered_chat", Data: responseRegisterToChat{
+		Message: "Registered correctly",
+		Chat_id: chat_id,
+	}}
+	client.Emit(msg)
 
 	client.AddSubscribedHub(hub)
 	hub.register <- client
@@ -64,14 +60,11 @@ func unregisterFromChat(client *Client, d interface{}) {
 	if !ok {
 		return
 	}
-
-	go func() {
-		client.send <- Message{Event: "unregistred_from_chat", Data: responseRegisterToChat{
-			Message: "Unregistered correctly",
-			Chat_id: chat_id,
-		}}
-	}()
-	client.Write()
+	msg := Message{Event: "unregistred_from_chat", Data: responseRegisterToChat{
+		Message: "Unregistered correctly",
+		Chat_id: chat_id,
+	}}
+	client.Emit(msg)
 	hub, _ := client.rt.hubs[chat_id]
 	client.RemoveSubscribedHub(hub)
 	hub.unregister <- client
@@ -84,36 +77,35 @@ func sendMessage(client *Client, d interface{}) {
 		return
 	}
 	chat_id := data["chat_id"].(string)
-	// content := data["content"].(string)
+	content := data["content"].(string)
 	hub, ok := client.rt.hubs[chat_id]
 	if !ok {
 		return
 	}
 	fmt.Println(len(hub.clients))
-	// user := client.user
+	user := client.user
 	prisma, ctx := global.GetPrisma()
-	// message, err := prisma.Message.CreateOne(
-	// 	db.Message.Content.Set(content),
-	// 	db.Message.Chat.Link(
-	// 		db.Chat.ID.Equals(chat_id),
-	// 	),
-	// 	db.Message.User.Link(
-	// 		db.User.ID.Equals(user.ID),
-	// 	),
-	// ).With(
-	// 	db.Message.User.Fetch(),
-	// ).Exec(ctx)
-	// if err != nil {
-	// 	return
-	// }
-	message, _ := prisma.Message.FindFirst().With(db.Message.User.Fetch()).Exec(ctx)
+	message, err := prisma.Message.CreateOne(
+		db.Message.Content.Set(content),
+		db.Message.Chat.Link(
+			db.Chat.ID.Equals(chat_id),
+		),
+		db.Message.User.Link(
+			db.User.ID.Equals(user.ID),
+		),
+	).With(
+		db.Message.User.Fetch(),
+	).Exec(ctx)
+	if err != nil {
+		return
+	}
+	// message, _ := prisma.Message.FindFirst().With(db.Message.User.Fetch()).Exec(ctx)
 	structured_message := chat.StructureMessage(*message)
-	go func() {
-		hub.broadcast <- Message{
-			Event: "receive_message",
-			Data:  structured_message,
-		}
-	}()
+	msg := Message{
+		Event: "receive_message",
+		Data:  structured_message,
+	}
+	hub.Broadcast(msg)
 
 }
 
