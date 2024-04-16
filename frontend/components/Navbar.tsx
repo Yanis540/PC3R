@@ -1,13 +1,14 @@
 "use client"
-import React from 'react';
+import React, { useMemo } from 'react';
 import MaxWidthWrapper from './MaxWidthWrapper';
 import Link from 'next/link';
-import { buttonVariants } from './ui/button';
+import { Button, buttonVariants } from './ui/button';
 // import Cart from './Cart';
 import { useAuth } from '@/hooks';
 import { Icons } from './icons';
 import UserAccountNav from './UserAccountNav';
 import ChatsSheet from './ChatsSheet';
+import { usePathname, useRouter } from 'next/navigation';
 
 interface NavbarProps {
 
@@ -15,7 +16,11 @@ interface NavbarProps {
 
 function Navbar({}:NavbarProps) {
     const {user} = useAuth(); 
-    if(!user)
+    const router = useRouter();
+    const pathname = usePathname()
+    const isUserSignedIn = useMemo(()=>!!user?.id,[user?.id])
+
+    if((!user && pathname!="/"))
         return null 
     return (
         <div className="bg-background sticky z-50 top-0  inset-x-0 h-16 ">
@@ -34,12 +39,24 @@ function Navbar({}:NavbarProps) {
                           
                             <div className="ml-auto flex items-center">
                                 <div className="flex flex-1 items-center justify-end space-x-6">
-                                    <div className='ml-4 flow-root lg:ml-6'>
-                                        {/* Cart */}
-                                        <ChatsSheet /> 
-                                    </div>
-                                    <UserAccountNav /> 
-                                      
+                                    {
+                                        isUserSignedIn ? (
+                                        <>
+                                            <Button  variant="ghost" onClick={()=>{router.push('/trips')}}>Trip</Button>
+                                            <div className='ml-4 flow-root lg:ml-6'>
+                                                {/* Cart */}
+                                                <ChatsSheet /> 
+                                            </div>
+                                            <UserAccountNav /> 
+                                        </>
+                                        ):(
+                                        <>
+                                            <Button variant={"outline"} className="border-primary hover:bg-primary hover:text-background" onClick={()=>{router.push('/auth/sign-in')}} >
+                                                Sign In
+                                            </Button>
+                                        </>
+                                        )
+                                    }
                                    
                                 </div>
                             </div>
