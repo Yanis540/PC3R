@@ -2,7 +2,13 @@
 @tailwind components;
 @tailwind utilities;
  
+body {
+  background-color: var(--background);
+}
 
+#dash-animation > path {
+  fill:transparent;
+}
 @layer base {
   :root {
     --background: 0 0% 100%;
