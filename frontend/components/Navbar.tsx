@@ -4,7 +4,7 @@ import MaxWidthWrapper from './MaxWidthWrapper';
 import Link from 'next/link';
 import { Button, buttonVariants } from './ui/button';
 // import Cart from './Cart';
-import { useAuth } from '@/hooks';
+import { useAuth, useClientSide } from '@/hooks';
 import { Icons } from './icons';
 import UserAccountNav from './UserAccountNav';
 import ChatsSheet from './ChatsSheet';
@@ -16,6 +16,7 @@ interface NavbarProps {
 
 function Navbar({}:NavbarProps) {
     const {user} = useAuth(); 
+    const {isClientSide} = useClientSide()
     const router = useRouter();
     const pathname = usePathname()
     const isUserSignedIn = useMemo(()=>!!user?.id,[user?.id])

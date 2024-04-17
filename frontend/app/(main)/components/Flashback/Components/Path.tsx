@@ -4,6 +4,13 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { DASH_ANIMATION_IMAGES } from "../config";
 import { useAnimateDash } from "../hooks/use-animate-dash";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { CalendarDays } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 

@@ -31,7 +31,7 @@ function Home() {
       <div className="flex-1 flex flex-col min-h-full mt-16  ">
         <div className="flex-1 min-h-full  ">
           <MaxWidthWrapper className="flex flex-col gap-y-4 ">
-            <h1 className="text-2xl md:text-4xl lg:text-6xl font-bold  text-center w-full bg-gradient-to-r from-primary via-green-500 to-indigo-400 inline-block text-transparent bg-clip-text">SNCF&apos;s Trips Chats</h1>
+            <h1 className="text-2xl md:text-4xl lg:text-6xl font-bold  text-center w-full bg-gradient-to-r from-primary via-green-500 to-green-300 inline-block text-transparent bg-clip-text">SNCF&apos;s Trips Chats</h1>
             <h2 className="text-4xl font-semibold tracking-tight underline underline-offset-4 text-primary ">Current trips : </h2>
             <Trips />
           </MaxWidthWrapper>
