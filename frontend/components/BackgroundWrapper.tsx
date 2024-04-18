@@ -1,12 +1,14 @@
+import { cn } from '@/lib/utils';
 import React from 'react';
 
 interface BackgroundWrapperProps {
     children:React.ReactNode
+    className ?: string 
 };
 
-function BackgroundWrapper({children}:BackgroundWrapperProps) {
+function BackgroundWrapper({children,className}:BackgroundWrapperProps) {
     return (
-    <div className="flex-grow flex-1 bg-background">
+    <div className={cn("flex-grow flex-1 bg-background",className)}>
         {children}
       </div>
     );
