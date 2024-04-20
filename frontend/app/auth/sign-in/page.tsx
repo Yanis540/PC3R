@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { useAuth } from '@/hooks';
 import { useRouter } from 'next/navigation';
 import BackgroundWrapper from '@/components/BackgroundWrapper';
+import { Button } from '@/components/ui/button';
+import { Icons } from '@/components/icons';
 
 interface AuthProps {
 
@@ -27,6 +29,9 @@ function Auth({ }: AuthProps) {
         <div className="lg:p-8 border-[1px] border-primary rounded-md">
           <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
             <div className="flex flex-col space-y-2 text-center">
+              <div  className='flex flex-col items-center justify-center'  >
+                <Icons.logo className='h-11 w-11 text-primary cursor-pointer' onClick={()=>router.push('/')}/> 
+              </div>
               <h1 className="text-2xl font-semibold tracking-tight text-foreground">
                 Sign In
               </h1>
