@@ -15,6 +15,7 @@ export type UpdateProfileSchema = z.infer<typeof updateProfileSchema>
 
 export enum HTTPErrorCode {
     BAD_REQUEST="BAD_REQUEST",
+    INVALID_TOKEN="INVALID_TOKEN",
     UNAUTHORIZED="UNAUTHORIZED",
     NOT_FOUND="NOT_FOUND",
     INPUT_ERROR="INPUT_ERROR",

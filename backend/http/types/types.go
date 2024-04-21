@@ -6,6 +6,7 @@ type Error string
 
 const (
 	BAD_REQUEST           Error = "BAD_REQUEST"
+	INVALID_TOKEN               = "INVALID_TOKEN"
 	UNAUTHORIZED                = "UNAUTHORIZED"
 	NOT_FOUND                   = "NOT_FOUND"
 	INPUT_ERROR                 = "INPUT_ERROR"

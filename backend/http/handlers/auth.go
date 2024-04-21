@@ -146,3 +146,20 @@ func UserSignUp(res http.ResponseWriter, req *http.Request) {
 	json.NewEncoder(res).Encode(ResponseSignUpBody{Message: "User Created", Success: true, Id: new_user.ID})
 
 }
+
+/*
+@handler : Handles sign up of user by validating the input body from request
+
+	@returns : {
+		message, success
+	}
+*/
+func UserGetMe(res http.ResponseWriter, req *http.Request) {
+	type ResponseBody struct {
+		Message string `json:"message"`
+	}
+
+	res.WriteHeader(http.StatusAccepted)
+	json.NewEncoder(res).Encode(ResponseBody{Message: "Valid token"})
+
+}

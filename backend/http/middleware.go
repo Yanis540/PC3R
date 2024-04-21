@@ -48,21 +48,21 @@ func AuthMiddleware(next http.Handler) http.Handler {
 		if tokenString == "" {
 			res.WriteHeader(http.StatusUnauthorized)
 			message := "Unauthorized"
-			json.NewEncoder(res).Encode(types.MakeError(message, types.UNAUTHORIZED))
+			json.NewEncoder(res).Encode(types.MakeError(message, types.INVALID_TOKEN))
 			return
 		}
 		tokenString = tokenString[len("Bearer "):]
 		if tokenString == "" {
 			res.WriteHeader(http.StatusUnauthorized)
 			message := "Unauthorized"
-			json.NewEncoder(res).Encode(types.MakeError(message, types.UNAUTHORIZED))
+			json.NewEncoder(res).Encode(types.MakeError(message, types.INVALID_TOKEN))
 			return
 		}
 		claims, valid := token.VerifyToken(tokenString)
 		if !valid {
 			res.WriteHeader(http.StatusUnauthorized)
 			message := "Unauthorized"
-			json.NewEncoder(res).Encode(types.MakeError(message, types.UNAUTHORIZED))
+			json.NewEncoder(res).Encode(types.MakeError(message, types.INVALID_TOKEN))
 			return
 		}
 		id := claims["id"].(string)
