@@ -6,6 +6,7 @@ import (
 	"pc3r/projet/db"
 	"pc3r/projet/global"
 	types "pc3r/projet/http/types"
+	"time"
 )
 
 // get the daily
@@ -22,8 +23,13 @@ type responseGetTripBody struct {
 func GetTrips(res http.ResponseWriter, req *http.Request) {
 
 	prisma, ctx := global.GetPrisma()
+	currentDate := time.Now()
+	startOfDay := time.Date(currentDate.Year(), currentDate.Month(), currentDate.Day(), 0, 0, 0, 0, currentDate.Location())
+	endOfDay := time.Date(currentDate.Year(), currentDate.Month(), currentDate.Day(), 23, 59, 59, 0, currentDate.Location())
+
 	trips_unstructured, err := prisma.Trip.FindMany(
-	// db.Trip.DepartureTime.AfterEquals(time.Now()),
+		db.Trip.DepartureTime.Gt(startOfDay),
+		db.Trip.DepartureTime.Lt(endOfDay),
 	).With(
 		db.Trip.Chat.Fetch().With(
 			db.Chat.Users.Fetch(),
