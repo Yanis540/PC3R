@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/sonner";
 import Navbar from "@/components/Navbar";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/theme-provider"
+import Layout from "@/Layout";
 
 // const inter = Inter({ subsets: ["latin"] });
 const fontSans = FontSans({
@@ -40,22 +41,9 @@ export default function RootLayout({
         "relative h-full font-sans antialiased",
         fontSans.variable
       )}>
-        <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-          >
-          <QueryProvider>
-            <TooltipProvider>
-              <main className="flex flex-col h-screen bg-background">
-                <Navbar /> 
-                {children}
-              </main>
-            </TooltipProvider>
-          </QueryProvider>
-        </ThemeProvider>
-        <Toaster position="top-right" richColors /> 
+        <Layout>
+          {children}
+        </Layout>
       </body>
     </html>
   );

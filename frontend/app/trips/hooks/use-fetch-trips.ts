@@ -23,7 +23,7 @@ export const useFetchTrips = ()=>{
         queryFn:async()=>{
             const config : AxiosRequestConfig ={
                 headers:{
-                    "Authorization":`Bearer ${tokens?.access??""}`
+                    "Authorization":`Bearer ${tokens?.access??" "}`
                 }
             } 
             const response= await axios.get(SERVER_URL+"/trips",config); 

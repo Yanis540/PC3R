@@ -34,7 +34,7 @@ export const useUpdateProfile = ()=>{
         mutationFn:async(props)=>{
             const config : AxiosRequestConfig = {
                 headers:{
-                    Authorization:`Bearer ${tokens?.access??""}`
+                    Authorization:`Bearer ${tokens?.access??" "}`
                 }
             }
             const response= await axios.put(SERVER_URL+"/user",props,config); 

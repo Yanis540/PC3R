@@ -6,6 +6,7 @@ import {useUpdateProfile} from './use-update-profile'
 import {useStore} from './use-store'
 import {useChatInformations} from './use-chat-informations'
 import {useClientSide} from './use-client-side'
+import {useWatchAuth} from './use-watch-auth'
 export {
     useSocket,
     useAuth,
@@ -13,5 +14,6 @@ export {
     useUpdateProfile,
     useStore, 
     useChatInformations,
-    useClientSide
+    useClientSide,
+    useWatchAuth
 }

@@ -10,6 +10,7 @@ import (
 	types "pc3r/projet/http/types"
 	token "pc3r/projet/token"
 	"slices"
+	"strings"
 )
 
 /*
@@ -51,13 +52,14 @@ func AuthMiddleware(next http.Handler) http.Handler {
 			json.NewEncoder(res).Encode(types.MakeError(message, types.INVALID_TOKEN))
 			return
 		}
-		tokenString = tokenString[len("Bearer "):]
-		if tokenString == "" {
+
+		if !strings.HasPrefix(tokenString, "Bearer ") {
 			res.WriteHeader(http.StatusUnauthorized)
 			message := "Unauthorized"
 			json.NewEncoder(res).Encode(types.MakeError(message, types.INVALID_TOKEN))
 			return
 		}
+		tokenString = tokenString[len("Bearer "):]
 		claims, valid := token.VerifyToken(tokenString)
 		if !valid {
 			res.WriteHeader(http.StatusUnauthorized)

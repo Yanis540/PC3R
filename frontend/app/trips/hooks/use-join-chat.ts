@@ -29,7 +29,7 @@ export const useJoinChat = ()=>{
             setJoiningChatId(trip.id)
             const config :AxiosRequestConfig= {
                 headers:{
-                    "Authorization" : `Bearer ${tokens?.access??""}`
+                    "Authorization" : `Bearer ${tokens?.access??" "}`
                 }
             }
             const response= await axios.post(`${SERVER_URL}/chat/join/user?id=${trip?.chat?.id}`,{},config); 
