@@ -4,7 +4,7 @@ import { useChat } from '../../hooks/use-chat';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import { IoIosInformationCircle } from "react-icons/io";
 import ChatListUsers from './components/ChatListUsers';
-import { useChatInformations } from '@/hooks';
+import { useAuth, useChatInformations } from '@/hooks';
 import { ChatType } from '@/types';
 
 interface ChatHeaderProps {
@@ -13,7 +13,8 @@ interface ChatHeaderProps {
 
 function ChatHeader({}:ChatHeaderProps) {
     const {chat} = useChat();
-    const {photo,name} = useChatInformations(chat!) 
+    const {user} = useAuth();
+    const {photo,name} = useChatInformations(chat!,user) 
    
     return (
     <div className="flex-[0.1] ">

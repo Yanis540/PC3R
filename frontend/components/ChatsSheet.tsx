@@ -65,7 +65,8 @@ function ChatComponent({chat}:{chat:Chat}){
     const redirectToChat = (chat : Chat)=>{
         router.push(`/chat/${chat.id}`)
     } 
-    const {name} = useChatInformations(chat)
+    const {user} = useAuth();
+    const {name} = useChatInformations(chat,user)
     return (
     <div key={chat?.id} onClick={()=>{redirectToChat(chat)}} className="flex flex-col p-4 cursor-pointer border-[1px] border-muted-foreground rounded-md  ">
         <h3 className="text-sm font-medium text-foreground">{name}

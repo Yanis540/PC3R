@@ -3,18 +3,20 @@ import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import { SearchInput } from '@/components/ui/input';
 import { useAuth,useChatInformations } from '@/hooks';
 import { cn } from '@/lib/utils';
+import { getChatInformations } from '@/utils';
 import { useParams, useRouter } from 'next/navigation';
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import { PiDotsThreeCircleFill } from "react-icons/pi";
 import { RiEditCircleFill } from "react-icons/ri";
+import { useFilterSideBarChats } from './hooks/use-filter-sidebar-chats';
 
 interface SideBarProps {
 
 };
 
 function SideBar({}:SideBarProps) {
-    const {user} = useAuth(); 
-  
+    const {handleChange,filteredChats} = useFilterSideBarChats();    
+    
     return (
     <div className="flex-[0.25] flex flex-col h-[100%] border-r-[1px] relative  border-gray-700 rounded-sm">
         <div className="flex-1 flex flex-col h-[100%] gap-y-1 py-2 px-3 text-foreground">
@@ -27,13 +29,13 @@ function SideBar({}:SideBarProps) {
                     </div>
                 </div>
                 <div className="flex flex-row items-center justify-between">
-                    <SearchInput placeholder="Search" className="h-10 w-full rounded-lg  border-gray-700 " /> 
+                    <SearchInput onChange={handleChange} placeholder="Search" className="h-10 w-full rounded-lg  border-gray-700 " /> 
                 </div>
             </div>
             {/* Chats */}
             <div className="flex flex-col gap-y-1 overflow-y-auto  ">
                 {
-                    user?.chats?.map((chat)=><SidebarChat key={chat.id} chat={chat} /> )
+                    filteredChats?.map((chat)=><SidebarChat key={chat.id} chat={chat} /> )
                 }
             </div>
         </div>
@@ -44,8 +46,9 @@ function SideBar({}:SideBarProps) {
 function SidebarChat({chat}:{chat:Chat}){
     const {id} = useParams(); 
     const router = useRouter()
+    const {user}  = useAuth();
     const isActiveChat = (id_chat:string)=>id_chat == id
-    const {name,photo} = useChatInformations(chat)
+    const {name,photo} = useChatInformations(chat,user)
     return (
     <div className={cn("flex flex-row items-center px-2 py-3 gap-x-4  border-b-[1px] border-gray-700 hover:bg-gray-900 transition-all duration-75 cursor-pointer",
         isActiveChat(chat.id) && "bg-blue-300/10"

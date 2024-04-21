@@ -1,10 +1,8 @@
-import { useAuth } from "@/hooks"
 import { ChatType } from "@/types"
 import { useMemo } from "react"
 
 
-export const useChatInformations = (chat:Chat)=>{
-    const {user} = useAuth()
+export const useChatInformations = (chat:Chat,user?:User)=>{
     const chatName = useMemo(()=>
         chat?.type != ChatType.duo
         ?   chat.name

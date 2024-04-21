@@ -1,7 +1,7 @@
 'use client'
 import AuthContext from '@/context/AuthContext';
-import React, { useEffect } from 'react';
-import SideBar from './components/SideBar';
+import React from 'react';
+import SideBar from './components/SideBar/SideBar';
 import Chat from './components/Chat/Chat';
 
 interface ChatPageProps {
