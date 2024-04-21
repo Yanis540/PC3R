@@ -1,6 +1,5 @@
 "use client"
 import { useParams } from 'next/navigation';
-import React, { useEffect } from 'react';
 import { useGetChat } from './hooks/use-get-chat';
 import { Icons } from '@/components/icons';
 import { CgSearchFound } from "react-icons/cg";
@@ -9,7 +8,6 @@ import { HTTPErrorCode } from '@/types';
 import ChatHeader from './components/Header/ChatHeader';
 import ChatBody from './components/Body/ChatBody';
 import ChatFooter from './components/Footer/ChatFooter';
-import AuthContext from '@/context/AuthContext';
 import { useConnectSocket } from './hooks/use-connect-socket';
 import { useSocketStore } from '@/context/store';
 import { useChat } from './hooks/use-chat';
