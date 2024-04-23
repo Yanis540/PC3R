@@ -62,12 +62,7 @@ func (h *Hub) run() {
 		case message := <-h.broadcast:
 			// fmt.Println("Trying to broadct ", message)
 			for client := range h.clients {
-				go func(c *Client) {
-					// fmt.Println("Tryin to send ")
-					c.send <- message
-					// fmt.Println("Sent Message")
-				}(client)
-				client.Write()
+				client.Emit(message)
 
 			}
 		}

@@ -27,7 +27,11 @@ export const metadata: Metadata = {
     "programmation concurrente",
     "romain",
     "marwan",
-  ]
+  ],
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: 'white' },
+    { media: '(prefers-color-scheme: dark)', color: 'black' },
+  ],
 };
 
 export default function RootLayout({
