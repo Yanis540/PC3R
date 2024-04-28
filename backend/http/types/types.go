@@ -34,8 +34,8 @@ func MakeError(message string, code Error) HTTPErrorRes {
 
 type ChatTrip struct {
 	db.ChatModel
-	Users []UserChatModel `json:"users"`
-	Trip  *db.TripModel   `json:"trip"`
+	Users []UserDetails `json:"users"`
+	Trip  *db.TripModel `json:"trip"`
 }
 type UserRes struct {
 	*db.UserModel
@@ -46,7 +46,7 @@ type MessageRes struct {
 	*db.MessageModel
 	User db.UserModel `json:"chats"`
 }
-type UserChatModel struct {
+type UserDetails struct {
 	Name  string `json:"name"`
 	Email string `json:"email"`
 	Photo string `json:"photo"`
@@ -55,13 +55,13 @@ type UserChatModel struct {
 type ChatRes struct {
 	*db.ChatModel
 	Trip      *db.TripModel         `json:"trip"`
-	Users     []UserChatModel       `json:"users"`
+	Users     []UserDetails         `json:"users"`
 	Messages  []MessageChatResponse `json:"messages"`
 	Messagess []*db.MessageModel    `json:"Messages"`
 }
 type TipChat struct {
 	*db.ChatModel
-	Users []UserChatModel `json:"users"`
+	Users []UserDetails `json:"users"`
 }
 type TripRes struct {
 	db.TripModel
@@ -73,12 +73,12 @@ type MessageResponse struct {
 }
 
 type MessageChatResponse struct {
-	Id         string        `json:"id"`
-	Content    string        `json:"content"`
-	Chat_id    string        `json:"chat_id"`
-	User_id    string        `json:"user_id"`
-	Created_at db.DateTime   `json:"created_at"`
-	User       UserChatModel `json:"user"`
+	Id         string      `json:"id"`
+	Content    string      `json:"content"`
+	Chat_id    string      `json:"chat_id"`
+	User_id    string      `json:"user_id"`
+	Created_at db.DateTime `json:"created_at"`
+	User       UserDetails `json:"user"`
 }
 type AuthTokens struct {
 	Access string `json:"access"`

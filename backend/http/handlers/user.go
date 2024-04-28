@@ -137,3 +137,40 @@ func UserRoute(res http.ResponseWriter, req *http.Request) {
 	}
 	deleteUser(res, req)
 }
+
+type GetUserDetailsBody struct {
+	Email string `json:"email"`
+	Name  string `json:"name"`
+}
+type ResponseGetUserDetailsBody struct {
+	Users []types.UserDetails `json:"users"`
+}
+
+func UserDetailsRoute(res http.ResponseWriter, req *http.Request) {
+	var body GetUserDetailsBody
+	err := json.NewDecoder(req.Body).Decode(&body)
+	if err != nil {
+		res.WriteHeader(http.StatusBadRequest)
+		message := "Bad request"
+		json.NewEncoder(res).Encode(types.MakeError(message, types.BAD_REQUEST))
+		return
+	}
+	prisma, ctx := global.GetPrisma()
+	users, err := prisma.User.FindMany(
+		db.User.Name.Contains(body.Name),
+		db.User.Email.Contains(body.Email),
+	).Exec(ctx)
+	if err != nil {
+		res.WriteHeader(http.StatusNotFound)
+		message := "Not Found"
+		json.NewEncoder(res).Encode(types.MakeError(message, types.NOT_FOUND))
+		return
+	}
+	updated_users := ExtractChatUsersInformations(users)
+
+	response := ResponseGetUserDetailsBody{
+		Users: updated_users,
+	}
+	res.WriteHeader(http.StatusCreated)
+	json.NewEncoder(res).Encode(response)
+}

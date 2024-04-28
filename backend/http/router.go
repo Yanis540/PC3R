@@ -48,6 +48,14 @@ func UseHttpRouter(mux *http.ServeMux) {
 			),
 		)),
 	)
+	mux.Handle("/user/details", JsonContentMiddleware(
+		AuthMiddleware(
+			AllowedMethodsMiddleware(
+				http.HandlerFunc(handlers.UserDetailsRoute),
+				[]string{"GET"},
+			),
+		)),
+	)
 	mux.Handle("/trips", JsonContentMiddleware(
 		AllowedMethodsMiddleware(
 			http.HandlerFunc(handlers.GetTrips),

@@ -241,12 +241,12 @@ func CreateTripChatFn(props CreateTripChatProps) (*db.ChatModel, error) {
 /*
 @func : This functions allows to extract only necessary user informations to be displayed  in the chat, since go-prisma doesn't have this yet (may raise an issue in the repo )
 */
-func ExtractChatUsersInformations(chat_users []db.UserModel) []types.UserChatModel {
-	users := []types.UserChatModel{}
+func ExtractChatUsersInformations(chat_users []db.UserModel) []types.UserDetails {
+	users := []types.UserDetails{}
 	for _, user := range chat_users {
 		photo, _ := user.Photo()
 		// extract only necessary informations such as : id, name , email , photo
-		updated_user := types.UserChatModel{
+		updated_user := types.UserDetails{
 			Name:  user.Name,
 			Email: user.Email,
 			Photo: photo,
@@ -276,7 +276,7 @@ func StructureMessage(message db.MessageModel) types.MessageChatResponse {
 	m_user := message.User()
 	photo, _ := m_user.Photo()
 
-	message_user := types.UserChatModel{
+	message_user := types.UserDetails{
 		Id:    m_user.ID,
 		Name:  m_user.Name,
 		Photo: photo,
