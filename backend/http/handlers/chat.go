@@ -355,7 +355,7 @@ func StructureMessage(message db.MessageModel) types.MessageChatResponse {
 }
 
 /* added user */
-type ResponseAddUserToChatBody struct {
+type ResponseJoinUserToChatBody struct {
 	Chat types.ChatRes `json:"chat"`
 }
 
@@ -366,7 +366,7 @@ type ResponseAddUserToChatBody struct {
 		id : string
 	}
 */
-func AddUserToChat(res http.ResponseWriter, req *http.Request) {
+func JoinUserToChat(res http.ResponseWriter, req *http.Request) {
 	id := req.URL.Query().Get("id")
 	if id == "" {
 		res.WriteHeader(http.StatusUnauthorized)
@@ -418,7 +418,7 @@ func AddUserToChat(res http.ResponseWriter, req *http.Request) {
 		Users:     users,
 		Trip:      trip,
 	}
-	response := ResponseAddUserToChatBody{
+	response := ResponseJoinUserToChatBody{
 		Chat: chatStructure,
 	}
 	// ! SEND SOCKET TO OTHERS
@@ -553,6 +553,80 @@ func SendMessage(res http.ResponseWriter, req *http.Request) {
 	}
 	response := ResponseSendMessage{
 		Message: message,
+	}
+	// ! SEND SOCKET TO OTHERS
+	res.WriteHeader(http.StatusCreated)
+	json.NewEncoder(res).Encode(response)
+}
+
+type AddUserToChatBody struct {
+	Chat_id   string   `json:"chat_id"`
+	Users_ids []string `json:"users_ids"`
+}
+
+func AddUserToChatRoute(res http.ResponseWriter, req *http.Request) {
+	var body AddUserToChatBody
+	err := json.NewDecoder(req.Body).Decode(&body)
+	if (err != nil) || body.Chat_id == "" || body.Users_ids == nil || len(body.Users_ids) == 0 {
+		res.WriteHeader(http.StatusUnauthorized)
+		message := "Missing properties"
+		json.NewEncoder(res).Encode(types.MakeError(message, types.INPUT_ERROR))
+		return
+	}
+
+	user, _ := req.Context().Value(types.CtxAuthKey{}).(*db.UserModel)
+
+	prisma, ctx := global.GetPrisma()
+	chat, err := prisma.Chat.FindFirst(
+		db.Chat.ID.Equals(body.Chat_id),
+		db.Chat.Users.Some(
+			db.User.ID.Equals(user.ID),
+		),
+	).With(
+		db.Chat.Users.Fetch(),
+		db.Chat.Messages.Fetch().With(
+			db.Message.User.Fetch(),
+		),
+		db.Chat.Trip.Fetch(),
+	).Exec(ctx)
+
+	if err != nil || chat == nil {
+		res.WriteHeader(http.StatusNotFound)
+		message := "Not Found"
+		json.NewEncoder(res).Encode(types.MakeError(message, types.NOT_FOUND))
+		return
+	}
+	if chat.Type == "duo" {
+		res.WriteHeader(http.StatusBadRequest)
+		message := "Can not added user to duo chat"
+		json.NewEncoder(res).Encode(types.MakeError(message, types.NOT_FOUND))
+		return
+	}
+	// ! UNOPTIMIZED : because the fking library doesn't allow db.User.ID.In() and idk why
+	// !https://github.com/steebchen/prisma-client-go/issues/1264
+	for _, userID := range body.Users_ids {
+		_, err = prisma.Chat.FindUnique(
+			db.Chat.ID.Equals(chat.ID),
+		).With(
+			db.Chat.Users.Fetch(),
+		).Update(
+			db.Chat.Users.Link(
+				db.User.ID.Equals(userID),
+			),
+		).Exec(ctx)
+		if err != nil {
+			res.WriteHeader(http.StatusInternalServerError)
+			message := "Internal Server error"
+			json.NewEncoder(res).Encode(types.MakeError(message, types.INTERNAL_SERVER_ERROR))
+			return
+		}
+	}
+
+	type responseBody struct {
+		Message string `json:"message"`
+	}
+	response := responseBody{
+		Message: "User Added",
 	}
 	// ! SEND SOCKET TO OTHERS
 	res.WriteHeader(http.StatusCreated)
