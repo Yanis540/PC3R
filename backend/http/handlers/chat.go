@@ -127,7 +127,7 @@ func CreateDuoChat(res http.ResponseWriter, req *http.Request) {
 	}
 	chat_name := user.ID + "-" + other_user.ID
 	Date := time.Now()
-	chat, err := CreateChatFn(CreateChatFnProps{Name: chat_name, Date: Date})
+	chat, err := CreateChatFn(CreateChatFnProps{Name: chat_name, Date: Date, Type: "duo"})
 	if err != nil {
 		res.WriteHeader(http.StatusBadRequest)
 		message := "Could not create chat "
@@ -165,9 +165,69 @@ func CreateDuoChat(res http.ResponseWriter, req *http.Request) {
 	json.NewEncoder(res).Encode(response)
 }
 
+type CreateGroupChatProps struct {
+	Name string `json:"name"`
+}
+
+/*
+@handler : Create a group chat based on the trip
+@expects :
+
+	Body:{
+		Name : string ## Name of the other chat
+	}
+
+	@returns :{
+		Chat_id : id chat
+	}
+*/
+func CreateGroupChat(res http.ResponseWriter, req *http.Request) {
+	var body CreateGroupChatProps
+	err := json.NewDecoder(req.Body).Decode(&body)
+	if (err != nil) || body.Name == "" {
+		res.WriteHeader(http.StatusUnauthorized)
+		message := "Missing properties"
+		json.NewEncoder(res).Encode(types.MakeError(message, types.INPUT_ERROR))
+		return
+	}
+
+	user, _ := req.Context().Value(types.CtxAuthKey{}).(*db.UserModel)
+
+	prisma, ctx := global.GetPrisma()
+
+	chat, err := prisma.Chat.CreateOne(
+		db.Chat.Name.Set(body.Name),
+		db.Chat.Type.Set("group"),
+		db.Chat.Users.Link(
+			db.User.ID.Equals(user.ID),
+		),
+	).Exec(ctx)
+	if err != nil {
+		res.WriteHeader(http.StatusBadRequest)
+		message := "Bad Request"
+		json.NewEncoder(res).Encode(types.MakeError(message, types.CHAT_ALREADY_EXISTS))
+		return
+	}
+	if err != nil {
+		res.WriteHeader(http.StatusBadRequest)
+		message := "Could not create chat "
+		json.NewEncoder(res).Encode(types.MakeError(message, types.BAD_REQUEST))
+		return
+	}
+	type responseCreateChatGroup struct {
+		Chat_id string `json:"chat_id"`
+	}
+	response := responseCreateChatGroup{
+		Chat_id: chat.ID,
+	}
+	res.WriteHeader(http.StatusCreated)
+	json.NewEncoder(res).Encode(response)
+}
+
 type CreateChatFnProps struct {
-	Name string    `json:"name"`
-	Date time.Time `json:"date"`
+	Name string      `json:"name"`
+	Date time.Time   `json:"date"`
+	Type db.ChatType `json:"type"`
 }
 
 func CreateChatFn(props CreateChatFnProps) (*db.ChatModel, error) {
@@ -175,6 +235,7 @@ func CreateChatFn(props CreateChatFnProps) (*db.ChatModel, error) {
 	chat, err := prisma.Chat.CreateOne(
 		db.Chat.Name.Set(props.Name),
 		db.Chat.Date.Set(props.Date),
+		db.Chat.Type.Set(props.Type),
 	).Exec(ctx)
 	return chat, err
 }
@@ -209,7 +270,7 @@ func CreateTripChatFn(props CreateTripChatProps) (*db.ChatModel, error) {
 		fmt.Printf("Error parsing date")
 		return nil, err
 	}
-	chat, err := CreateChatFn(CreateChatFnProps{Name: Name, Date: parsed_departure_time})
+	chat, err := CreateChatFn(CreateChatFnProps{Name: Name, Date: parsed_departure_time, Type: "trip"})
 	if err != nil {
 		return nil, err
 	}

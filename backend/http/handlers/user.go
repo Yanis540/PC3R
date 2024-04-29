@@ -167,7 +167,6 @@ func UserDetailsRoute(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 	updated_users := ExtractChatUsersInformations(users)
-
 	response := ResponseGetUserDetailsBody{
 		Users: updated_users,
 	}
