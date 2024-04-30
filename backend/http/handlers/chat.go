@@ -9,7 +9,6 @@ import (
 	types "pc3r/projet/http/types"
 	sncf "pc3r/projet/sncf"
 	types_sncf "pc3r/projet/sncf/types"
-	"strings"
 	"time"
 )
 
@@ -201,6 +200,12 @@ func CreateGroupChat(res http.ResponseWriter, req *http.Request) {
 		db.Chat.Users.Link(
 			db.User.ID.Equals(user.ID),
 		),
+	).With(
+		db.Chat.Users.Fetch(),
+		db.Chat.Messages.Fetch().With(
+			db.Message.User.Fetch(),
+		),
+		db.Chat.Trip.Fetch(),
 	).Exec(ctx)
 	if err != nil {
 		res.WriteHeader(http.StatusBadRequest)
@@ -214,11 +219,17 @@ func CreateGroupChat(res http.ResponseWriter, req *http.Request) {
 		json.NewEncoder(res).Encode(types.MakeError(message, types.BAD_REQUEST))
 		return
 	}
-	type responseCreateChatGroup struct {
-		Chat_id string `json:"chat_id"`
+	users := ExtractChatUsersInformations(chat.Users())
+	trip, _ := chat.Trip()
+	messages := StructureMessages(chat.Messages())
+	chatStructure := types.ChatRes{
+		Messages:  messages,
+		ChatModel: chat,
+		Users:     users,
+		Trip:      trip,
 	}
-	response := responseCreateChatGroup{
-		Chat_id: chat.ID,
+	response := ResponseGetChatBody{
+		Chat: chatStructure,
 	}
 	res.WriteHeader(http.StatusCreated)
 	json.NewEncoder(res).Encode(response)
@@ -486,77 +497,6 @@ func ParseChatTrip(unparsed_chat []db.ChatModel) []types.ChatTrip {
 		chats = append(chats, parsed_chat)
 	}
 	return chats
-}
-
-type SendMessageChatProps struct {
-	Message string `json:"message"`
-}
-
-type ResponseSendMessage struct {
-	Message *db.MessageModel `json:"message"`
-}
-
-func SendMessage(res http.ResponseWriter, req *http.Request) {
-	id := req.URL.Query().Get("id")
-	var body SendMessageChatProps
-	err := json.NewDecoder(req.Body).Decode(&body)
-	if (err != nil) || strings.TrimSpace(body.Message) == "" {
-		res.WriteHeader(http.StatusUnauthorized)
-		message := "Missing properties"
-		json.NewEncoder(res).Encode(types.MakeError(message, types.INPUT_ERROR))
-		return
-	}
-	if id == "" {
-		res.WriteHeader(http.StatusUnauthorized)
-		message := "Unauthorized"
-		json.NewEncoder(res).Encode(types.MakeError(message, types.UNAUTHORIZED))
-		return
-	}
-
-	user, _ := req.Context().Value(types.CtxAuthKey{}).(*db.UserModel)
-	prisma, ctx := global.GetPrisma()
-	chat, err := prisma.Chat.FindFirst(
-		db.Chat.ID.Equals(id),
-		db.Chat.Users.Some(
-			db.User.ID.Equals(user.ID),
-		),
-	).With(
-		db.Chat.Users.Fetch(),
-		db.Chat.Messages.Fetch().With(
-			db.Message.User.Fetch(),
-		),
-		db.Chat.Trip.Fetch(),
-	).Exec(ctx)
-
-	if err != nil {
-		res.WriteHeader(http.StatusNotFound)
-		message := "Not Found"
-		json.NewEncoder(res).Encode(types.MakeError(message, types.NOT_FOUND))
-		return
-	}
-
-	message, err := prisma.Message.CreateOne(
-		db.Message.Content.Set(body.Message),
-		db.Message.Chat.Link(
-			db.Chat.ID.Equals(chat.ID),
-		),
-		db.Message.User.Link(
-			db.User.ID.Equals(user.ID),
-		),
-	).Exec(ctx)
-
-	if err != nil {
-		res.WriteHeader(http.StatusInternalServerError)
-		message := "Internal Server error"
-		json.NewEncoder(res).Encode(types.MakeError(message, types.INTERNAL_SERVER_ERROR))
-		return
-	}
-	response := ResponseSendMessage{
-		Message: message,
-	}
-	// ! SEND SOCKET TO OTHERS
-	res.WriteHeader(http.StatusCreated)
-	json.NewEncoder(res).Encode(response)
 }
 
 type AddUserToChatBody struct {

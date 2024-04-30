@@ -104,13 +104,6 @@ func UseHttpRouter(mux *http.ServeMux) {
 		)),
 		),
 	))
-	mux.Handle("/chat/message", JsonContentMiddleware(
-		AuthMiddleware((AllowedMethodsMiddleware(
-			http.HandlerFunc(handlers.SendMessage),
-			[]string{"POST"},
-		)),
-		),
-	))
 	mux.Handle("/sncf/journeys", JsonContentMiddleware(
 		AuthMiddleware((AllowedMethodsMiddleware(
 			http.HandlerFunc(handlers.GetSNCFJourneys),

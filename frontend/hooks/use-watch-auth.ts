@@ -12,7 +12,7 @@ import { toast } from "sonner"
 
 type DataResponse = {
     error?: HTTPError, 
-    chat ? :Chat
+    user ? :User
 }
 interface useWatchAuthMutation  {
     data ?: DataResponse
@@ -22,7 +22,7 @@ interface useWatchAuthMutation  {
 }
 
 export const useWatchAuth = ()=>{
-    const {user,signOut,tokens} = useAuth()
+    const {user,signOut,tokens,set_user} = useAuth()
     const {data,isPending:isLoading,error}:useWatchAuthMutation = useQuery({
         queryKey:["auth","me"],
         enabled : !! user,
@@ -53,6 +53,14 @@ export const useWatchAuth = ()=>{
             toast.error(`${error?.message}`)
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[error,user?.id])
+    // ! Might cause an error ???? 
+    useEffect(()=>{
+        if(data?.user){
+            console.log(data.user)
+            set_user(data?.user)
+        }
+     // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[data?.user])
 
 
 

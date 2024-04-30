@@ -72,7 +72,10 @@ func AuthMiddleware(next http.Handler) http.Handler {
 		user, err := prisma.User.FindFirst(
 			db.User.ID.Equals(id),
 		).With(
-			db.User.Chats.Fetch(),
+			db.User.Chats.Fetch().With(
+				db.Chat.Trip.Fetch(),
+				db.Chat.Users.Fetch(),
+			), // Récupérer les chats associés à l'utilisateur,
 		).Exec(ctx)
 		if err != nil {
 			res.WriteHeader(http.StatusNotFound)

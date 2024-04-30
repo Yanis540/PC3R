@@ -65,6 +65,16 @@ func UserSignIn(res http.ResponseWriter, req *http.Request) {
 		json.NewEncoder(res).Encode(types.MakeError(message, types.INPUT_ERROR))
 		return
 	}
+	user, _ = prisma.User.FindFirst(
+		db.User.Email.Equals(body.Email),
+	).Omit(
+		db.User.Password.Field(),
+	).With(
+		db.User.Chats.Fetch().With(
+			db.Chat.Trip.Fetch(),
+			db.Chat.Users.Fetch(),
+		), // Récupérer les chats associés à l'utilisateur
+	).Exec(ctx)
 	chats := ParseChatTrip(user.Chats())
 	// l'utilisateur est bien connecté, lui envoyer les jettons de connections
 	userStruct := types.UserRes{
@@ -155,11 +165,18 @@ func UserSignUp(res http.ResponseWriter, req *http.Request) {
 	}
 */
 func UserGetMe(res http.ResponseWriter, req *http.Request) {
-	type ResponseBody struct {
-		Message string `json:"message"`
-	}
 
+	user, _ := req.Context().Value(types.CtxAuthKey{}).(*db.UserModel)
+	chats := ParseChatTrip(user.Chats())
+	// l'utilisateur est bien connecté, lui envoyer les jettons de connections
+	userStruct := types.UserRes{
+		UserModel: user,
+		Chats:     chats,
+	}
+	type responseBody struct {
+		User types.UserRes `json:"user"`
+	}
 	res.WriteHeader(http.StatusAccepted)
-	json.NewEncoder(res).Encode(ResponseBody{Message: "Valid token"})
+	json.NewEncoder(res).Encode(responseBody{User: userStruct})
 
 }
