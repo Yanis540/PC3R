@@ -29,3 +29,14 @@ export enum ChatType {
     group = "group"
     
 }
+
+export const addGroupChatSchema = z.object({
+    name : z.string().min(4),
+})
+
+export const addDuoChatSchema = z.object({
+    id : z.string(),
+})
+
+export type AddGroupChatSchema = z.infer<typeof addGroupChatSchema>
+export type AddDuoChatSchema = z.infer<typeof addDuoChatSchema>
