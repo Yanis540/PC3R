@@ -7,6 +7,7 @@ import {useStore} from './use-store'
 import {useChatInformations} from './use-chat-informations'
 import {useClientSide} from './use-client-side'
 import {useWatchAuth} from './use-watch-auth'
+import {useMediaQuery} from './use-media-query'
 export {
     useSocket,
     useAuth,
@@ -15,5 +16,6 @@ export {
     useStore, 
     useChatInformations,
     useClientSide,
-    useWatchAuth
+    useWatchAuth,
+    useMediaQuery
 }

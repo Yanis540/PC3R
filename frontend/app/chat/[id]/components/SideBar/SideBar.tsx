@@ -7,8 +7,10 @@ import { getChatInformations } from '@/utils';
 import { useParams, useRouter } from 'next/navigation';
 import React, { useMemo, useState } from 'react';
 import { PiDotsThreeCircleFill } from "react-icons/pi";
-import { RiEditCircleFill } from "react-icons/ri";
+import { FaPlus } from "react-icons/fa";
+
 import { useFilterSideBarChats } from './hooks/use-filter-sidebar-chats';
+import SideBarAddChat from './SideBarAddChat';
 
 interface SideBarProps {
 
@@ -24,8 +26,8 @@ function SideBar({}:SideBarProps) {
                 <div className="flex flex-row items-center justify-between">
                     <h1 className='text-xl md:text-2xl font-semibold '>Discussion</h1>
                     <div className="flex flex-row items-center justify-between gap-x-2">
+                        <SideBarAddChat /> 
                         <PiDotsThreeCircleFill className="text-gray-700 hover:text-foreground transition-all duration-100 w-9 h-9 cursor-pointer" />
-                        <RiEditCircleFill className="text-gray-700 hover:text-foreground transition-all duration-100 w-9 h-9 cursor-pointer" />
                     </div>
                 </div>
                 <div className="flex flex-row items-center justify-between">
