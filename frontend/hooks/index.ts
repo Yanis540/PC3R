@@ -8,6 +8,7 @@ import {useChatInformations} from './use-chat-informations'
 import {useClientSide} from './use-client-side'
 import {useWatchAuth} from './use-watch-auth'
 import {useMediaQuery} from './use-media-query'
+import {useCreateChat} from './use-create-chat'
 export {
     useSocket,
     useAuth,
@@ -17,5 +18,6 @@ export {
     useChatInformations,
     useClientSide,
     useWatchAuth,
-    useMediaQuery
+    useMediaQuery,
+    useCreateChat
 }

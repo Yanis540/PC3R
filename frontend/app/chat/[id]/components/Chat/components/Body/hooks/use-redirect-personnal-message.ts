@@ -1,7 +1,7 @@
 import { useAuth } from "@/hooks";
 import { useRouter } from "next/navigation";
 import { ChatType } from "@/types";
-import { useCreateChat } from "@/hooks/use-create-chat";
+import { useCreateChat } from "@/hooks";
 
 
 
