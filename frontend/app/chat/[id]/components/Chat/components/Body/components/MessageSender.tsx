@@ -2,19 +2,22 @@
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import React from 'react';
-import { useRedirectPersonnalMessage } from '../hooks/use-redirect-personnal-message';
 import { Icons } from '@/components/icons';
+import { useRedirectPersonnalChat } from '@/hooks';
 
 interface MessageSenderProps {
-    user : ChatUser
+    user : UserDetails
 };
 
 function MessageSender({user:chatUser}:MessageSenderProps) {
-    const {redirect,isLoading} = useRedirectPersonnalMessage(chatUser);
+    const {redirect,isLoading} = useRedirectPersonnalChat();
+    const handleClick = ()=>{
+        redirect(chatUser?.id!)
+    }
     return (
     <Tooltip>
         <TooltipTrigger asChild>
-            <Avatar className="w-8 h-8 cursor-pointer" onClick={redirect} >
+            <Avatar className="w-8 h-8 cursor-pointer" onClick={handleClick} >
                 <AvatarImage src={chatUser?.photo??"https://github.com/shadcn.png"} alt="" />
             </Avatar>
         </TooltipTrigger>

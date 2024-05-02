@@ -9,6 +9,7 @@ import {useClientSide} from './use-client-side'
 import {useWatchAuth} from './use-watch-auth'
 import {useMediaQuery} from './use-media-query'
 import {useCreateChat} from './use-create-chat'
+import {useRedirectPersonnalChat} from './use-redirect-personnal-message'
 export {
     useSocket,
     useAuth,
@@ -19,5 +20,6 @@ export {
     useClientSide,
     useWatchAuth,
     useMediaQuery,
-    useCreateChat
+    useCreateChat,
+    useRedirectPersonnalChat
 }

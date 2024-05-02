@@ -21,3 +21,11 @@ export const getChatInformations = (chat:Chat,user?:User)=>{
     
     return {photo:chatPhoto,name:chatName}
 }
+
+export const IsDuoChat = (chat:Chat,id1:string,id2:string)=>{
+    const isDuoChat = 
+        chat.name === `${id1}-${id2}`
+        ||  chat.name === `${id2}-${id1}`
+    ;
+    return isDuoChat;
+}

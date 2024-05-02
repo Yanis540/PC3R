@@ -12,7 +12,7 @@ declare global {
         updatedAt ?: string
         chats : Chat []
     }
-    type ChatUser = Omit<User, "createdAt"|"updatedAt"|"chats">
+    type UserDetails = Omit<User, "createdAt"|"updatedAt"|"chats">
     type EmitEvent = "helloFromClient"|"register_to_chat"|"unregister_from_chat"|"send_message"
     type ReceiveEvent = "helloFromServer"|"registered_chat"|"unregistred_from_chat"|"receive_message"|"disconnect"|"connect"
     interface Trip {
@@ -31,7 +31,7 @@ declare global {
         photo : string 
         trip : Trip  
         type : ChatType
-        users : ChatUser[]
+        users : UserDetails[]
         messages : Message[]
 
     }
@@ -43,7 +43,7 @@ declare global {
         chat_id : string 
         chat : Chat  
         user_id : string
-        user : ChatUser
+        user : UserDetails
     }
     interface Tokens {
         access : string
