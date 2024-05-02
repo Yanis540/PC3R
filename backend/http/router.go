@@ -52,7 +52,7 @@ func UseHttpRouter(mux *http.ServeMux) {
 		AuthMiddleware(
 			AllowedMethodsMiddleware(
 				http.HandlerFunc(handlers.UserDetailsRoute),
-				[]string{"GET"},
+				[]string{"POST", "GET"},
 			),
 		)),
 	)
