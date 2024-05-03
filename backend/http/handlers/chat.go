@@ -544,7 +544,26 @@ func AddUserToChatRoute(res http.ResponseWriter, req *http.Request) {
 	}
 	// ! UNOPTIMIZED : because the fking library doesn't allow db.User.ID.In() and idk why
 	// !https://github.com/steebchen/prisma-client-go/issues/1264
+	users := []types.UserDetails{}
 	for _, userID := range body.Users_ids {
+		u, err := prisma.User.FindFirst(
+			db.User.ID.Equals(userID),
+		).Omit(
+			db.User.Password.Field(),
+		).Exec(ctx)
+		if err != nil {
+			res.WriteHeader(http.StatusInternalServerError)
+			message := "Internal Server error"
+			json.NewEncoder(res).Encode(types.MakeError(message, types.INTERNAL_SERVER_ERROR))
+			return
+		}
+		photo, _ := u.Photo()
+		users = append(users, types.UserDetails{
+			Id:    u.ID,
+			Name:  u.Name,
+			Email: u.Email,
+			Photo: photo,
+		})
 		_, err = prisma.Chat.FindUnique(
 			db.Chat.ID.Equals(chat.ID),
 		).With(
@@ -554,19 +573,16 @@ func AddUserToChatRoute(res http.ResponseWriter, req *http.Request) {
 				db.User.ID.Equals(userID),
 			),
 		).Exec(ctx)
-		if err != nil {
-			res.WriteHeader(http.StatusInternalServerError)
-			message := "Internal Server error"
-			json.NewEncoder(res).Encode(types.MakeError(message, types.INTERNAL_SERVER_ERROR))
-			return
-		}
+
 	}
 
 	type responseBody struct {
-		Message string `json:"message"`
+		Message string              `json:"message"`
+		Users   []types.UserDetails `json:"users"`
 	}
 	response := responseBody{
-		Message: "User Added",
+		Message: "Users Added",
+		Users:   users,
 	}
 	// ! SEND SOCKET TO OTHERS
 	res.WriteHeader(http.StatusCreated)
