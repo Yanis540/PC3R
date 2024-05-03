@@ -1,5 +1,6 @@
-'use client'
-import React, { ReactNode } from 'react';
+import React, { useState } from 'react';
+import { BiSolidPlusCircle } from "react-icons/bi";
+
 import {
     Dialog,
     DialogContent,
@@ -16,27 +17,38 @@ import {
     CommandItem,
     CommandList,
 } from "@/components/ui/command"
-import { useSearchUser } from '@/hooks';
+import { useAddChatUsers, useSearchUser } from '@/hooks';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
-import { useCreateChat, useRedirectPersonnalChat } from '@/hooks';
-interface AddDuoChatProps {
-    children: ReactNode
+import { useChat } from '../../../hooks/use-chat';
+interface AddUsersToGroupChatProps {
+
 };
 
-function AddDuoChat({ children }: AddDuoChatProps) {
+function AddUsersToGroupChat({}:AddUsersToGroupChatProps) {
+    const {chat,add_users} = useChat()
+    const [open, setOpen] = useState(false)
+
+    const {add} = useAddChatUsers((users)=>{
+        const filtered_users = [...users.filter((new_user)=>!(chat?.users.some((chat_user)=>chat_user.id == new_user.id)))]
+        add_users(filtered_users)
+    })
     const {data,name,register,setNameValue} = useSearchUser()
-    const {redirect} = useRedirectPersonnalChat();
     const handleSelect = (user:UserDetails)=>{
-        redirect(user?.id)
+        // add code 
+        if(!chat?.users?.some((u)=>u.id == user.id)) 
+            add({chat_id : chat?.id!,users_ids:[user?.id!]})
+        setOpen(false)
     }
     return (
-        <Dialog>
+        <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                {children}
+                <div>
+                    <BiSolidPlusCircle className="h-6 w-6 text-muted-foreground hover:text-primary duration-75 cursor-pointer" /> 
+                </div>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
-                    <DialogTitle>Add A Duo Chat</DialogTitle>
+                    <DialogTitle>Add people to chat</DialogTitle>
                 </DialogHeader>
                 <div className="grid gap-4 py-4">
                     <Command  className="rounded-lg border shadow-md w-full  ">
@@ -64,4 +76,4 @@ function AddDuoChat({ children }: AddDuoChatProps) {
     );
 };
 
-export default AddDuoChat;
+export default AddUsersToGroupChat;

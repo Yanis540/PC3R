@@ -5,7 +5,6 @@ import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 function Flashback() {
   return (
     <>
-      <MaxWidthWrapper>
         <div className='flex flex-col md:ml-10 w-full z-50 gap-10  md:mt-0 bg-background '>
           <h2 className='text-5xl text-center md:text-[50px] md:text-left font-bold'>Embark with us in our <span className='bg-gradient-to-r from-primary via-green-500 to-green-300 inline-block text-transparent bg-clip-text'>SNCF history</span></h2>
           <p className='lg:text-xl md:max-w-[70%] text-lg text-gray-300 text-center  md:text-left font-medium'>
@@ -16,7 +15,6 @@ function Flashback() {
           </p>
         </div>
         <Pathsvg />
-      </MaxWidthWrapper>
       <Icons.sncfLogo className=" md:hidden w-full h-auto "  />
     </>
   )

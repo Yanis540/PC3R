@@ -6,6 +6,7 @@ import { IoIosInformationCircle } from "react-icons/io";
 import ChatListUsers from './components/ChatListUsers';
 import { useAuth, useChatInformations } from '@/hooks';
 import { ChatType } from '@/types';
+import AddUsersToGroupChat from './components/AddUsersToGroupChat';
 
 interface ChatHeaderProps {
 
@@ -43,11 +44,16 @@ function ChatHeader({}:ChatHeaderProps) {
             {/* Right Side */}
             <div className="flex flex-row items-center gap-x-2">
                 {
-                    (chat?.type == ChatType.group  || chat?.type == ChatType.trip) && (
+                    (chat?.type != ChatType.duo) && (
                         <ChatListUsers /> 
                     )
                 }
-                <IoIosInformationCircle className="h-8 w-8 text-muted-foreground hover:text-primary duration-75 cursor-pointer" /> 
+                {
+                    chat?.type == ChatType.group && (
+                        <AddUsersToGroupChat /> 
+                    )
+                }
+                <IoIosInformationCircle className="h-6 w-6 text-muted-foreground hover:text-primary duration-75 cursor-pointer" /> 
             </div>
         </div>
     </div>

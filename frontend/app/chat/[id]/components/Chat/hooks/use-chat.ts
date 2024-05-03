@@ -5,6 +5,7 @@ interface AuthState {
   chat?:  Chat
   set_chat: (chat?: Chat) => void
   add_message: (message?: Message) => void
+  add_users: (users: UserDetails[]) => void
 }
 
 const useChat =  create<AuthState>(
@@ -17,6 +18,11 @@ const useChat =  create<AuthState>(
             if(!prev?.chat)
                 return  prev
             return {...prev,chat:{...prev.chat,messages:[...prev.chat.messages,message]}}
+        }),
+        add_users : (users: UserDetails[])=>set((prev:AuthState)=>{
+            if(!prev?.chat)
+                return  prev
+            return {...prev,chat:{...prev.chat,users:[...users,...prev.chat.users]}}
         }),
        
         

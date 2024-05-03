@@ -10,6 +10,8 @@ import {useWatchAuth} from './use-watch-auth'
 import {useMediaQuery} from './use-media-query'
 import {useCreateChat} from './use-create-chat'
 import {useRedirectPersonnalChat} from './use-redirect-personnal-message'
+import {useSearchUser} from './use-search-users'
+import {useAddChatUsers} from './use-add-chat-users'
 export {
     useSocket,
     useAuth,
@@ -21,5 +23,7 @@ export {
     useWatchAuth,
     useMediaQuery,
     useCreateChat,
-    useRedirectPersonnalChat
+    useRedirectPersonnalChat,
+    useSearchUser,
+    useAddChatUsers,
 }

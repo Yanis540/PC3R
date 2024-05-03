@@ -22,8 +22,7 @@ function ChatListUsers({ }: ChatListUsersProps) {
         <Sheet>
             <SheetTrigger asChild>
                 <div >
-
-                <FiUsers className="h-8 w-8 text-muted-foreground hover:text-primary duration-75 cursor-pointer " />
+                    <FiUsers className="h-6 w-6 text-muted-foreground hover:text-primary duration-75 cursor-pointer " />
                 </div>
             </SheetTrigger>
             <SheetContent className="flex flex-col bg-background text-foreground border-none border-0">
