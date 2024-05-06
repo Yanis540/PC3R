@@ -113,4 +113,5 @@ func closeClientConnection(client *Client, d interface{}) {
 	for _, hub := range client.SubscribedHubs {
 		hub.RemoveClient(client)
 	}
+	close(client.send)
 }

@@ -71,7 +71,7 @@ func (rt *Router) Handle(event Event, handler Handler) {
 
 // AddHub adds a hub to the router's list of hubs.
 func (rt *Router) AddHub(id string) {
-	hub := NewHub()
+	hub := NewHub(id)
 	rt.hubs[id] = hub
 	go hub.run()
 }
