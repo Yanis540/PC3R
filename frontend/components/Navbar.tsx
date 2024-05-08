@@ -9,6 +9,7 @@ import { Icons } from './icons';
 import UserAccountNav from './UserAccountNav';
 import ChatsSheet from './ChatsSheet';
 import { usePathname, useRouter } from 'next/navigation';
+import { CiChat1 } from 'react-icons/ci';
 
 interface NavbarProps {
 
@@ -46,7 +47,8 @@ function Navbar({}:NavbarProps) {
                                             <Button  variant="ghost" onClick={()=>{router.push('/trips')}}>Trip</Button>
                                             <div className='ml-4 flow-root lg:ml-6'>
                                                 {/* Cart */}
-                                                <ChatsSheet /> 
+                                                {/* <ChatsSheet />  */}
+                                                <Link href='/chat'  className="bg-transparent!important hover:bg-transparent border-none outline-none  text-background cursor-pointer"><CiChat1 className="w-8 h-8 text-primary"/></Link>
                                             </div>
                                             <UserAccountNav /> 
                                         </>
