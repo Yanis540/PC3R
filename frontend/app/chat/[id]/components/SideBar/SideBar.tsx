@@ -11,6 +11,7 @@ import { FaPlus } from "react-icons/fa";
 
 import { useFilterSideBarChats } from './hooks/use-filter-sidebar-chats';
 import SideBarAddChat from './SideBarAddChat';
+import Link from 'next/link';
 
 interface SideBarProps {
 
@@ -52,10 +53,9 @@ function SidebarChat({chat}:{chat:Chat}){
     const isActiveChat = (id_chat:string)=>id_chat == id
     const {name,photo} = useChatInformations(chat,user)
     return (
-    <div className={cn("flex flex-row items-center px-2 py-3 gap-x-4  border-b-[1px] border-gray-700 hover:bg-gray-900 transition-all duration-75 cursor-pointer",
+    <Link href={`/chat/${chat?.id}`}className={cn("flex flex-row items-center px-2 py-3 gap-x-4  border-b-[1px] border-gray-700 hover:bg-gray-900 transition-all duration-75 cursor-pointer",
         isActiveChat(chat.id) && "bg-blue-300/10"
     )}
-        onClick={()=>{router.push(`/chat/${chat?.id}`)}}
     >
         <div>
             <Avatar className="w-8 h-8">
@@ -69,7 +69,7 @@ function SidebarChat({chat}:{chat:Chat}){
                 {new Date(chat.date).toLocaleTimeString()}  
             </h6>
         </div>
-    </div>
+    </Link>
 )}
 
 export default SideBar;

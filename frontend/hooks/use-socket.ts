@@ -11,6 +11,7 @@ const useSocket = ()=>{
     useEffect(()=>{
         if(socket)
             return ; 
+        console.log("Creating new socket conenction")
         const newSocket = new Socket(tokens?.access!);
         if(!newSocket)
             return ; 
@@ -23,7 +24,7 @@ const useSocket = ()=>{
         }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[tokens?.access,set_socket])
+    },[tokens?.access])
 }
 
 export {
