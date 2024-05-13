@@ -404,6 +404,9 @@ func JoinUserToChat(res http.ResponseWriter, req *http.Request) {
 		db.Chat.ID.Equals(id),
 	).With(
 		db.Chat.Trip.Fetch(),
+		db.Chat.Messages.Fetch().With(
+			db.Message.User.Fetch(),
+		),
 		db.Chat.Users.Fetch(),
 	).Update(
 		db.Chat.Users.Link(
