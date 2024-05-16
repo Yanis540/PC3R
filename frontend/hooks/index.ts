@@ -12,6 +12,7 @@ import {useCreateChat} from './use-create-chat'
 import {useRedirectPersonnalChat} from './use-redirect-personnal-message'
 import {useSearchUser} from './use-search-users'
 import {useAddChatUsers} from './use-add-chat-users'
+import {useUpadteProfilePicture} from './use-update-profile'
 export {
     useSocket,
     useAuth,
@@ -26,4 +27,5 @@ export {
     useRedirectPersonnalChat,
     useSearchUser,
     useAddChatUsers,
+    useUpadteProfilePicture,
 }

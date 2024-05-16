@@ -1,6 +1,6 @@
 import { UseMutateAsyncFunction, UseMutateFunction, useMutation, useQueryClient } from "@tanstack/react-query"
 import axios from "axios"
-import { CLOUDINARY_API_KEY, CLOUDINARY_CLOUD_NAME } from "../env";
+import { CLOUDINARY_API_KEY, CLOUDINARY_CLOUD_NAME, CLOUDINARY_PRESET } from "../env";
 import { toast } from "sonner";
 const page_size = 10 ; 
 
@@ -24,45 +24,14 @@ interface ImagePickerAsset {
 
 const useUploadImages = (selectLimit?:number)=>{
    
-    const pickImages = async (files: FileList): Promise<ImagePickerAsset[] | null> => {
-        const filePromises: Promise<ImagePickerAsset>[] = Array.from(files).map(file => {
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.onload = () => {
-                    resolve({
-                        uri: reader.result as string,
-                        type: file.type,
-                        name: file.name
-                    });
-                };
-                reader.onerror = () => {
-                    reject(null);
-                };
-                reader.readAsDataURL(file);
-            });
-        });
-
-        try {
-            const result = await Promise.all(filePromises);
-            return result;
-        } catch (err) {
-            return null;
-        }
-    };
+    
     const {data,isPending:isLoading,error,mutate:upload,mutateAsync:uploadAsync}:useUploadImagesType  = useMutation({
         mutationKey:["upload","images"], 
         mutationFn:async({files}:{files:FileList})=>{
-            const assets = await pickImages(files)
-            if(!assets)
-                return undefined ; 
             const formData = new FormData()
-            formData.append("file",{
-                uri: assets[0].uri,
-                type: 'image/jpeg',
-                name: assets[0].name??"random.jpeg",
-            } as any ); 
+            formData.append("file",files[0] ); 
             formData.append("api_key",CLOUDINARY_API_KEY as any )
-            formData.append("upload_preset","dlekxljn")
+            formData.append("upload_preset",CLOUDINARY_PRESET as any)
            
             const response = await axios.post(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`,
             formData , 
@@ -78,10 +47,12 @@ const useUploadImages = (selectLimit?:number)=>{
         onSuccess:(data)=>{
             if(!data)
                 return ;
+            toast.success("uploaded image correctly")
             return data ; 
 
         }, 
         onError:(err:any)=>{
+            console.log(err)
             toast.error("Could not upload image")
         }
     }); 

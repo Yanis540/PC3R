@@ -7,7 +7,7 @@ import {useAuth} from '@/hooks';
 import UpdatePhotoDrawer from './UpdatePhotoDrawer';
 import UpdateProfileInformationsDialog from './UpdateProfileInformationsDialog';
 
-import { Avatar, AvatarImage } from './ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import ChatsSheet from './ChatsSheet';
 
 interface UserAccountNavProps {
@@ -18,9 +18,12 @@ function UserAccountNav({}:UserAccountNavProps) {
     return (
     <DropdownMenu>
         <DropdownMenuTrigger asChild className='overflow-visible'>
-            <Avatar className="w-8 h-8">
+            <div>
+            <Avatar className="w-10 h-10">
                 <AvatarImage src={user?.photo??"https://github.com/shadcn.png"} alt="" />
+                <AvatarFallback>{user?.name}</AvatarFallback>
             </Avatar>
+            </div>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="bg-background text-foreground w-60" align="end">
             <div className="flex flex-row items-center justify-between gap-2 p-2 ">

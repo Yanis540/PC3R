@@ -75,7 +75,7 @@ export const useUpdateProfile = ()=>{
 
 
 
-const useUpadteProfilePicture = ()=>{
+export const useUpadteProfilePicture = ()=>{
     const {uploadAsync,isLoading: isUploading} = useUploadImages(); 
     const {update,isLoading: isUpdating} = useUpdateProfile()
     const update_photo = async({files}:{files:FileList})=>{
@@ -85,6 +85,7 @@ const useUpadteProfilePicture = ()=>{
                 return ; 
             update({
                 photo: data.url,
+                //! this code is taken from my projects : https://github.com/Yanis540/UBER-CLONE/blob/master/mobile/src/screen/Common/Profile/hooks/use-update-user.ts
                 // {
                 //     cloud:{
                 //         asset_id:data.asset_id, 
