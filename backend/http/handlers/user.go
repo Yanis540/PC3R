@@ -50,6 +50,7 @@ type UpdateUserBody struct {
 	Id              string `json:"id"`
 	Name            string `json:"name"`
 	Password        string `json:"password"`
+	Photo           string `json:"photo"`
 	ConfirmPassword string `json:"confirmPassword"`
 }
 type ResponseUpdateBody struct {
@@ -60,7 +61,7 @@ type ResponseUpdateBody struct {
 func updateUser(res http.ResponseWriter, req *http.Request) {
 	var body UpdateUserBody
 	err := json.NewDecoder(req.Body).Decode(&body)
-	if (err != nil) || (body.Name == "" && body.Password == "") {
+	if (err != nil) || (body.Name == "" && body.Password == "" && body.Photo == "") {
 		res.WriteHeader(http.StatusAccepted)
 		message := "Nothing to Update"
 		json.NewEncoder(res).Encode(types.MessageResponse{Message: message})
@@ -69,7 +70,6 @@ func updateUser(res http.ResponseWriter, req *http.Request) {
 
 	prisma, ctx := global.GetPrisma()
 	user, _ := req.Context().Value(types.CtxAuthKey{}).(*db.UserModel)
-
 	if err != nil {
 		res.WriteHeader(http.StatusNotFound)
 		message := "User Not Found"
@@ -79,6 +79,10 @@ func updateUser(res http.ResponseWriter, req *http.Request) {
 	updated_name := user.Name
 	if body.Name != "" {
 		updated_name = body.Name
+	}
+	updated_photo, _ := user.Photo()
+	if body.Photo != "" {
+		updated_photo = body.Photo
 	}
 	updated_password, _ := user.Password()
 	if body.Password != "" {
@@ -100,6 +104,7 @@ func updateUser(res http.ResponseWriter, req *http.Request) {
 		),
 	).Update(
 		db.User.Name.Set(updated_name),
+		db.User.Photo.Set(updated_photo),
 		db.User.Password.Set(updated_password),
 	).Exec(ctx)
 	if err != nil {
