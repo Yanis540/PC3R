@@ -31,7 +31,7 @@ Nous avons déployé le site sur [Railway](https://pc3r-production-fba8.up.railw
 # Setup : 
 Si vous aimez mettre la main dans la pâte alors 
 ## Environnement 
-On vous a laissé un exemple à quoi peut ressembler un fichier **.env** pour le backend et le frontend, le setup de la base de donnée à vous de le faire pour postgres (vous pouvez utiliser supabase par exemple). 
+On vous a laissé un exemple à quoi peut ressembler un fichier **.env** pour le backend et le frontend, le setup de la base de donnée à vous de le faire pour postgres (vous pouvez utiliser supabase par exemple). Pas la peine de me bombarder avec des **PRs** pour me dire que j'ai une security leak car j'ai mis dans le frontend les preset et les API keys pour cloudinary, c'est un qu'un projet d'université, un CDI sans rémunération, en terme de rentabilité c'est au plus bas,  je ne vais pas me casser la tête avec ce genre de chose :) 
 ### Remarque importante 
 Dans l'env de frontend ne mettez pas de **https:// ou http://** dans l'URL du serveur car nous utilisons deux protocoles différents pour la connexion vers le serveur (ws et http).
 ## Shell 
@@ -39,6 +39,9 @@ Dans un shell
 ```bash
 ./setup.sh 
 ``` 
+
+## Docker 
+Si vous aimez vous compliquer la vie (**éviter le : it works on my machine plutôt**) nous avons mis à disposition pour le backend un **Dockerfile** vous permettant de créer une image docker  
 
 
 # Lancement :
